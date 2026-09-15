@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Applicant Details | SAMIA MIKOPO TANZANIA
+    </title>
+
+    <link rel="stylesheet" href="css/details.css">
+
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-mark">
+                    SMT
+                </div>
+
+                <div>
+                    <strong>
+                        SAMIA MIKOPO
+                    </strong>
+
+                    <small>
+                        ADMIN PORTAL
+                    </small>
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="dashboard.html"
+                    class="nav-item"
+                >
+                    <span>▦</span>
+                    <span>Maombi</span>
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-footer">
+
+                <button
+                    id="logoutButton"
+                    class="logout-button"
+                >
+                    Toka kwenye mfumo
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+
+                    <a
+                        href="dashboard.html"
+                        class="back-link"
+                    >
+                        ← Rudi kwenye maombi
+                    </a>
+
+                    <h1>
+                        Taarifa za Mwombaji
+                    </h1>
+
+                </div>
+
+            </header>
+
+
+            <section class="content">
+
+                <div
+                    id="detailsLoading"
+                    class="loading-state"
+                >
+
+                    <div class="spinner"></div>
+
+                    <p>
+                        Inapakia taarifa...
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="detailsError"
+                    class="alert alert-error hidden"
+                ></div>
+
+
+                <div
+                    id="detailsContent"
+                    class="hidden"
+                >
+
+                    <section class="profile-header panel">
+
+                        <div
+                            id="borrowerPhoto"
+                            class="borrower-photo"
+                        >
+                            <span>
+                                —
+                            </span>
+                        </div>
+
+                        <div class="profile-info">
+
+                            <span class="eyebrow">
+                                APPLICANT
+                            </span>
+
+                            <h2 id="applicantName">
+                                —
+                            </h2>
+
+                            <p id="applicationDate">
+                                —
+                            </p>
+
+                        </div>
+
+                    </section>
+
+
+                    <div class="details-grid">
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+                                <h2>
+                                    Taarifa Binafsi
+                                </h2>
+                            </div>
+
+                            <div
+                                id="personalDetails"
+                                class="details-list"
+                            ></div>
+
+                        </section>
+
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+                                <h2>
+                                    Taarifa za Mkopo
+                                </h2>
+                            </div>
+
+                            <div
+                                id="loanDetails"
+                                class="details-list"
+                            ></div>
+
+                        </section>
+
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+                                <h2>
+                                    Kitambulisho
+                                </h2>
+                            </div>
+
+                            <div
+                                id="identificationDetails"
+                                class="details-list"
+                            ></div>
+
+                        </section>
+
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+                                <h2>
+                                    Njia ya Kupokea Fedha
+                                </h2>
+                            </div>
+
+                            <div
+                                id="receivingDetails"
+                                class="details-list"
+                            ></div>
+
+                        </section>
+
+
+                        <section class="panel documents-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+                                    <h2>
+                                        Nyaraka
+                                    </h2>
+
+                                    <p>
+                                        Nyaraka za mwombaji.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div
+                                id="documentsList"
+                                class="documents-list"
+                            ></div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script src="js/details.js"></script>
+
+</body>
+</html>

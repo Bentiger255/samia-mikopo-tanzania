@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#008f5a">
+
+    <title>SAMIA MIKOPO TANZANIA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">
+            <img src="assets/img/logo.webp" alt="SAMIA MIKOPO TANZANIA">
+            <div>
+                <h1>SAMIA MIKOPO TANZANIA</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<main class="container main-container">
+
+    <!-- FORM -->
+    <section id="formSection">
+
+        <div class="page-intro">
+            <h2>Fomu ya Maombi ya Mkopo</h2>
+            <p>Tafadhali jaza fomu hii kwa usahihi ili kuendelea na maombi yako.</p>
+        </div>
+
+
+        <form id="loanForm" novalidate>
+
+            <!-- ========================= -->
+            <!-- SECTION 1 -->
+            <!-- ========================= -->
+
+            <div class="form-section">
+
+                <div class="section-title">
+                    <span class="section-number">1</span>
+                    <div>
+                        <h3>Taarifa Binafsi</h3>
+                        <p>Weka taarifa zako binafsi</p>
+                    </div>
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+                        <label for="fullName">
+                            Jina Kamili <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Majina yako matatu"
+                        >
+
+                        <small class="error-message"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="age">
+                            Umri <span>*</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            min="18"
+                            max="100"
+                            placeholder="Mfano: 25"
+                        >
+
+                        <small class="error-message"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="phone">
+                            Namba ya Simu <span>*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Mfano: 0750000111"
+                        >
+
+                        <small class="error-message"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="whatsapp">
+                            Namba ya WhatsApp
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="whatsapp"
+                            name="whatsapp"
+                            placeholder="Mfano: 0750000111"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="ward">
+                            Kata <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="ward"
+                            name="ward"
+                            placeholder="Andika kata yako"
+                        >
+
+                        <small class="error-message"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="district">
+                            Wilaya <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="district"
+                            name="district"
+                            placeholder="Andika wilaya yako"
+                        >
+
+                        <small class="error-message"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="region">
+                            Mkoa <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="region"
+                            name="region"
+                            placeholder="Andika mkoa wako"
+                        >
+
+                        <small class="error-message"></small>
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            Jinsia <span>*</span>
+                        </label>
+
+                        <div class="radio-grid">
+
+                            <label class="radio-card">
+                                <input type="radio" name="gender" value="Mwanaume">
+                                <span>Mwanaume</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input type="radio" name="gender" value="Mwanamke">
+                                <span>Mwanamke</span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BORROWER PHOTO -->
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            WEKA PICHA YAKO <span>*</span>
+                        </label>
+
+                        <p class="upload-description">
+                            
+                        </p>
+
+                        <div
+                            class="upload-zone"
+                            data-input="borrowerPhoto"
+                        >
+                            <input
+                                type="file"
+                                id="borrowerPhoto"
+                                name="borrowerPhoto"
+                                accept="image/jpeg,image/png,image/webp"
+                            >
+
+                            <div class="upload-content">
+                                <div class="upload-icon">↑</div>
+
+                                <strong>
+                                    Drag and Drop picha hapa
+                                </strong>
+
+                                <span>au</span>
+
+                                <button type="button" class="choose-file">
+                                    Choose File
+                                </button>
+
+                                <small>
+                                    JPG, PNG au WEBP • Maximum 5MB
+                                </small>
+                            </div>
+
+                            <div class="file-preview"></div>
+                        </div>
+
+                        <small class="error-message"></small>
+
+                    </div>
+
+
+                    <!-- INCOME -->
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            Chanzo cha Mapato <span>*</span>
+                        </label>
+
+                        <div class="radio-grid">
+
+                            <label class="radio-card">
+                                <input type="radio" name="incomeSource" value="Mshahara">
+                                <span>Ajira Serikalini</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input type="radio" name="incomeSource" value="Biashara">
+                                <span>Ajira Kampuni Binafsi</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input type="radio" name="incomeSource" value="Kilimo">
+                                <span>Kilimo</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input type="radio" name="incomeSource" value="Ajira">
+                                <span>Biashara</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input type="radio" name="incomeSource" value="Pensheni">
+                                <span>Mfugaji</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input type="radio" name="incomeSource" value="NYINGINE">
+                                <span>NYINGINE</span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="conditional-field full-width"
+                        id="otherIncomeWrapper"
+                    >
+                        <label for="otherIncome">
+                            Taja Chanzo cha Mapato <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="otherIncome"
+                            name="otherIncome"
+                            placeholder="Andika chanzo chako cha mapato"
+                        >
+
+                        <small class="error-message"></small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- SECTION 2 -->
+            <!-- ========================= -->
+
+            <div class="form-section">
+
+                <div class="section-title">
+                    <span class="section-number">2</span>
+                    <div>
+                        <h3>Kiasi cha Mkopo</h3>
+                        <p>Chagua kiasi unachohitaji</p>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="loanAmount">
+                        Kiasi cha Mkopo <span>*</span>
+                    </label>
+
+                    <select id="loanAmount" name="loanAmount">
+
+                        <option value="">
+                            -- CHAGUA KIASI CHA MKOPO --
+                        </option>
+
+                        <option value="300000">TZS 300,000</option>
+                        <option value="400000">TZS 400,000</option>
+                        <option value="500000">TZS 500,000</option>
+                        <option value="600000">TZS 600,000</option>
+                        <option value="700000">TZS 700,000</option>
+                        <option value="800000">TZS 800,000</option>
+                        <option value="900000">TZS 900,000</option>
+                        <option value="1000000">TZS 1,000,000</option>
+                        <option value="2000000">TZS 2,000,000</option>
+                        <option value="3000000">TZS 3,000,000</option>
+                        <option value="4000000">TZS 4,000,000</option>
+                        <option value="5000000">TZS 5,000,000</option>
+                        <option value="6000000">TZS 6,000,000</option>
+                        <option value="7000000">TZS 7,000,000</option>
+                        <option value="8000000">TZS 8,000,000</option>
+                        <option value="9000000">TZS 9,000,000</option>
+                        <option value="10000000">TZS 10,000,000</option>
+                        <option value="20000000">TZS 20,000,000</option>
+                        <option value="30000000">TZS 30,000,000</option>
+                        <option value="40000000">TZS 40,000,000</option>
+                        <option value="50000000">TZS 50,000,000</option>
+
+                    </select>
+
+                    <small class="error-message"></small>
+
+                </div>
+
+
+                <div
+                    id="loanSummary"
+                    class="loan-summary hidden"
+                >
+
+                    <div class="summary-item">
+                        <span>Kiasi cha Mkopo</span>
+                        <strong id="selectedLoan">-</strong>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Akiba</span>
+                        <strong id="selectedSavings">-</strong>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Muda wa Marejesho</span>
+                        <strong id="selectedRepaymentRange">*</strong>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="repaymentWrapper"
+                    class="form-group hidden"
+                >
+
+                    <label for="repaymentPeriod">
+                        Chagua Muda wa Marejesho <span>*</span>
+                    </label>
+
+                    <select
+                        id="repaymentPeriod"
+                        name="repaymentPeriod"
+                    >
+                        <option value="">
+                            -- CHAGUA MUDA --
+                        </option>
+                    </select>
+
+                    <small class="error-message"></small>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- SECTION 3 -->
+            <!-- ========================= -->
+
+            <div class="form-section">
+
+                <div class="section-title">
+                    <span class="section-number">3</span>
+                    <div>
+                        <h3>Kitambulisho</h3>
+                        <p>Chagua aina ya kitambulisho unachotumia</p>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Aina ya Kitambulisho <span>*</span>
+                    </label>
+
+                    <div class="radio-list">
+
+                        <label class="radio-card large">
+                            <input
+                                type="radio"
+                                name="identificationType"
+                                value="Nida"
+                            >
+
+                            <span>
+                                <strong>NIDA</strong>
+                                <small>
+                                    KITAMBULISHO CHA NIDA
+                                </small>
+                            </span>
+                        </label>
+
+
+                        <label class="radio-card large">
+                            <input
+                                type="radio"
+                                name="identificationType"
+                                value="Mpiga-kura"
+                            >
+
+                            <span>
+                                <strong>Mpiga Kura</strong>
+                                <small>
+                                    KITAMBULISHO CHA MPIGA KURA
+                                </small>
+                            </span>
+                        </label>
+
+
+                        <label class="radio-card large">
+                            <input
+                                type="radio"
+                                name="identificationType"
+                                value="Mzanzibar"
+                            >
+
+                            <span>
+                                <strong>Mzanzibar</strong>
+                                <small>
+                                    KITAMBULISHO CHA MZANZIBAR
+                                </small>
+                            </span>
+                        </label>
+
+
+                        <label class="radio-card large">
+                            <input
+                                type="radio"
+                                name="identificationType"
+                                value="Leseni"
+                            >
+
+                            <span>
+                                <strong>Leseni ya Udereva</strong>
+                                <small>
+                                    LESENI YA UDEREVA
+                                </small>
+                            </span>
+                        </label>
+
+
+                        <label class="radio-card large">
+                            <input
+                                type="radio"
+                                name="identificationType"
+                                value="Paspoti"
+                            >
+
+                            <span>
+                                <strong>Paspoti ya Kusafiria</strong>
+                                <small>
+                                    PASPOTI YA KUSAFIRIA
+                                </small>
+                            </span>
+                        </label>
+
+
+                        <label class="radio-card large">
+                            <input
+                                type="radio"
+                                name="identificationType"
+                                value="Namba-ya-nida"
+                            >
+
+                            <span>
+                                <strong>Namba ya NIDA</strong>
+                                <small>
+                                    JAZA NAMBA YAKO YA NIDA
+                                </small>
+                            </span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NIDA -->
+
+                <div
+                    id="idNidaWrapper"
+                    class="document-panel hidden"
+                >
+
+                    <div class="document-heading">
+                        <h4>KITAMBULISHO CHA NIDA</h4>
+                        <p>
+                            WEKA PICHA YA KITAMBULISHO CHAKO CHA NIDA
+                        </p>
+                    </div>
+
+                    <div class="upload-grid">
+
+                        <div>
+
+                            <div
+                                class="upload-zone small"
+                                data-input="nidaFront"
+                            >
+                                <input
+                                    type="file"
+                                    id="nidaFront"
+                                    name="nidaFront"
+                                    accept="image/jpeg,image/png,image/webp"
+                                >
+
+                                <div class="upload-content">
+                                    <div class="upload-icon">↑</div>
+                                    <strong>Drag and Drop</strong>
+                                    <span>au</span>
+                                    <button type="button" class="choose-file">
+                                        Choose File
+                                    </button>
+                                </div>
+
+                                <div class="file-preview"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- MPIGA KURA -->
+
+                <div
+                    id="idVoterWrapper"
+                    class="document-panel hidden"
+                >
+
+                    <div class="document-heading">
+                        <h4>KITAMBULISHO CHA MPIGA KURA</h4>
+                        <p>
+                            WEKA PICHA YA KITAMBULISHO CHAKO CHA MPIGA KURA
+                        </p>
+                    </div>
+
+                    <div class="upload-grid">
+
+                        <div>
+
+                            <div
+                                class="upload-zone small"
+                                data-input="voterFront"
+                            >
+                                <input
+                                    type="file"
+                                    id="voterFront"
+                                    name="voterFront"
+                                    accept="image/jpeg,image/png,image/webp"
+                                >
+
+                                <div class="upload-content">
+                                    <div class="upload-icon">↑</div>
+                                    <strong>Drag and Drop</strong>
+                                    <span>au</span>
+                                    <button type="button" class="choose-file">
+                                        Choose File
+                                    </button>
+                                </div>
+
+                                <div class="file-preview"></div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- ZANZIBAR -->
+
+                <div
+                    id="idZanzibarWrapper"
+                    class="document-panel hidden"
+                >
+
+                    <div class="document-heading">
+                        <h4>KITAMBULISHO CHA MZANZIBAR</h4>
+                        <p>
+                            WEKA PICHA YA KITAMBULISHO CHAKO CHA MZANZIBAR
+                        </p>
+                    </div>
+
+                    <div class="upload-grid">
+
+                        <div>
+
+                            <div
+                                class="upload-zone small"
+                                data-input="zanzibarFront"
+                            >
+                                <input
+                                    type="file"
+                                    id="zanzibarFront"
+                                    name="zanzibarFront"
+                                    accept="image/jpeg,image/png,image/webp"
+                                >
+
+                                <div class="upload-content">
+                                    <div class="upload-icon">↑</div>
+                                    <strong>Drag and Drop</strong>
+                                    <span>au</span>
+                                    <button type="button" class="choose-file">
+                                        Choose File
+                                    </button>
+                                </div>
+
+                                <div class="file-preview"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LESENI -->
+
+                <div
+                    id="idLicenseWrapper"
+                    class="document-panel hidden"
+                >
+
+                    <div class="document-heading">
+                        <h4>LESENI YA UDEREVA</h4>
+                        <p>
+                            WEKA PICHA YA LESENI YAKO YA UDEREVA
+                        </p>
+                    </div>
+
+                    <div class="upload-grid">
+
+                        <div>
+
+                            <div
+                                class="upload-zone small"
+                                data-input="licenseFront"
+                            >
+                                <input
+                                    type="file"
+                                    id="licenseFront"
+                                    name="licenseFront"
+                                    accept="image/jpeg,image/png,image/webp"
+                                >
+
+                                <div class="upload-content">
+                                    <div class="upload-icon">↑</div>
+                                    <strong>Drag and Drop</strong>
+                                    <span>au</span>
+                                    <button type="button" class="choose-file">
+                                        Choose File
+                                    </button>
+                                </div>
+
+                                <div class="file-preview"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSPORT -->
+
+                <div
+                    id="idPassportWrapper"
+                    class="document-panel hidden"
+                >
+
+                    <div class="document-heading">
+                        <h4>PASPOTI YA KUSAFIRIA</h4>
+                        <p>
+                            WEKA PICHA YA PASPOTI YAKO YA KUSAFIRIA
+                        </p>
+                    </div>
+
+
+                    <div
+                        class="upload-zone"
+                        data-input="passportDocument"
+                    >
+                        <input
+                            type="file"
+                            id="passportDocument"
+                            name="passportDocument"
+                            accept="image/jpeg,image/png,image/webp"
+                        >
+
+                        <div class="upload-content">
+                            <div class="upload-icon">↑</div>
+                            <strong>Drag and Drop</strong>
+                            <span>au</span>
+                            <button type="button" class="choose-file">
+                                Choose File
+                            </button>
+                            <small>
+                                JPG, PNG au WEBP • Maximum 5MB
+                            </small>
+                        </div>
+
+                        <div class="file-preview"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- NIDA NUMBER -->
+
+                <div
+                    id="nidaNumberWrapper"
+                    class="conditional-field hidden"
+                >
+
+                    <label for="nidaNumber">
+                        NAMBA YA NIDA <span>*</span>
+                    </label>
+
+                    <p class="upload-description">
+                        JAZA NAMBA YAKO YA NIDA
+                    </p>
+
+                    <input
+                        type="text"
+                        id="nidaNumber"
+                        name="nidaNumber"
+                        inputmode="numeric"
+                        placeholder="Andika namba yako ya NIDA"
+                    >
+
+                    <small class="error-message"></small>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- SECTION 4 -->
+            <!-- ========================= -->
+
+            <div class="form-section">
+
+                <div class="section-title">
+                    <span class="section-number">4</span>
+
+                    <div>
+                        <h3>Njia ya Kupokea Mkopo</h3>
+                        <p>Chagua utakavyopokea fedha</p>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Njia ya Kupokea Mkopo <span>*</span>
+                    </label>
+
+                    <div class="radio-grid">
+
+                        <label class="radio-card">
+                            <input
+                                type="radio"
+                                name="receivingMethod"
+                                value="one"
+                            >
+                            <span>Simu</span>
+                        </label>
+
+                        <label class="radio-card">
+                            <input
+                                type="radio"
+                                name="receivingMethod"
+                                value="two"
+                            >
+                            <span>Benki</span>
+                        </label>
+
+                    </div>
+
+                    <small
+                        id="receivingError"
+                        class="general-error"
+                    ></small>
+
+                </div>
+
+
+                <!-- MOBILE -->
+
+                <div
+                    id="mobileReceivingWrapper"
+                    class="conditional-field hidden"
+                >
+
+                    <div class="form-group">
+
+                        <label>
+                            Ni Mtandao Gani Unatumia? <span>*</span>
+                        </label>
+
+                        <div class="radio-grid">
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="mobileNetwork"
+                                    value="Vodacom"
+                                >
+                                <span>M-PESA</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="mobileNetwork"
+                                    value="Yas"
+                                >
+                                <span>Mixx by Yas</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="mobileNetwork"
+                                    value="Airtel"
+                                >
+                                <span>Airtel Money</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="mobileNetwork"
+                                    value="Halopesa"
+                                >
+                                <span>Halopesa</span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="mobileNumber">
+                            Namba Inayopokea Mkopo <span>*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="mobileNumber"
+                            name="mobileNumber"
+                            placeholder="Andika namba inayopokea mkopo"
+                        >
+
+                        <small class="error-message"></small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BANK -->
+
+                <div
+                    id="bankReceivingWrapper"
+                    class="conditional-field hidden"
+                >
+
+                    <div class="form-group">
+
+                        <label>
+                            Ni Benki Gani Unatumia? <span>*</span>
+                        </label>
+
+                        <div class="radio-grid">
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="CRDB"
+                                >
+                                <span>CRDB</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="NMB"
+                                >
+                                <span>NMB</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="NBC"
+                                >
+                                <span>NBC</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="Absa"
+                                >
+                                <span>Absa</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="Stanbic"
+                                >
+                                <span>Stanbic</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="Exim"
+                                >
+                                <span>Exim</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="Azania"
+                                >
+                                <span>Azania</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="KCB"
+                                >
+                                <span>KCB</span>            
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="TCB"
+                                >
+                                <span>TCB</span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input
+                                    type="radio"
+                                    name="bank"
+                                    value="Other"
+                                >
+                                <span>Benki Nyingine</span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="bankAccount">
+                            Akaunti ya Benki <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bankAccount"
+                            name="bankAccount"
+                            placeholder="Andika akaunti namba"
+                        >
+
+                        <small class="error-message"></small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- SECTION 5 -->
+            <!-- ========================= -->
+
+            <div class="form-section">
+
+                <div class="section-title">
+                    <span class="section-number">5</span>
+
+                    <div>
+                        <h3>Uthibitisho</h3>
+                        <p>Thibitisha taarifa ulizoweka</p>
+                    </div>
+                </div>
+
+
+                <label class="consent-box">
+
+                    <input
+                        type="checkbox"
+                        id="consent"
+                        name="consent"
+                    >
+
+                    <span>
+                        Ninathibitisha kwamba taarifa zote nilizoweka ni
+                        sahihi na niko tayari kwa uhakiki wa maombi yangu.
+                    </span>
+
+                </label>
+
+                <small
+                    id="consentError"
+                    class="general-error"
+                ></small>
+
+
+                <button
+                    type="submit"
+                    id="submitButton"
+                    class="submit-button"
+                >
+                    TUMA MAOMBI
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- LOADER -->
+    <!-- ========================= -->
+
+    <section
+        id="loader"
+        class="loader-section hidden"
+    >
+
+        <div class="loader-circle"></div>
+
+        <h3>INATUMA MAOMBI...</h3>
+
+        <p>
+            Tafadhali subiri wakati taarifa zako zinachakatwa.
+        </p>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- SUCCESS -->
+    <!-- ========================= -->
+
+    <section
+        id="successSection"
+        class="success-section hidden"
+    >
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>Hongera Ndugu: <span id="outName"></span></h2>
+
+        <p>
+            Leo Tarehe
+            <strong id="outDate"></strong>
+            Tumepokea fomu ya maombi ya mkopo wako wa:
+        </p>
+
+        <div class="success-loan">
+            <strong id="outLoan"></strong>
+        </div>
+
+        <p>
+            Fomu ya usajili imepokelewa na inafanyiwa kazi,
+            tafadhali lipa akiba ya mkopo wako.Baada ya kufanya malipo ya akiba,
+            utapokea mkopo wako ndani dakika 15, 
+            Tafadhali fanya malipo kwa kutumia njia yoyote iliyoelezwa hapa chini.
+        </p>
+
+
+        <div class="application-summary">
+
+            <h3>Muhtasari wa Maombi</h3>
+
+            <div>
+                <span>Kiasi cha Mkopo</span>
+                <strong id="summaryLoan"></strong>
+            </div>
+
+            <div>
+                <span>Akiba</span>
+                <strong id="summarySavings"></strong>
+            </div>
+
+            <div>
+                <span>Namba ya Malipo</span>
+                <strong>23505159-SAMIA MIKOPO TANZANIA</strong>
+            </div>
+
+        </div>
+
+
+        <div class="payment-section">
+
+            <h3>Hatua ya Malipo ya Akiba</h3>
+
+            <p>
+                Ili kuendelea na hatua ya uhakiki wa maombi yako,
+                tumia moja ya njia zifuatazo kulipia kiasi cha Akiba.
+            </p>
+
+
+            <div class="payment-grid">
+
+                <!-- VODACOM -->
+
+                <div class="payment-card">
+
+                    <div class="network-header">
+                        <img
+                            src="assets/img/vodacom.png"
+                            alt="Vodacom"
+                        >
+
+                        <h4>Vodacom M-PESA</h4>
+                    </div>
+
+                    <ol>
+                        <li>Piga <strong>*150*00#</strong></li>
+                        <li>Chagua <strong>Lipa kwa M-PESA</strong></li>
+                        <li>Chagua <strong>Lipa kwa simu</strong></li>
+                        <li>Weka namba <strong>23505159-SAMIA MIKOPO TANZANIA</strong></li>
+                        <li>Weka kiasi cha <strong id="vodacomAmount"></strong></li>
+                        <li>Weka PIN yako kuthibitisha</li>
+                    </ol>
+
+                </div>
+
+
+                <!-- YAS -->
+
+                <div class="payment-card">
+
+                    <div class="network-header">
+                        <img
+                            src="assets/img/yas.jpg"
+                            alt="Yas"
+                        >
+
+                        <h4>Mix by Yas</h4>
+                    </div>
+
+                    <ol>
+                        <li>Piga <strong>*150*01#</strong></li>
+                        <li>Chagua <strong>Lipa kwa simu</strong></li>
+                        <li>Chagua <strong>Mitandao mingine</strong></li>
+                        <li>Chagua <strong>HALOPESA</strong></li>
+                        <li>Weka namba <strong>23505159</strong></li>
+                        <li>Weka kiasi cha <strong id="yasAmount"></strong></li>
+                        <li>Weka PIN yako kuthibitisha</li>
+                    </ol>
+
+                </div>
+
+
+                <!-- AIRTEL -->
+
+                <div class="payment-card">
+
+                    <div class="network-header">
+                        <img
+                            src="assets/img/airtel.png"
+                            alt="Airtel Money"
+                        >
+
+                        <h4>Airtel Money</h4>
+                    </div>
+
+                    <ol>
+                        <li>Piga <strong>*150*60#</strong></li>
+                        <li>Chagua <strong>Lipa Bill</strong></li>
+                        <li>
+                            Chagua
+                            <strong>
+                                Lipa kwa simu (MITANDAO YOTE)
+                            </strong>
+                        </li>
+                        <li>Chagua <strong>TANQR (TIPS)</strong></li>
+                        <li>Weka namba <strong>23505159</strong></li>
+                        <li>Weka kiasi cha <strong id="airtelAmount"></strong></li>
+                        <li>Weka PIN yako kuthibitisha</li>
+                    </ol>
+
+                </div>
+
+
+                <!-- HALOPESA -->
+
+                <div class="payment-card">
+
+                    <div class="network-header">
+                        <img
+                            src="assets/img/halopesa.jpeg"
+                            alt="Halopesa"
+                        >
+
+                        <h4>Halopesa</h4>
+                    </div>
+
+                    <ol>
+                        <li>Piga <strong>*150*88#</strong></li>
+                        <li>Chagua <strong>Lipia Bidhaa</strong></li>
+                        <li>Chagua <strong>Halopesa Lipa Hapa</strong></li>
+                        <li>Weka namba <strong>23505159</strong></li>
+                        <li>Weka kiasi cha <strong id="halopesaAmount"></strong></li>
+                        <li>Weka PIN yako kuthibitisha</li>
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <div class="payment-account">
+
+                <span>Jina la Malipo</span>
+                <strong>SAMIA MIKOPO TANZANIA</strong>
+
+                <span>Namba ya Malipo</span>
+                <strong>23505159-SAMIA MIKOPO TANZANIA</strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="success-actions">
+
+            <button
+                id="whatsappButton"
+                class="whatsapp-button"
+            >
+                TUMA UTHIBITISHO WHATSAPP
+            </button>
+
+            <button
+                id="backButton"
+                class="secondary-button"
+            >
+                RUDI MWANZO
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <strong>SAMIA MIKOPO TANZANIA</strong>
+
+        <p>
+            Suluhisho bora na salama
+        </p>
+
+        <p>
+            0752009812 &nbsp; | &nbsp;
+            mikoposamia@gmail.com
+        </p>
+
+        <small>
+            © 2026 Samia Mikopo Tanzania. Haki zote zimehifadhiwa.
+        </small>
+
+    </div>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/supabase.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

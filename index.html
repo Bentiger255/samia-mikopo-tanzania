@@ -1,0 +1,3580 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SAMIA MIKOPO TANZANIA</title>
+
+    <meta
+        name="description"
+        content="Samia Mikopo Tanzania - Maombi ya mikopo, akiba na marejesho."
+    >
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+            --primary: #008f5a;
+            --primary-dark: #006f46;
+            --primary-deep: #005a3b;
+            --primary-light: #eaf8f2;
+            --primary-soft: #f4fbf8;
+
+            --text: #17211d;
+            --text-soft: #64706a;
+
+            --white: #ffffff;
+            --background: #f7faf8;
+            --border: #e3ebe7;
+
+            --cream: #fff9e7;
+            --cream-border: #e6dcae;
+            --cream-text: #685d35;
+
+            --footer: #073b29;
+            --footer-light: #b8d2c7;
+
+            --shadow-small:
+                0 4px 18px rgba(15, 40, 29, 0.06);
+
+            --shadow-medium:
+                0 12px 35px rgba(15, 40, 29, 0.10);
+
+            --radius-small: 9px;
+            --radius-medium: 13px;
+            --radius-large: 20px;
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Prompt", sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 28px));
+            margin: 0 auto;
+        }
+
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.97);
+
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .nav-container {
+            min-height: 68px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            min-width: 0;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+
+            object-fit: contain;
+
+            padding: 4px;
+
+            border-radius: 10px;
+
+            background: var(--primary-light);
+        }
+
+        .brand-name {
+            font-size: 13px;
+            font-weight: 800;
+
+            line-height: 1.15;
+
+            color: var(--primary-dark);
+
+            white-space: nowrap;
+        }
+
+        .brand-tagline {
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--text-soft);
+
+            font-size: 8px;
+            font-weight: 500;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+
+            gap: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 16px;
+        }
+
+        .nav-links a {
+            color: var(--text-soft);
+
+            font-size: 11px;
+            font-weight: 500;
+
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-apply {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 6px;
+
+            padding: 8px 12px;
+
+            background: var(--primary);
+            color: var(--white);
+
+            border-radius: 8px;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            white-space: nowrap;
+
+            box-shadow:
+                0 5px 14px rgba(0, 143, 90, 0.16);
+
+            transition: 0.2s ease;
+        }
+
+        .nav-apply:hover {
+            background: var(--primary-dark);
+
+            transform: translateY(-1px);
+        }
+
+        .menu-button {
+            display: none;
+
+            width: 37px;
+            height: 37px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            background: var(--white);
+
+            color: var(--primary-dark);
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           MOBILE MENU
+        ========================================================= */
+
+        .mobile-menu {
+            display: none;
+
+            padding: 8px 14px 14px;
+
+            background: var(--white);
+
+            border-top: 1px solid var(--border);
+        }
+
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+
+            padding: 9px 7px;
+
+            color: var(--text-soft);
+
+            font-size: 11px;
+            font-weight: 500;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu .mobile-apply {
+            margin-top: 8px;
+
+            text-align: center;
+
+            border-radius: 8px;
+
+            background: var(--primary);
+
+            color: var(--white);
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           TICKER
+        ========================================================= */
+
+        .ticker {
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+
+            overflow: hidden;
+
+            background: var(--primary-deep);
+
+            color: var(--white);
+        }
+
+        .ticker-label {
+            flex: 0 0 auto;
+
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 0 13px;
+
+            background: var(--primary-dark);
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 0.3px;
+
+            z-index: 2;
+        }
+
+        .ticker-window {
+            flex: 1;
+
+            overflow: hidden;
+        }
+
+        .ticker-track {
+            display: flex;
+
+            width: max-content;
+
+            animation: tickerMove 27s linear infinite;
+        }
+
+        .ticker-item {
+            flex: 0 0 auto;
+
+            padding-right: 100px;
+
+            font-size: 10px;
+            font-weight: 500;
+
+            white-space: nowrap;
+        }
+
+        .ticker-item strong {
+            font-weight: 800;
+        }
+
+        .ticker:hover .ticker-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes tickerMove {
+            from {
+                transform: translateX(100vw);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            background: var(--white);
+
+            padding: 48px 0 50px;
+
+            background-image:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(0, 143, 90, 0.07),
+                    transparent 30%
+                );
+        }
+
+        .hero-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 0.95fr;
+
+            align-items: center;
+
+            gap: 45px;
+        }
+
+        .hero-content {
+            max-width: 590px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 6px 10px;
+
+            margin-bottom: 13px;
+
+            background: var(--primary-light);
+
+            color: var(--primary-dark);
+
+            border: 1px solid #d8eee4;
+
+            border-radius: 50px;
+
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .hero h1 {
+            margin-bottom: 13px;
+
+            font-size: clamp(30px, 4vw, 48px);
+
+            line-height: 1.08;
+
+            letter-spacing: -0.8px;
+
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-description {
+            margin-bottom: 18px;
+
+            color: var(--text-soft);
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .hero-points {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+        }
+
+        .hero-point {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 7px 9px;
+
+            background: var(--primary-soft);
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .hero-point i {
+            color: var(--primary);
+        }
+
+        .hero-image-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            display: block;
+            width: 100%;
+
+            height: auto;
+            max-width: 100%;
+
+
+            object-fit: contain;
+
+            border-radius: var(--radius-large);
+
+            box-shadow: var(--shadow-medium);
+        }
+
+
+        /* =========================================================
+           GENERAL SECTIONS
+        ========================================================= */
+
+        .section {
+            padding: 38px 0;
+        }
+
+        .section-white {
+            background: var(--white);
+        }
+
+        .section-heading {
+            max-width: 700px;
+
+            margin: 0 auto 18px;
+
+            text-align: center;
+        }
+
+        .section-kicker {
+            margin-bottom: 3px;
+
+            color: var(--primary);
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.8px;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 4px;
+
+            font-size: 25px;
+
+            line-height: 1.15;
+
+            font-weight: 800;
+        }
+
+        .section-heading p {
+            color: var(--text-soft);
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           UHAKIKA
+        ========================================================= */
+
+        .trust-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 10px;
+        }
+
+        .trust-card {
+            padding: 15px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            box-shadow: var(--shadow-small);
+
+            transition: 0.25s ease;
+        }
+
+        .trust-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow: var(--shadow-medium);
+        }
+
+        .icon-box {
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 9px;
+
+            background: var(--primary-light);
+
+            color: var(--primary);
+
+            border-radius: 9px;
+
+            font-size: 14px;
+        }
+
+        .trust-card h3 {
+            margin-bottom: 4px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .trust-card p {
+            color: var(--text-soft);
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           DOCUMENTS
+        ========================================================= */
+
+        .documents-section {
+            background: var(--background);
+        }
+
+        .documents-grid {
+            max-width: 1080px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 10px;
+        }
+
+        .document-card {
+            overflow: hidden;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            box-shadow: var(--shadow-small);
+
+            transition: 0.25s ease;
+        }
+
+        .document-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow: var(--shadow-medium);
+        }
+
+        .document-image {
+            height: 235px;
+
+            padding: 7px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            background: #edf3f0;
+        }
+
+        .document-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            border-radius: 5px;
+
+            transition: 0.3s ease;
+        }
+
+        /* BOT MUST STAY STRAIGHT */
+        .document-tilted .document-image img,
+        .document-tilted:hover .document-image img {
+            transform: none;
+        }
+
+        .office-image img {
+            object-fit: cover;
+        }
+
+        .document-info {
+            min-height: 50px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 10px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .document-icon {
+            width: 29px;
+            height: 29px;
+
+            flex: 0 0 auto;
+
+            display: grid;
+
+            place-items: center;
+
+            background: var(--primary-light);
+
+            color: var(--primary);
+
+            border-radius: 8px;
+
+            font-size: 11px;
+        }
+
+        .document-info strong {
+            display: block;
+
+            font-size: 10px;
+
+            line-height: 1.2;
+        }
+
+        .document-info span {
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--text-soft);
+
+            font-size: 8px;
+        }
+
+
+        /* =========================================================
+           KWANINI AKIBA
+        ========================================================= */
+
+        .why-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 10px;
+        }
+
+        .why-card {
+            padding: 15px;
+
+            background: var(--primary-soft);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+        }
+
+        .why-number {
+            margin-bottom: 4px;
+
+            color: var(--primary);
+
+            font-size: 9px;
+
+            font-weight: 800;
+        }
+
+        .why-card h3 {
+            margin-bottom: 4px;
+
+            font-size: 12px;
+        }
+
+        .why-card p {
+            color: var(--text-soft);
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           RIBA
+        ========================================================= */
+
+        .interest-box {
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            padding: 17px 19px;
+
+            display: grid;
+
+            grid-template-columns: 45px 1fr;
+
+            align-items: start;
+
+            gap: 12px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            box-shadow: var(--shadow-small);
+        }
+
+        .interest-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+
+            place-items: center;
+
+            background: var(--primary-light);
+
+            color: var(--primary);
+
+            border-radius: 10px;
+
+            font-size: 16px;
+        }
+
+        .interest-box h3 {
+            margin-bottom: 4px;
+
+            font-size: 13px;
+        }
+
+        .interest-box p {
+            color: var(--text-soft);
+
+            font-size: 10px;
+
+            line-height: 1.55;
+        }
+
+
+        /* =========================================================
+           LOAN TABLE
+        ========================================================= */
+
+        .loan-section {
+            background: var(--white);
+        }
+
+        .loan-table-wrapper {
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            overflow-x: auto;
+
+            border: 1px solid var(--border);
+
+            border-radius: 11px;
+
+            box-shadow: var(--shadow-small);
+        }
+
+        .loan-table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            background: var(--white);
+        }
+
+        .loan-table th {
+            padding: 8px 12px;
+
+            background: var(--primary-deep);
+
+            color: var(--white);
+
+            text-align: left;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+        .loan-table td {
+            padding: 6px 12px;
+
+            border-bottom: 1px solid var(--border);
+
+            font-size: 9px;
+
+            white-space: nowrap;
+        }
+
+        .loan-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .loan-table tbody tr:hover {
+            background: var(--primary-soft);
+        }
+
+        .loan-amount {
+            font-weight: 700;
+        }
+
+        .saving {
+            color: var(--primary-dark);
+
+            font-weight: 700;
+        }
+
+        .repayment {
+            color: var(--text-soft);
+        }
+
+
+        /* =========================================================
+           BIG APPLICATION BUTTON
+        ========================================================= */
+
+        .large-apply {
+            max-width: 850px;
+
+            margin: 18px auto 0;
+        }
+
+        .large-apply a {
+            min-height: 62px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 10px 18px;
+
+            background: var(--primary);
+
+            color: var(--white);
+
+            border-radius: 13px;
+
+            text-align: center;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 10px 25px rgba(0, 143, 90, 0.18);
+
+            transition: 0.25s ease;
+        }
+
+        .large-apply a:hover {
+            background: var(--primary-dark);
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 30px rgba(0, 143, 90, 0.24);
+        }
+
+        .large-apply i {
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           TERMS
+        ========================================================= */
+
+        .terms-grid {
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 9px;
+        }
+
+        .term {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 9px;
+
+            padding: 11px 13px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+        }
+
+        .term i {
+            margin-top: 3px;
+
+            color: var(--primary);
+
+            font-size: 11px;
+        }
+
+        .term span {
+            color: var(--text-soft);
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           NOTICE
+        ========================================================= */
+
+        .notice {
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 17px 19px;
+
+            background: var(--cream);
+
+            border: 1px solid var(--cream-border);
+
+            border-radius: 13px;
+        }
+
+        .notice-icon {
+            width: 42px;
+            height: 42px;
+
+            flex: 0 0 auto;
+
+            display: grid;
+
+            place-items: center;
+
+            background: var(--white);
+
+            color: #75621c;
+
+            border: 1px solid var(--cream-border);
+
+            border-radius: 10px;
+        }
+
+        .notice h3 {
+            margin-bottom: 2px;
+
+            font-size: 12px;
+        }
+
+        .notice p {
+            color: var(--cream-text);
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact-section {
+            background: var(--primary-deep);
+
+            color: var(--white);
+        }
+
+        .contact-heading {
+            max-width: 650px;
+
+            margin: 0 auto 20px;
+
+            text-align: center;
+        }
+
+        .contact-heading .section-kicker {
+            color: #bdebd7;
+        }
+
+        .contact-heading h2 {
+            margin-bottom: 5px;
+
+            font-size: 25px;
+
+            line-height: 1.2;
+        }
+
+        .contact-heading p {
+            color: #d0e6dc;
+
+            font-size: 10px;
+        }
+
+        .contact-grid {
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 10px;
+        }
+
+        .contact-card {
+            min-height: 105px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 15px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.07);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            border-radius: 12px;
+
+            transition: 0.25s ease;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+
+            transform: translateY(-2px);
+        }
+
+        .contact-card i {
+            margin-bottom: 7px;
+
+            font-size: 20px;
+        }
+
+        .contact-card strong {
+            margin-bottom: 2px;
+
+            font-size: 11px;
+        }
+
+        .contact-card span {
+            color: #c8ded4;
+
+            font-size: 8px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .footer {
+            background: var(--footer);
+
+            color: var(--white);
+        }
+
+        .footer-main {
+            padding: 32px 0 24px;
+
+            display: grid;
+
+            grid-template-columns: 1.5fr 1fr 1fr;
+
+            gap: 35px;
+        }
+
+        .footer-brand {
+            max-width: 370px;
+        }
+
+        .footer-brand-row {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 9px;
+        }
+
+        .footer-logo {
+            width: 39px;
+            height: 39px;
+
+            object-fit: contain;
+
+            padding: 4px;
+
+            border-radius: 9px;
+
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand-row strong {
+            font-size: 12px;
+        }
+
+        .footer-brand p {
+            color: var(--footer-light);
+
+            font-size: 9px;
+
+            line-height: 1.6;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 10px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.4px;
+        }
+
+        .footer-column a,
+        .footer-column span {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: var(--footer-light);
+
+            font-size: 9px;
+
+            transition: 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+        }
+
+        .footer-column i {
+            width: 16px;
+        }
+
+        .footer-bottom {
+            min-height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+            color: #9fbbb0;
+
+            font-size: 8px;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+
+            gap: 13px;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--white);
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 950px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-right {
+                gap: 8px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+
+                gap: 28px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+
+            .trust-grid,
+            .why-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .documents-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 650px) {
+
+            .container {
+                width: min(100% - 20px, 1180px);
+            }
+
+            .nav-container {
+                min-height: 61px;
+            }
+
+            .brand-logo {
+                width: 36px;
+                height: 36px;
+            }
+
+            .brand-name {
+                font-size: 11px;
+            }
+
+            .brand-tagline {
+                font-size: 7px;
+            }
+
+            .nav-apply {
+                padding: 7px 9px;
+
+                font-size: 8px;
+            }
+
+            .nav-apply i {
+                display: none;
+            }
+
+
+            /* TICKER */
+
+            .ticker {
+                height: 35px;
+            }
+
+            .ticker-label {
+                padding: 0 9px;
+
+                font-size: 7px;
+            }
+
+            .ticker-item {
+                font-size: 8px;
+            }
+
+
+            /* HERO */
+
+            .hero {
+                padding: 35px 0 38px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero-description {
+                font-size: 10px;
+
+                line-height: 1.65;
+            }
+
+            .hero-point {
+                font-size: 8px;
+
+                padding: 6px 8px;
+            }
+
+
+            /* SECTIONS */
+
+            .section {
+                padding: 30px 0;
+            }
+
+            .section-heading {
+                margin-bottom: 14px;
+            }
+
+            .section-heading h2 {
+                font-size: 22px;
+            }
+
+            .section-heading p {
+                font-size: 9px;
+
+                line-height: 1.45;
+            }
+
+
+            /* UHAKIKA */
+
+            .trust-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+
+                gap: 7px;
+            }
+
+            .trust-card,
+            .why-card {
+                padding: 12px;
+            }
+
+            .icon-box {
+                width: 33px;
+                height: 33px;
+
+                margin-bottom: 7px;
+
+                font-size: 12px;
+            }
+
+            .trust-card h3,
+            .why-card h3 {
+                font-size: 11px;
+            }
+
+            .trust-card p,
+            .why-card p {
+                font-size: 9px;
+
+                line-height: 1.45;
+            }
+
+
+            /* DOCUMENTS */
+
+            .documents-grid {
+                grid-template-columns: 1fr 1fr;
+
+                gap: 7px;
+            }
+
+            .document-image {
+                height: 190px;
+
+                padding: 6px;
+            }
+
+            .document-info {
+                min-height: 48px;
+
+                padding: 7px;
+            }
+
+            .document-icon {
+                width: 27px;
+                height: 27px;
+
+                font-size: 10px;
+            }
+
+            .document-info strong {
+                font-size: 9px;
+            }
+
+            .document-info span {
+                font-size: 7px;
+            }
+
+
+            /* RIBA */
+
+            .interest-box {
+                padding: 13px;
+
+                grid-template-columns: 37px 1fr;
+
+                gap: 9px;
+            }
+
+            .interest-icon {
+                width: 35px;
+                height: 35px;
+
+                font-size: 13px;
+            }
+
+            .interest-box h3 {
+                font-size: 11px;
+            }
+
+            .interest-box p {
+                font-size: 9px;
+
+                line-height: 1.45;
+            }
+
+
+            /* TABLE */
+
+            .loan-table th,
+            .loan-table td {
+                padding: 6px 9px;
+
+                font-size: 8px;
+            }
+
+
+            /* APPLY BUTTON */
+
+            .large-apply {
+                margin-top: 13px;
+            }
+
+            .large-apply a {
+                min-height: 56px;
+
+                padding: 9px 13px;
+
+                font-size: 12px;
+
+                border-radius: 11px;
+            }
+
+            .large-apply i {
+                font-size: 12px;
+            }
+
+
+            /* TERMS */
+
+            .terms-grid {
+                grid-template-columns: 1fr;
+
+                gap: 7px;
+            }
+
+            .term {
+                padding: 10px 11px;
+
+                gap: 8px;
+            }
+
+            .term span {
+                font-size: 9px;
+
+                line-height: 1.45;
+            }
+
+
+            /* NOTICE */
+
+            .notice {
+                align-items: flex-start;
+
+                padding: 14px;
+
+                gap: 10px;
+            }
+
+            .notice-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .notice h3 {
+                font-size: 11px;
+            }
+
+            .notice p {
+                font-size: 9px;
+            }
+
+
+            /* CONTACT */
+
+            .contact-heading {
+                margin-bottom: 16px;
+            }
+
+            .contact-heading h2 {
+                font-size: 22px;
+            }
+
+            .contact-heading p {
+                font-size: 9px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+
+                gap: 7px;
+            }
+
+            .contact-card {
+                min-height: 82px;
+
+                padding: 11px;
+            }
+
+            .contact-card i {
+                margin-bottom: 5px;
+
+                font-size: 18px;
+            }
+
+            .contact-card strong {
+                font-size: 10px;
+            }
+
+            .contact-card span {
+                font-size: 7px;
+            }
+
+
+            /* FOOTER */
+
+            .footer-main {
+                grid-template-columns: 1fr;
+
+                gap: 22px;
+
+                padding: 28px 0 20px;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+
+            .footer-bottom {
+                min-height: auto;
+
+                padding: 13px 0;
+
+                flex-direction: column;
+
+                justify-content: center;
+
+                text-align: center;
+            }
+        }
+
+
+        /* =========================================================
+           VERY SMALL MOBILE
+        ========================================================= */
+
+        @media (max-width: 380px) {
+
+            .brand-tagline {
+                display: none;
+            }
+
+            .nav-apply {
+                padding: 6px 8px;
+            }
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .document-image {
+                height: 270px;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =============================================================
+     NAVBAR
+============================================================= -->
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="index.html" class="brand">
+
+            <img
+                src="assets/img/logo.webp"
+                alt="Samia Mikopo Tanzania"
+                class="brand-logo"
+            >
+
+            <div>
+
+                <div class="brand-name">
+                    SAMIA MIKOPO TANZANIA
+                </div>
+
+                <span class="brand-tagline">
+                    Suluhisho bora na salama
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <div class="nav-right">
+
+            <nav class="nav-links">
+
+                <a href="#utangulizi">
+                    Utangulizi
+                </a>
+
+                <a href="#uhakika">
+                    Uhakika
+                </a>
+
+                <a href="#akiba">
+                    Akiba
+                </a>
+
+                <a href="#mikopo">
+                    Mikopo
+                </a>
+
+                <a href="#masharti">
+                    Masharti
+                </a>
+
+            </nav>
+
+
+            <a
+                href="form.html"
+                class="nav-apply"
+            >
+
+                <i class="fa-solid fa-file-pen"></i>
+
+                JAZA FOMU
+
+            </a>
+
+
+            <button
+                type="button"
+                class="menu-button"
+                id="menuButton"
+                aria-label="Fungua menyu"
+                aria-expanded="false"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MOBILE MENU -->
+
+    <div
+        class="mobile-menu"
+        id="mobileMenu"
+    >
+
+        <a href="#utangulizi">
+            Utangulizi
+        </a>
+
+        <a href="#uhakika">
+            Uhakika
+        </a>
+
+        <a href="#akiba">
+            Kwanini Akiba
+        </a>
+
+        <a href="#mikopo">
+            Mikopo
+        </a>
+
+        <a href="#masharti">
+            Masharti
+        </a>
+
+        <a
+            href="form.html"
+            class="mobile-apply"
+        >
+            JAZA FOMU YA MAOMBI YA MKOPO
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =============================================================
+     TICKER
+============================================================= -->
+
+<div class="ticker">
+
+    <div class="ticker-label">
+
+        <i class="fa-solid fa-bullhorn"></i>
+
+        TANGAZO
+
+    </div>
+
+
+    <div class="ticker-window">
+
+        <div class="ticker-track">
+
+            <div class="ticker-item">
+
+                NAMBA YA KUFANYA MALIPO NA MAREJESHO YA MKOPO WAKO :
+
+                <strong>23505159</strong>
+
+                &nbsp; - &nbsp;
+
+                JINA :
+
+                <strong>SAMIA MIKOPO TANZANIA</strong>
+
+            </div>
+
+
+            <div class="ticker-item">
+
+                NAMBA YA KUFANYA MALIPO NA MAREJESHO YA MKOPO WAKO :
+
+                <strong>23505159</strong>
+
+                &nbsp; - &nbsp;
+
+                JINA :
+
+                <strong>SAMIA MIKOPO TANZANIA</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =============================================================
+     HERO / UTANGULIZI
+============================================================= -->
+
+<section
+    class="hero"
+    id="utangulizi"
+>
+
+    <div class="container hero-grid">
+
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                KARIBU SAMIA MIKOPO TANZANIA
+
+            </div>
+
+
+            <h1>
+
+                Huduma Rasmi za Kifedha na mikopo kwa 
+
+                <span>
+                    Wananchi wote
+                </span>
+
+                Tanzania Bara na Visiwani (Zanzibar)
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Tunatoa huduma za mikopo kwa wananchi wote,Tanzania Bara na Visiwani. Mikopo  ya haraka na yenye tija kuanzia Tsh 300,000
+               mpaka Tsh 50,000,000 kupitia Namba ya simu au Akaunti ya benki,Hakikisha una kitambulisho rasmi au Namba ya NIDA. Huduma hii inatolewa chini ya Ofisi ya Rais Ikulu
+
+
+            </p>
+
+
+            <div class="hero-points">
+
+                <div class="hero-point">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Maombi kwa urahisi
+
+                </div>
+
+
+                <div class="hero-point">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Taarifa salama
+
+                </div>
+
+
+                <div class="hero-point">
+
+                    <i class="fa-solid fa-list-check"></i>
+
+                    Masharti wazi
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="ge-wrapper">
+
+            <img
+                src="images/hero.jpg"
+                alt="Samia Mikopo Tanzania"
+                class="hero-image"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =============================================================
+     UHAKIKA
+============================================================= -->
+
+<section
+    class="section section-white"
+    id="uhakika"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div class="section-kicker">
+                UHAKIKA
+            </div>
+
+            <h2>
+                Uhakika wa huduma zetu
+            </h2>
+
+            <p>
+                Tunazingatia uwazi wa taarifa na mchakato
+                unaoeleweka wakati wa kuwasilisha maombi.
+            </p>
+
+        </div>
+
+
+        <div class="trust-grid">
+
+
+            <article class="trust-card">
+
+                <div class="icon-box">
+
+                    <i class="fa-solid fa-file-circle-check"></i>
+
+                </div>
+
+                <h3>
+                    Mchakato ulio wazi
+                </h3>
+
+                <p>
+                    Taarifa muhimu za maombi na masharti
+                    zinaonyeshwa kwa mpangilio unaoeleweka.
+                </p>
+
+            </article>
+
+
+            <article class="trust-card">
+
+                <div class="icon-box">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+                <h3>
+                    Taarifa zako
+                </h3>
+
+                <p>
+                    Tunahimiza waombaji kutoa taarifa sahihi
+                    wakati wa kujaza fomu ya maombi.
+                </p>
+
+            </article>
+
+
+            <article class="trust-card">
+
+                <div class="icon-box">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                </div>
+
+                <h3>
+                    Mawasiliano
+                </h3>
+
+                <p>
+                    Wasiliana nasi kwa maswali au msaada
+                    kuhusu mchakato wa maombi.
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =============================================================
+     NYARAKA
+============================================================= -->
+
+<section class="section documents-section">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div class="section-kicker">
+                NYARAKA
+            </div>
+
+            <h2>
+                NYARAKA ZETU HALALI ZILIZOTHIBITISHWA
+            </h2>
+
+            
+
+        </div>
+
+
+        <div class="documents-grid">
+
+
+            <!-- TRA -->
+
+            <article class="document-card">
+
+                <div class="document-image">
+
+                    <img
+                        src="images/doc1.jpg"
+                        alt="Nyaraka ya TRA"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+                <div class="document-info">
+
+                    <div class="document-icon">
+
+                        <i class="fa-solid fa-file-lines"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            TRA
+                        </strong>
+
+                        <span>
+                            Nyaraka ya TRA
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- BRELA -->
+
+            <article class="document-card">
+
+                <div class="document-image">
+
+                    <img
+                        src="images/doc2.jpg"
+                        alt="Nyaraka ya BRELA"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+                <div class="document-info">
+
+                    <div class="document-icon">
+
+                        <i class="fa-solid fa-file-lines"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            BRELA
+                        </strong>
+
+                        <span>
+                            Nyaraka ya BRELA
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- BOT - STRAIGHT -->
+
+            <article class="document-card">
+
+                <div class="document-image">
+
+                    <img
+                        src="images/doc3.jpg"
+                        alt="Nyaraka ya BOT"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+                <div class="document-info">
+
+                    <div class="document-icon">
+
+                        <i class="fa-solid fa-file-lines"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            BOT
+                        </strong>
+
+                        <span>
+                            Nyaraka ya BOT
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- OFFICE -->
+
+            <article class="document-card">
+
+                <div class="document-image office-image">
+
+                    <img
+                        src="images/doc4.jpg"
+                        alt="Ofisi ya Samia Mikopo Tanzania"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+                <div class="document-info">
+
+                    <div class="document-icon">
+
+                        <i class="fa-solid fa-building"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            OFISI
+                        </strong>
+
+                        <span>
+                            Ofisi Zetu
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =============================================================
+     KWANINI AKIBA
+============================================================= -->
+
+<section
+    class="section"
+    id="akiba"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div class="section-kicker">
+                AKIBA
+            </div>
+
+            <h2>
+                Kwanini Akiba?
+            </h2>
+
+            <p>
+                Kila kiwango cha mkopo kina kiasi chake
+                cha akiba.
+            </p>
+
+        </div>
+
+
+        <div class="why-grid">
+
+
+            <article class="why-card">
+
+                <div class="why-number">
+                    01
+                </div>
+
+                <h3>
+                    Huduma na Gharama za kiofisi
+                </h3>
+
+                <p>
+                    Akiba husaidia katika mchakato wa maombi ya mkopo wako na Gharama nyingine za kiofisi.
+                </p>
+
+            </article>
+
+
+            <article class="why-card">
+
+                <div class="why-number">
+                    02
+                </div>
+
+                <h3>
+                    Bima ya mkopo
+                </h3>
+
+                <p>
+                    Akiba husimama kama bima ya mkopo wako, ukipata matatizo makubwa ya kiafya au kifo, akiba husaidia kulipa mkopo wako.
+                </p>
+
+            </article>
+
+
+            <article class="why-card">
+
+                <div class="why-number">
+                    03
+                </div>
+
+                <h3>
+                    Kuonesha utayari 
+                </h3>
+
+                <p>
+                    Akiba husaidia kuonesha utayari wako wa kutimiza masharti ya mkopo na kuonyesha kuwa una uwezo wa kulipa mkopo wako.
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =============================================================
+     RIBA
+============================================================= -->
+
+<section class="section section-white">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div class="section-kicker">
+                RIBA
+            </div>
+
+            <h2>
+                Je kuna riba?
+            </h2>
+
+        </div>
+
+
+        <div class="interest-box">
+
+
+            <div class="interest-icon">
+
+                📈
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Soma masharti kabla ya kuendelea
+                </h3>
+
+                <p>
+                    Mikopo yetu ina riba ndogo kwa mwaka, ambayo inahesabiwa kulingana na kiwango cha mkopo na muda wa marejesho. Hakikisha unaelewa masharti yote kabla ya kuanza mchakato wa maombi.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =============================================================
+     MIKOPO
+============================================================= -->
+
+<section
+    class="section loan-section"
+    id="mikopo"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div class="section-kicker">
+                MIKOPO
+            </div>
+
+            <h2>
+                Mikopo, Akiba na Rejesho
+            </h2>
+
+            <p>
+                Chagua kiwango cha mkopo kinacholingana
+                na uwezo wako wa akiba na marejesho.
+            </p>
+
+        </div>
+
+
+        <div class="loan-table-wrapper">
+
+            <table class="loan-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            MKOPO
+                        </th>
+
+                        <th>
+                            AKIBA
+                        </th>
+
+                        <th>
+                            REJESHO KWA MWEZI
+                        </th>
+
+                        <th>
+                            <span class="table-note">
+                                MUDA WA MAREJESHO
+                            </span>
+                        </th>    
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr>
+
+                        <td class="loan-amount">
+                            TZS 300,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 35,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 50,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 6
+                        </td>    
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="loan-amount">
+                            TZS 400,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 45,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 50,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 8
+                        </td>    
+
+
+                    <tr>
+
+                        <td class="loan-amount">
+                            TZS 500,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 55,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 50,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 10
+                        </td>    
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="loan-amount">
+                            TZS 600,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 65,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 50,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 12
+                        </td>
+                    
+                    </tr>  
+                    
+                    <tr>
+
+                        <td class="loan-amount">
+                            TZS 700,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 75,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 50,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 14
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="loan-amount">
+                            TZS 800,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 85,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 50,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 16
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="loan-amount">
+                            TZS 900,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 95,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 50,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 18
+                        </td>
+
+                    </tr>
+                      
+
+                    <tr>
+
+                        <td class="loan-amount">
+                            TZS 1,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 100,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 50,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 20
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="loan-amount">
+                            TZS 2,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 200,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 80,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 25
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="loan-amount">
+                            TZS 3,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 300,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 93,750
+                        </td>
+
+                        <td class="duration">
+                            Miezi 32
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="loan-amount">
+                            TZS 4,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 400,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 125,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 32
+                        </td>
+                    </tr>   
+                    
+                    <tr>
+                        <td class="loan-amount">
+                            TZS 5,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 500,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 125,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 40
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="loan-amount">
+                            TZS 6,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 1,000,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 150,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 40
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="loan-amount">
+                            TZS 7,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 800,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 175,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 40
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="loan-amount">
+                            TZS 8,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 800,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 200,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 40
+                        </td>
+                     </tr>
+                     
+                     <tr>   
+                        <td class="loan-amount">
+                                TZS 9,000,000
+                            </td>
+    
+                            <td class="saving">
+                                TZS 900,000
+                            </td>
+    
+                            <td class="repayment">
+                                TZS 225,000
+                            </td>
+    
+                            <td class="duration">
+                                Miezi 40
+                            </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="loan-amount">
+                            TZS 10,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 1,000,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 250,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 40
+                        </td>
+                     </tr>
+
+                     <tr>   
+                        <td class="loan-amount">
+                            TZS 20,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 2,000,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 400,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 50
+                        </td>
+                     </tr>
+
+                     <tr>   
+                        <td class="loan-amount">
+                            TZS 30,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 3,000,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 468,750
+                        </td>
+
+                        <td class="duration">
+                            Miezi 64
+                        </td>
+                     </tr>
+
+                     <tr>   
+                        <td class="loan-amount">
+                            TZS 40,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 4,000,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 625,000
+                        </td>
+
+                        <td class="duration">
+                            Miezi 64
+                        </td>
+                    </tr>
+                    
+                    <tr>   
+                        <td class="loan-amount">
+                            TZS 50,000,000
+                        </td>
+
+                        <td class="saving">
+                            TZS 5,000,000
+                        </td>
+
+                        <td class="repayment">
+                            TZS 781,250
+                        </td>
+
+                        <td class="duration">
+                            Miezi 64
+                        </td>
+                    </tr>       
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- BIG BUTTON DIRECTLY AFTER TABLE -->
+
+        <div class="large-apply">
+
+            <a href="form.html">
+
+                <i class="fa-solid fa-file-signature"></i>
+
+                JAZA FOMU YA MAOMBI YA MKOPO
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =============================================================
+     VIGEZO NA MASHARTI
+============================================================= -->
+
+<section
+    class="section"
+    id="masharti"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div class="section-kicker">
+                MASHARTI
+            </div>
+
+            <h2>
+                Vigezo na Masharti
+            </h2>
+
+            <p>
+                Hakikisha unaelewa mambo yafuatayo kabla
+                ya kuanza maombi.
+            </p>
+
+        </div>
+
+
+        <div class="terms-grid">
+
+
+            <div class="term">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Jaza taarifa zako kwa usahihi na kwa uaminifu.
+                </span>
+
+            </div>
+
+
+            <div class="term">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Chagua kiwango cha mkopo kinachoendana na uwezo wako.
+                </span>
+
+            </div>
+
+
+            <div class="term">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Hakikisha una uwezo wa kutimiza kiasi cha akiba kinachohitajika.
+                </span>
+
+            </div>
+
+
+            <div class="term">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Taarifa za kitambulisho zinapaswa kuwa sahihi na zinazoonekana vizuri.
+                </span>
+
+            </div>
+
+
+            <div class="term">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Tumia namba sahihi ya simu au akaunti ya benki kwa ajili ya kupokea fedha.
+                </span>
+
+            </div>
+
+
+            <div class="term">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Soma na elewa masharti yote kabla ya kutuma maombi.
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =============================================================
+     ZINGATIA
+============================================================= -->
+
+<section class="section section-white">
+
+    <div class="container">
+
+
+        <div class="notice">
+
+
+            <div class="notice-icon">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    ZINGATIA
+                </h3>
+
+                <p>
+
+                    <strong>
+                        Usijaze form kama huna pesa ya akiba
+                    </strong>.
+
+                    Hakikisha una uwezo wa kutimiza kiasi
+                    cha akiba kabla ya kuanza mchakato wa maombi.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =============================================================
+     CONTACT
+============================================================= -->
+
+<section class="section contact-section">
+
+    <div class="container">
+
+
+        <div class="contact-heading">
+
+            <div class="section-kicker">
+                MAWASILIANO
+            </div>
+
+            <h2>
+                Unahitaji msaada?
+            </h2>
+
+            <p>
+                Wasiliana nasi kupitia njia yoyote kati ya
+                hizi kwa maswali au msaada.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+            <!-- WHATSAPP -->
+
+            <a
+                href="https://wa.me/255752009812"
+                target="_blank"
+                rel="noopener"
+                class="contact-card"
+            >
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                <strong>
+                    WhatsApp
+                </strong>
+
+                <span>
+                    Wasiliana nasi kupitia WhatsApp
+                </span>
+
+            </a>
+
+
+            <!-- CALL -->
+
+            <a
+                href="tel:0752009812"
+                class="contact-card"
+            >
+
+                <i class="fa-solid fa-phone"></i>
+
+                <strong>
+                    Call Us
+                </strong>
+
+                <span>
+                    Piga simu kwa msaada
+                </span>
+
+            </a>
+
+
+            <!-- EMAIL -->
+
+            <a
+                href="mailto:mikoposamia@gmail.com"
+                class="contact-card"
+            >
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <strong>
+                    Email
+                </strong>
+
+                <span>
+                    Tutumie ujumbe kupitia barua pepe
+                </span>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =============================================================
+     FOOTER
+============================================================= -->
+
+<footer class="footer">
+
+
+    <div class="container footer-main">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+
+            <div class="footer-brand-row">
+
+                <img
+                    src="assets/img/logo.webp"
+                    alt="Samia Mikopo Tanzania"
+                    class="footer-logo"
+                >
+
+                <strong>
+                    SAMIA MIKOPO TANZANIA
+                </strong>
+
+            </div>
+
+
+            <p>
+
+                Suluhisho bora na salama kwa mchakato wa
+                maombi ya mkopo. Soma taarifa na masharti
+                kwa uangalifu kabla ya kuwasilisha maombi yako.
+
+            </p>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+
+            <h4>
+                QUICK LINKS
+            </h4>
+
+            <a href="#utangulizi">
+                Utangulizi
+            </a>
+
+            <a href="#uhakika">
+                Uhakika
+            </a>
+
+            <a href="#akiba">
+                Kwanini Akiba
+            </a>
+
+            <a href="#mikopo">
+                Mikopo
+            </a>
+
+            <a href="#masharti">
+                Masharti
+            </a>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-column">
+
+            <h4>
+                MAWASILIANO
+            </h4>
+
+
+            <a
+                href="https://wa.me/255752009812"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                WhatsApp
+
+            </a>
+
+
+            <a href="tel:0752009812">
+
+                <i class="fa-solid fa-phone"></i>
+
+                Call Us
+
+            </a>
+
+
+            <a href="mailto:mikoposamia@gmail.com">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                Email
+
+            </a>
+
+
+            <span>
+                Huduma za maombi ya mkopo
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="container footer-bottom">
+
+
+        <div>
+
+            © <span id="currentYear"></span>
+
+            Samia Mikopo Tanzania.
+
+            Haki zote zimehifadhiwa.
+
+        </div>
+
+
+        <div class="footer-bottom-links">
+
+            <a href="#utangulizi">
+                Nyumbani
+            </a>
+
+            <a href="#masharti">
+                Masharti
+            </a>
+
+            <a href="form.html">
+                Jaza Fomu
+            </a>
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- =============================================================
+     JAVASCRIPT
+============================================================= -->
+
+<script>
+
+
+    /* =========================================================
+       CURRENT YEAR
+    ========================================================= */
+
+    const currentYear =
+        document.getElementById("currentYear");
+
+    if (currentYear) {
+
+        currentYear.textContent =
+            new Date().getFullYear();
+
+    }
+
+
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+
+    if (menuButton && mobileMenu) {
+
+
+        menuButton.addEventListener(
+            "click",
+            function () {
+
+
+                const isOpen =
+                    mobileMenu.classList.toggle("open");
+
+
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    isOpen
+                );
+
+
+                menuButton.innerHTML =
+                    isOpen
+
+                    ? '<i class="fa-solid fa-xmark"></i>'
+
+                    : '<i class="fa-solid fa-bars"></i>';
+
+            }
+        );
+
+
+
+        /* CLOSE AFTER CLICKING LINK */
+
+        const mobileLinks =
+            mobileMenu.querySelectorAll("a");
+
+
+        mobileLinks.forEach(
+            function (link) {
+
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+
+                        mobileMenu.classList.remove(
+                            "open"
+                        );
+
+
+                        menuButton.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+
+                        menuButton.innerHTML =
+                            '<i class="fa-solid fa-bars"></i>';
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================================
+       TICKER PAUSE
+    ========================================================= */
+
+    const ticker =
+        document.querySelector(".ticker");
+
+    const tickerTrack =
+        document.querySelector(".ticker-track");
+
+
+    if (ticker && tickerTrack) {
+
+
+        ticker.addEventListener(
+            "mouseenter",
+            function () {
+
+                tickerTrack.style.animationPlayState =
+                    "paused";
+
+            }
+        );
+
+
+        ticker.addEventListener(
+            "mouseleave",
+            function () {
+
+                tickerTrack.style.animationPlayState =
+                    "running";
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================================
+       CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
+    ========================================================= */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+
+            if (!menuButton || !mobileMenu) {
+                return;
+            }
+
+
+            const clickedInsideMenu =
+                mobileMenu.contains(event.target);
+
+
+            const clickedButton =
+                menuButton.contains(event.target);
+
+
+            if (
+                !clickedInsideMenu &&
+                !clickedButton &&
+                mobileMenu.classList.contains("open")
+            ) {
+
+
+                mobileMenu.classList.remove(
+                    "open"
+                );
+
+
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+
+                menuButton.innerHTML =
+                    '<i class="fa-solid fa-bars"></i>';
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+</html>
