@@ -1,19 +1,16 @@
 /* =========================================================
-   SAMIA MIKOPO
+   SAMIA MIKOPO TANZANIA
    ANALYTICS JAVASCRIPT
 ========================================================= */
 
 "use strict";
-
 
 /* =========================================================
    GLOBAL STATE
 ========================================================= */
 
 let analyticsData = [];
-
 let filteredData = [];
-
 let charts = {};
 
 let currentFilters = {
@@ -21,74 +18,36 @@ let currentFilters = {
     region: ""
 };
 
-
 /* =========================================================
    DOM
 ========================================================= */
 
-const loadingElement =
-    document.getElementById("analyticsLoading");
+const loadingElement = document.getElementById("analyticsLoading");
+const contentElement = document.getElementById("analyticsContent");
+const errorElement = document.getElementById("analyticsError");
 
-const contentElement =
-    document.getElementById("analyticsContent");
+const dateFilter = document.getElementById("dateFilter");
+const regionFilter = document.getElementById("regionFilter");
 
-const errorElement =
-    document.getElementById("analyticsError");
+const applyFiltersButton = document.getElementById("applyFilters");
+const resetFiltersButton = document.getElementById("resetFilters");
+const refreshButton = document.getElementById("refreshAnalytics");
 
-const dateFilter =
-    document.getElementById("dateFilter");
-
-const regionFilter =
-    document.getElementById("regionFilter");
-
-const applyFiltersButton =
-    document.getElementById("applyFilters");
-
-const resetFiltersButton =
-    document.getElementById("resetFilters");
-
-const refreshButton =
-    document.getElementById("refreshAnalytics");
-
-const lastUpdatedElement =
-    document.getElementById("lastUpdated");
-
+const lastUpdatedElement = document.getElementById("lastUpdated");
 
 /* =========================================================
-   HELPERS
+   SUPABASE CLIENT
 ========================================================= */
 
 function getSupabaseClient() {
 
     /*
-     * IMPORTANT:
+     * The existing ../assets/js/supabase.js creates:
      *
-     * We do NOT create another Supabase client here.
+     * window.supabaseClient
      *
-     * Your existing:
-     *
-     * ../assets/js/supabase.js
-     *
-     * should already create the client used by the dashboard.
-     *
-     * This function supports common names used by existing
-     * Supabase configuration files.
+     * We intentionally prefer that client.
      */
-
-    try {
-
-        if (
-            typeof supabase !== "undefined" &&
-            supabase &&
-            typeof supabase.from === "function"
-        ) {
-            return supabase;
-        }
-
-    } catch (error) {
-        // Ignore and continue checking other names.
-    }
-
 
     if (
         window.supabaseClient &&
@@ -97,6 +56,24 @@ function getSupabaseClient() {
         return window.supabaseClient;
     }
 
+    /*
+     * Fallbacks for compatibility.
+     */
+
+    try {
+
+        if (
+            typeof supabase !== "undefined" &&
+            supabase &&
+            typeof supabase.from === "function" &&
+            typeof supabase.auth === "object"
+        ) {
+            return supabase;
+        }
+
+    } catch (error) {
+        // Ignore.
+    }
 
     if (
         window.sb &&
@@ -105,18 +82,36 @@ function getSupabaseClient() {
         return window.sb;
     }
 
-
-    if (
-        window.supabase &&
-        typeof window.supabase.from === "function"
-    ) {
-        return window.supabase;
-    }
-
-
     return null;
 }
 
+/* =========================================================
+   TIMEOUT HELPER
+========================================================= */
+
+function withTimeout(promise, milliseconds = 15000) {
+
+    return Promise.race([
+
+        promise,
+
+        new Promise((_, reject) => {
+
+            setTimeout(() => {
+
+                reject(
+                    new Error(
+                        "Request timed out."
+                    )
+                );
+
+            }, milliseconds);
+
+        })
+
+    ]);
+
+}
 
 /* =========================================================
    FORMATTERS
@@ -124,15 +119,14 @@ function getSupabaseClient() {
 
 function formatTZS(value) {
 
-    const amount =
-        Number(value) || 0;
+    const amount = Number(value) || 0;
 
     return (
         "TZS " +
         amount.toLocaleString("en-TZ")
     );
-}
 
+}
 
 function formatNumber(value) {
 
@@ -140,8 +134,46 @@ function formatNumber(value) {
         Number(value || 0)
             .toLocaleString("en-TZ")
     );
+
 }
 
+function formatCompactTZS(value) {
+
+    const number = Number(value) || 0;
+
+    if (number >= 1000000000) {
+
+        return (
+            "TZS " +
+            (number / 1000000000).toFixed(1) +
+            "B"
+        );
+
+    }
+
+    if (number >= 1000000) {
+
+        return (
+            "TZS " +
+            (number / 1000000).toFixed(1) +
+            "M"
+        );
+
+    }
+
+    if (number >= 1000) {
+
+        return (
+            "TZS " +
+            (number / 1000).toFixed(0) +
+            "K"
+        );
+
+    }
+
+    return formatTZS(number);
+
+}
 
 function escapeHTML(value) {
 
@@ -151,85 +183,99 @@ function escapeHTML(value) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
 }
 
-
 /* =========================================================
-   UI
+   UI STATES
 ========================================================= */
 
 function showLoading() {
 
-    loadingElement.classList.remove("hidden");
+    if (loadingElement) {
+        loadingElement.classList.remove("hidden");
+    }
 
-    contentElement.classList.add("hidden");
+    if (contentElement) {
+        contentElement.classList.add("hidden");
+    }
 
-    errorElement.classList.add("hidden");
+    clearError();
+
 }
-
 
 function hideLoading() {
 
-    loadingElement.classList.add("hidden");
+    if (loadingElement) {
+        loadingElement.classList.add("hidden");
+    }
 
-    contentElement.classList.remove("hidden");
+    if (contentElement) {
+        contentElement.classList.remove("hidden");
+    }
+
 }
-
 
 function showError(message) {
 
-    loadingElement.classList.add("hidden");
+    if (loadingElement) {
+        loadingElement.classList.add("hidden");
+    }
 
-    contentElement.classList.add("hidden");
+    if (contentElement) {
+        contentElement.classList.add("hidden");
+    }
 
-    errorElement.textContent = message;
+    if (errorElement) {
 
-    errorElement.classList.remove("hidden");
+        errorElement.textContent = message;
+
+        errorElement.classList.remove("hidden");
+
+    }
+
 }
 
-
 function clearError() {
+
+    if (!errorElement) {
+        return;
+    }
 
     errorElement.textContent = "";
 
     errorElement.classList.add("hidden");
+
 }
 
-
 /* =========================================================
-   LOAD DATA
+   LOAD ANALYTICS DATA
 ========================================================= */
 
 async function loadAnalyticsData() {
 
     showLoading();
 
-    clearError();
-
-
-    const client =
-        getSupabaseClient();
-
+    const client = getSupabaseClient();
 
     if (!client) {
-
-        showError(
-            "Supabase client haikupatikana. Hakikisha ../assets/js/supabase.js ime-load kabla ya analytics.js."
-        );
 
         console.error(
             "SAMIA MIKOPO: Supabase client not found."
         );
 
-        return;
-    }
+        showError(
+            "Supabase haijaunganishwa. Hakikisha supabase.js ime-load vizuri."
+        );
 
+        return;
+
+    }
 
     try {
 
         /*
-         * Only columns that actually exist in:
-         *
+         * Only real columns from:
          * public.loan_applications
          */
 
@@ -248,11 +294,11 @@ async function loadAnalyticsData() {
             "income_source"
         ].join(",");
 
+        console.log(
+            "SAMIA MIKOPO: Loading analytics data..."
+        );
 
-        const {
-            data,
-            error
-        } = await client
+        const request = client
             .from("loan_applications")
             .select(columns)
             .order("created_at", {
@@ -260,32 +306,43 @@ async function loadAnalyticsData() {
             })
             .limit(10000);
 
+        const result =
+            await withTimeout(
+                request,
+                15000
+            );
+
+        const data = result?.data;
+        const error = result?.error;
 
         if (error) {
 
             console.error(
-                "Analytics Supabase error:",
+                "Supabase analytics error:",
                 error
             );
 
             throw error;
-        }
 
+        }
 
         analyticsData =
             Array.isArray(data)
                 ? data
                 : [];
 
+        console.log(
+            "SAMIA MIKOPO: Applications loaded:",
+            analyticsData.length
+        );
 
         populateRegionFilter();
 
-
         applyCurrentFilters();
-
 
         updateLastUpdated();
 
+        hideLoading();
 
     } catch (error) {
 
@@ -294,15 +351,38 @@ async function loadAnalyticsData() {
             error
         );
 
+        let message =
+            "Imeshindikana kupakia data za analytics.";
 
-        showError(
-            "Imeshindikana kupakia data za analytics. Tafadhali jaribu tena."
-        );
+        if (
+            error &&
+            error.message
+        ) {
+
+            if (
+                error.message
+                    .toLowerCase()
+                    .includes("timed out")
+            ) {
+
+                message =
+                    "Supabase haijajibu kwa wakati. Angalia connection ya Supabase kisha jaribu tena.";
+
+            } else {
+
+                message =
+                    "Imeshindikana kupakia data: " +
+                    error.message;
+
+            }
+
+        }
+
+        showError(message);
 
     }
 
 }
-
 
 /* =========================================================
    REGION FILTER
@@ -310,16 +390,23 @@ async function loadAnalyticsData() {
 
 function populateRegionFilter() {
 
+    if (!regionFilter) {
+        return;
+    }
+
     const regions = [
         ...new Set(
+
             analyticsData
                 .map(item =>
-                    String(item.region || "").trim()
+                    String(
+                        item.region || ""
+                    ).trim()
                 )
                 .filter(Boolean)
+
         )
     ];
-
 
     regions.sort(
         (a, b) =>
@@ -329,14 +416,11 @@ function populateRegionFilter() {
             )
     );
 
-
     const currentValue =
         regionFilter.value;
 
-
     regionFilter.innerHTML =
         `<option value="">Mikoa yote</option>`;
-
 
     regions.forEach(region => {
 
@@ -351,29 +435,28 @@ function populateRegionFilter() {
 
     });
 
-
     if (
-        regions.includes(currentValue)
+        regions.includes(
+            currentValue
+        )
     ) {
+
         regionFilter.value =
             currentValue;
+
     }
+
 }
 
-
 /* =========================================================
-   DATE FILTER
+   DATE RANGE
 ========================================================= */
 
 function getDateRange(filter) {
 
-    const now =
-        new Date();
+    const now = new Date();
 
-
-    const start =
-        new Date(now);
-
+    const start = new Date(now);
 
     start.setHours(
         0,
@@ -381,7 +464,6 @@ function getDateRange(filter) {
         0,
         0
     );
-
 
     if (filter === "today") {
 
@@ -391,7 +473,6 @@ function getDateRange(filter) {
         };
 
     }
-
 
     if (filter === "7days") {
 
@@ -406,7 +487,6 @@ function getDateRange(filter) {
 
     }
 
-
     if (filter === "30days") {
 
         start.setDate(
@@ -420,7 +500,6 @@ function getDateRange(filter) {
 
     }
 
-
     if (filter === "month") {
 
         start.setDate(1);
@@ -432,10 +511,9 @@ function getDateRange(filter) {
 
     }
 
-
     return null;
-}
 
+}
 
 /* =========================================================
    FILTER DATA
@@ -443,16 +521,13 @@ function getDateRange(filter) {
 
 function applyCurrentFilters() {
 
-    const dateType =
-        currentFilters.date;
+    const dateRange =
+        getDateRange(
+            currentFilters.date
+        );
 
     const selectedRegion =
         currentFilters.region;
-
-
-    const dateRange =
-        getDateRange(dateType);
-
 
     filteredData =
         analyticsData.filter(item => {
@@ -462,14 +537,12 @@ function applyCurrentFilters() {
                     item.region || ""
                 ).trim();
 
-
             if (
                 selectedRegion &&
                 region !== selectedRegion
             ) {
                 return false;
             }
-
 
             if (dateRange) {
 
@@ -478,7 +551,6 @@ function applyCurrentFilters() {
                         item.created_at
                     );
 
-
                 if (
                     Number.isNaN(
                         created.getTime()
@@ -486,7 +558,6 @@ function applyCurrentFilters() {
                 ) {
                     return false;
                 }
-
 
                 if (
                     created < dateRange.start ||
@@ -497,19 +568,16 @@ function applyCurrentFilters() {
 
             }
 
-
             return true;
 
         });
-
 
     renderAnalytics();
 
 }
 
-
 /* =========================================================
-   APPLY FILTER BUTTON
+   APPLY FILTERS
 ========================================================= */
 
 function applyFilters() {
@@ -517,18 +585,20 @@ function applyFilters() {
     currentFilters = {
 
         date:
-            dateFilter.value,
+            dateFilter
+                ? dateFilter.value
+                : "all",
 
         region:
-            regionFilter.value
+            regionFilter
+                ? regionFilter.value
+                : ""
 
     };
-
 
     applyCurrentFilters();
 
 }
-
 
 /* =========================================================
    RESET FILTERS
@@ -536,29 +606,27 @@ function applyFilters() {
 
 function resetFilters() {
 
-    dateFilter.value =
-        "all";
+    if (dateFilter) {
+        dateFilter.value = "all";
+    }
 
-    regionFilter.value =
-        "";
-
+    if (regionFilter) {
+        regionFilter.value = "";
+    }
 
     currentFilters = {
 
         date: "all",
-
         region: ""
 
     };
-
 
     applyCurrentFilters();
 
 }
 
-
 /* =========================================================
-   RENDER ANALYTICS
+   RENDER ALL ANALYTICS
 ========================================================= */
 
 function renderAnalytics() {
@@ -587,8 +655,9 @@ function renderAnalytics() {
 
     renderMonthlyAmount();
 
-}
+    hideLoading();
 
+}
 
 /* =========================================================
    KPI
@@ -599,16 +668,16 @@ function updateKPIs() {
     const amounts =
         filteredData
             .map(item =>
-                Number(item.loan_amount) || 0
+                Number(
+                    item.loan_amount
+                ) || 0
             )
-            .filter(amount =>
-                amount > 0
+            .filter(
+                amount => amount > 0
             );
-
 
     const totalApplications =
         filteredData.length;
-
 
     const totalAmount =
         amounts.reduce(
@@ -617,24 +686,20 @@ function updateKPIs() {
             0
         );
 
-
     const averageAmount =
         amounts.length
             ? totalAmount / amounts.length
             : 0;
-
 
     const highestAmount =
         amounts.length
             ? Math.max(...amounts)
             : 0;
 
-
     const lowestAmount =
         amounts.length
             ? Math.min(...amounts)
             : 0;
-
 
     setText(
         "totalApplications",
@@ -643,14 +708,12 @@ function updateKPIs() {
         )
     );
 
-
     setText(
         "totalAmount",
         formatTZS(
             totalAmount
         )
     );
-
 
     setText(
         "averageAmount",
@@ -659,14 +722,12 @@ function updateKPIs() {
         )
     );
 
-
     setText(
         "highestAmount",
         formatTZS(
             highestAmount
         )
     );
-
 
     setText(
         "lowestAmount",
@@ -677,298 +738,51 @@ function updateKPIs() {
 
 }
 
-
 /* =========================================================
    INSIGHTS
 ========================================================= */
 
 function updateInsights() {
 
-    const regionCounts =
-        {};
-
-
-    filteredData.forEach(item => {
-
-        const region =
-            String(
-                item.region || "Haijulikani"
-            ).trim() ||
-            "Haijulikani";
-
-
-        regionCounts[region] =
-            (regionCounts[region] || 0) + 1;
-
-    });
-
-
-    const topRegion =
-        Object.entries(regionCounts)
-            .sort(
-                (a, b) =>
-                    b[1] - a[1]
-            )[0];
-
-
-    if (topRegion) {
+    if (!filteredData.length) {
 
         setText(
             "topRegion",
-            topRegion[0]
-        );
-
-
-        setText(
-            "topRegionCount",
-            `${formatNumber(topRegion[1])} maombi`
-        );
-
-    } else {
-
-        setText(
-            "topRegion",
-            "—"
-        );
-
-        setText(
-            "topRegionCount",
             "Hakuna data"
         );
 
-    }
+        setText(
+            "topRegionCount",
+            "Hakuna maombi"
+        );
 
-
-    /* =====================================================
-       BUSIEST DAY
-    ====================================================== */
-
-    const dayCounts =
-        {};
-
-
-    filteredData.forEach(item => {
-
-        const date =
-            new Date(
-                item.created_at
-            );
-
-
-        if (
-            Number.isNaN(
-                date.getTime()
-            )
-        ) {
-            return;
-        }
-
-
-        const day =
-            date.toLocaleDateString(
-                "sw-TZ",
-                {
-                    weekday: "long"
-                }
-            );
-
-
-        dayCounts[day] =
-            (dayCounts[day] || 0) + 1;
-
-    });
-
-
-    const busiestDay =
-        Object.entries(dayCounts)
-            .sort(
-                (a, b) =>
-                    b[1] - a[1]
-            )[0];
-
-
-    setText(
-        "busiestDay",
-        busiestDay
-            ? capitalize(
-                busiestDay[0]
-            )
-            : "—"
-    );
-
-
-    /* =====================================================
-       BUSIEST HOUR
-    ====================================================== */
-
-    const hourCounts =
-        {};
-
-
-    filteredData.forEach(item => {
-
-        const date =
-            new Date(
-                item.created_at
-            );
-
-
-        if (
-            Number.isNaN(
-                date.getTime()
-            )
-        ) {
-            return;
-        }
-
-
-        const hour =
-            date.getHours();
-
-
-        hourCounts[hour] =
-            (hourCounts[hour] || 0) + 1;
-
-    });
-
-
-    const busiestHour =
-        Object.entries(hourCounts)
-            .sort(
-                (a, b) =>
-                    b[1] - a[1]
-            )[0];
-
-
-    if (busiestHour) {
-
-        const hour =
-            Number(
-                busiestHour[0]
-            );
-
-
-        const nextHour =
-            (hour + 1) % 24;
-
+        setText(
+            "busiestDay",
+            "Hakuna data"
+        );
 
         setText(
             "busiestHour",
-            `${String(hour).padStart(2, "0")}:00 - ${String(nextHour).padStart(2, "0")}:00`
+            "Hakuna data"
         );
-
-    } else {
-
-        setText(
-            "busiestHour",
-            "—"
-        );
-
-    }
-
-
-    /* =====================================================
-       HIGHEST AMOUNT APPLICANT
-    ====================================================== */
-
-    const highestApplicant =
-        filteredData
-            .slice()
-            .sort(
-                (a, b) =>
-                    (Number(b.loan_amount) || 0) -
-                    (Number(a.loan_amount) || 0)
-            )[0];
-
-
-    if (highestApplicant) {
-
-        const name =
-            String(
-                highestApplicant.full_name ||
-                "Haijulikani"
-            );
-
-
-        const amount =
-            Number(
-                highestApplicant.loan_amount
-            ) || 0;
-
 
         setText(
             "highestAmountApplicant",
-            name
+            "Hakuna data"
         );
-
-
-        const applicantElement =
-            document.getElementById(
-                "highestAmountApplicant"
-            );
-
-
-        applicantElement.title =
-            `${name} — ${formatTZS(amount)}`;
-
-    } else {
 
         setText(
-            "highestAmountApplicant",
-            "—"
+            "highValueApplications",
+            "0"
         );
+
+        return;
 
     }
 
+    /* ---------- TOP REGION ---------- */
 
-    /* =====================================================
-       HIGH VALUE APPLICATIONS
-    ====================================================== */
-
-    const highValue =
-        filteredData.filter(item =>
-            Number(item.loan_amount) >= 5000000
-        ).length;
-
-
-    setText(
-        "highValueApplications",
-        formatNumber(highValue)
-    );
-
-}
-
-
-/* =========================================================
-   SUMMARY
-========================================================= */
-
-function updateSummary() {
-
-    const amounts =
-        filteredData.map(item =>
-            Number(item.loan_amount) || 0
-        );
-
-
-    const total =
-        amounts.reduce(
-            (sum, amount) =>
-                sum + amount,
-            0
-        );
-
-
-    const highValue =
-        amounts.filter(
-            amount =>
-                amount >= 5000000
-        ).length;
-
-
-    const regionCounts =
-        {};
-
+    const regionCounts = {};
 
     filteredData.forEach(item => {
 
@@ -978,45 +792,202 @@ function updateSummary() {
                 "Haijulikani"
             ).trim();
 
-
         regionCounts[region] =
             (regionCounts[region] || 0) + 1;
 
     });
 
+    const topRegionEntry =
+        Object.entries(
+            regionCounts
+        ).sort(
+            (a, b) =>
+                b[1] - a[1]
+        )[0];
 
-    const topRegion =
-        Object.entries(regionCounts)
-            .sort(
-                (a, b) =>
-                    b[1] - a[1]
-            )[0];
+    if (topRegionEntry) {
 
+        setText(
+            "topRegion",
+            topRegionEntry[0]
+        );
+
+        setText(
+            "topRegionCount",
+            formatNumber(
+                topRegionEntry[1]
+            ) +
+            " maombi"
+        );
+
+    }
+
+    /* ---------- BUSIEST DAY ---------- */
+
+    const dayNames = [
+        "Jumapili",
+        "Jumatatu",
+        "Jumanne",
+        "Jumatano",
+        "Alhamisi",
+        "Ijumaa",
+        "Jumamosi"
+    ];
+
+    const dayCounts =
+        Array(7).fill(0);
+
+    filteredData.forEach(item => {
+
+        const date =
+            new Date(
+                item.created_at
+            );
+
+        if (
+            !Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            dayCounts[
+                date.getDay()
+            ]++;
+
+        }
+
+    });
+
+    const busiestDayIndex =
+        dayCounts.indexOf(
+            Math.max(...dayCounts)
+        );
 
     setText(
-        "summaryApplications",
-        formatNumber(
-            filteredData.length
-        )
+        "busiestDay",
+        dayNames[
+            busiestDayIndex
+        ]
     );
 
+    /* ---------- BUSIEST HOUR ---------- */
+
+    const hourCounts =
+        Array(24).fill(0);
+
+    filteredData.forEach(item => {
+
+        const date =
+            new Date(
+                item.created_at
+            );
+
+        if (
+            !Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            hourCounts[
+                date.getHours()
+            ]++;
+
+        }
+
+    });
+
+    const busiestHourIndex =
+        hourCounts.indexOf(
+            Math.max(...hourCounts)
+        );
 
     setText(
-        "summaryAmount",
-        formatTZS(total)
+        "busiestHour",
+        String(
+            busiestHourIndex
+        ).padStart(2, "0") +
+        ":00"
     );
 
+    /* ---------- HIGHEST APPLICANT ---------- */
+
+    const highestApplication =
+        filteredData.reduce(
+            (highest, item) => {
+
+                const amount =
+                    Number(
+                        item.loan_amount
+                    ) || 0;
+
+                if (
+                    !highest ||
+                    amount >
+                    (
+                        Number(
+                            highest.loan_amount
+                        ) || 0
+                    )
+                ) {
+
+                    return item;
+
+                }
+
+                return highest;
+
+            },
+            null
+        );
+
+    if (
+        highestApplication
+    ) {
+
+        const name =
+            String(
+                highestApplication.full_name ||
+                "Haijulikani"
+            );
+
+        const amount =
+            Number(
+                highestApplication.loan_amount
+            ) || 0;
+
+        setText(
+            "highestAmountApplicant",
+            name
+        );
+
+        const applicantElement =
+            document.getElementById(
+                "highestAmountApplicant"
+            );
+
+        if (applicantElement) {
+
+            applicantElement.title =
+                formatTZS(amount);
+
+        }
+
+    }
+
+    /* ---------- HIGH VALUE ---------- */
+
+    const highValue =
+        filteredData.filter(
+            item =>
+                (
+                    Number(
+                        item.loan_amount
+                    ) || 0
+                ) >= 5000000
+        ).length;
 
     setText(
-        "summaryRegion",
-        topRegion
-            ? topRegion[0]
-            : "—"
-    );
-
-
-    setText(
-        "summaryHighValue",
+        "highValueApplications",
         formatNumber(
             highValue
         )
@@ -1024,6 +995,92 @@ function updateSummary() {
 
 }
 
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+function updateSummary() {
+
+    const today =
+        new Date();
+
+    const weekStart =
+        new Date(today);
+
+    weekStart.setDate(
+        weekStart.getDate() - 6
+    );
+
+    weekStart.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+    const monthStart =
+        new Date(today);
+
+    monthStart.setDate(1);
+
+    monthStart.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+    const weekApplications =
+        analyticsData.filter(item => {
+
+            const date =
+                new Date(
+                    item.created_at
+                );
+
+            return (
+                !Number.isNaN(
+                    date.getTime()
+                ) &&
+                date >= weekStart &&
+                date <= today
+            );
+
+        }).length;
+
+    const monthApplications =
+        analyticsData.filter(item => {
+
+            const date =
+                new Date(
+                    item.created_at
+                );
+
+            return (
+                !Number.isNaN(
+                    date.getTime()
+                ) &&
+                date >= monthStart &&
+                date <= today
+            );
+
+        }).length;
+
+    setText(
+        "applicationsThisWeek",
+        formatNumber(
+            weekApplications
+        )
+    );
+
+    setText(
+        "applicationsThisMonth",
+        formatNumber(
+            monthApplications
+        )
+    );
+
+}
 
 /* =========================================================
    APPLICATION TREND
@@ -1031,9 +1088,7 @@ function updateSummary() {
 
 function renderApplicationsTrend() {
 
-    const grouped =
-        {};
-
+    const grouped = {};
 
     filteredData.forEach(item => {
 
@@ -1041,7 +1096,6 @@ function renderApplicationsTrend() {
             new Date(
                 item.created_at
             );
-
 
         if (
             Number.isNaN(
@@ -1051,28 +1105,23 @@ function renderApplicationsTrend() {
             return;
         }
 
-
         const key =
             getDateKey(date);
-
 
         grouped[key] =
             (grouped[key] || 0) + 1;
 
     });
 
-
     const labels =
         Object.keys(grouped)
             .sort();
-
 
     const values =
         labels.map(
             label =>
                 grouped[label]
         );
-
 
     createChart(
         "applicationsTrendChart",
@@ -1080,9 +1129,11 @@ function renderApplicationsTrend() {
             type: "line",
 
             data: {
+
                 labels,
 
                 datasets: [{
+
                     label: "Maombi",
 
                     data: values,
@@ -1091,7 +1142,7 @@ function renderApplicationsTrend() {
                         "#92e3a9",
 
                     backgroundColor:
-                        "rgba(146,227,169,0.10)",
+                        "rgba(146,227,169,0.08)",
 
                     borderWidth: 2,
 
@@ -1099,21 +1150,21 @@ function renderApplicationsTrend() {
 
                     tension: 0.35,
 
-                    pointRadius: 2,
+                    pointRadius: 3
 
-                    pointHoverRadius: 5
                 }]
+
             },
 
             options:
                 chartOptions(
                     "count"
                 )
+
         }
     );
 
 }
-
 
 /* =========================================================
    LOAN AMOUNT TREND
@@ -1121,9 +1172,7 @@ function renderApplicationsTrend() {
 
 function renderLoanAmountTrend() {
 
-    const grouped =
-        {};
-
+    const grouped = {};
 
     filteredData.forEach(item => {
 
@@ -1131,7 +1180,6 @@ function renderLoanAmountTrend() {
             new Date(
                 item.created_at
             );
-
 
         if (
             Number.isNaN(
@@ -1141,22 +1189,22 @@ function renderLoanAmountTrend() {
             return;
         }
 
-
         const key =
             getDateKey(date);
 
-
         grouped[key] =
             (grouped[key] || 0) +
-            (Number(item.loan_amount) || 0);
+            (
+                Number(
+                    item.loan_amount
+                ) || 0
+            );
 
     });
-
 
     const labels =
         Object.keys(grouped)
             .sort();
-
 
     const values =
         labels.map(
@@ -1164,25 +1212,26 @@ function renderLoanAmountTrend() {
                 grouped[label]
         );
 
-
     createChart(
         "loanAmountTrendChart",
         {
             type: "line",
 
             data: {
+
                 labels,
 
                 datasets: [{
+
                     label: "Kiasi",
 
                     data: values,
 
                     borderColor:
-                        "#7dd3fc",
+                        "#a78bfa",
 
                     backgroundColor:
-                        "rgba(125,211,252,0.08)",
+                        "rgba(167,139,250,0.08)",
 
                     borderWidth: 2,
 
@@ -1190,29 +1239,29 @@ function renderLoanAmountTrend() {
 
                     tension: 0.35,
 
-                    pointRadius: 2
+                    pointRadius: 3
+
                 }]
+
             },
 
             options:
                 chartOptions(
                     "currency"
                 )
+
         }
     );
 
 }
 
-
 /* =========================================================
-   REGION APPLICATIONS
+   APPLICATIONS BY REGION
 ========================================================= */
 
 function renderApplicationsByRegion() {
 
-    const grouped =
-        {};
-
+    const grouped = {};
 
     filteredData.forEach(item => {
 
@@ -1222,20 +1271,18 @@ function renderApplicationsByRegion() {
                 "Haijulikani"
             ).trim();
 
-
         grouped[region] =
             (grouped[region] || 0) + 1;
 
     });
 
-
     const entries =
-        Object.entries(grouped)
-            .sort(
-                (a, b) =>
-                    b[1] - a[1]
-            );
-
+        Object.entries(
+            grouped
+        ).sort(
+            (a, b) =>
+                b[1] - a[1]
+        );
 
     const labels =
         entries.map(
@@ -1243,13 +1290,11 @@ function renderApplicationsByRegion() {
                 item[0]
         );
 
-
     const values =
         entries.map(
             item =>
                 item[1]
         );
-
 
     createChart(
         "applicationsRegionChart",
@@ -1257,9 +1302,11 @@ function renderApplicationsByRegion() {
             type: "bar",
 
             data: {
+
                 labels,
 
                 datasets: [{
+
                     label: "Maombi",
 
                     data: values,
@@ -1268,7 +1315,9 @@ function renderApplicationsByRegion() {
                         "#92e3a9",
 
                     borderRadius: 5
+
                 }]
+
             },
 
             options:
@@ -1276,11 +1325,11 @@ function renderApplicationsByRegion() {
                     "count",
                     true
                 )
+
         }
     );
 
 }
-
 
 /* =========================================================
    AMOUNT BY REGION
@@ -1288,9 +1337,7 @@ function renderApplicationsByRegion() {
 
 function renderAmountByRegion() {
 
-    const grouped =
-        {};
-
+    const grouped = {};
 
     filteredData.forEach(item => {
 
@@ -1300,21 +1347,23 @@ function renderAmountByRegion() {
                 "Haijulikani"
             ).trim();
 
-
         grouped[region] =
             (grouped[region] || 0) +
-            (Number(item.loan_amount) || 0);
+            (
+                Number(
+                    item.loan_amount
+                ) || 0
+            );
 
     });
 
-
     const entries =
-        Object.entries(grouped)
-            .sort(
-                (a, b) =>
-                    b[1] - a[1]
-            );
-
+        Object.entries(
+            grouped
+        ).sort(
+            (a, b) =>
+                b[1] - a[1]
+        );
 
     const labels =
         entries.map(
@@ -1322,13 +1371,11 @@ function renderAmountByRegion() {
                 item[0]
         );
 
-
     const values =
         entries.map(
             item =>
                 item[1]
         );
-
 
     createChart(
         "amountRegionChart",
@@ -1336,9 +1383,11 @@ function renderAmountByRegion() {
             type: "bar",
 
             data: {
+
                 labels,
 
                 datasets: [{
+
                     label: "Kiasi",
 
                     data: values,
@@ -1347,7 +1396,9 @@ function renderAmountByRegion() {
                         "#7dd3fc",
 
                     borderRadius: 5
+
                 }]
+
             },
 
             options:
@@ -1355,11 +1406,11 @@ function renderAmountByRegion() {
                     "currency",
                     true
                 )
+
         }
     );
 
 }
-
 
 /* =========================================================
    LOAN DISTRIBUTION
@@ -1379,14 +1430,12 @@ function renderLoanDistribution() {
 
     };
 
-
     filteredData.forEach(item => {
 
         const amount =
             Number(
                 item.loan_amount
             ) || 0;
-
 
         if (
             amount < 500000
@@ -1422,7 +1471,6 @@ function renderLoanDistribution() {
 
     });
 
-
     createChart(
         "loanDistributionChart",
         {
@@ -1431,7 +1479,9 @@ function renderLoanDistribution() {
             data: {
 
                 labels:
-                    Object.keys(ranges),
+                    Object.keys(
+                        ranges
+                    ),
 
                 datasets: [{
 
@@ -1461,7 +1511,6 @@ function renderLoanDistribution() {
 
 }
 
-
 /* =========================================================
    DAY OF WEEK
 ========================================================= */
@@ -1469,6 +1518,7 @@ function renderLoanDistribution() {
 function renderDayOfWeek() {
 
     const days = [
+
         "Jumapili",
         "Jumatatu",
         "Jumanne",
@@ -1476,12 +1526,11 @@ function renderDayOfWeek() {
         "Alhamisi",
         "Ijumaa",
         "Jumamosi"
-    ];
 
+    ];
 
     const counts =
         Array(7).fill(0);
-
 
     filteredData.forEach(item => {
 
@@ -1489,7 +1538,6 @@ function renderDayOfWeek() {
             new Date(
                 item.created_at
             );
-
 
         if (
             Number.isNaN(
@@ -1499,13 +1547,11 @@ function renderDayOfWeek() {
             return;
         }
 
-
         counts[
             date.getDay()
         ]++;
 
     });
-
 
     createChart(
         "dayOfWeekChart",
@@ -1541,7 +1587,6 @@ function renderDayOfWeek() {
 
 }
 
-
 /* =========================================================
    HOUR CHART
 ========================================================= */
@@ -1551,14 +1596,12 @@ function renderHourChart() {
     const counts =
         Array(24).fill(0);
 
-
     filteredData.forEach(item => {
 
         const date =
             new Date(
                 item.created_at
             );
-
 
         if (
             Number.isNaN(
@@ -1568,20 +1611,17 @@ function renderHourChart() {
             return;
         }
 
-
         counts[
             date.getHours()
         ]++;
 
     });
 
-
     const labels =
         counts.map(
             (_, hour) =>
                 `${String(hour).padStart(2, "0")}:00`
         );
-
 
     createChart(
         "hourChart",
@@ -1626,16 +1666,13 @@ function renderHourChart() {
 
 }
 
-
 /* =========================================================
    MONTHLY APPLICATIONS
 ========================================================= */
 
 function renderMonthlyApplications() {
 
-    const grouped =
-        {};
-
+    const grouped = {};
 
     filteredData.forEach(item => {
 
@@ -1643,7 +1680,6 @@ function renderMonthlyApplications() {
             new Date(
                 item.created_at
             );
-
 
         if (
             Number.isNaN(
@@ -1653,28 +1689,23 @@ function renderMonthlyApplications() {
             return;
         }
 
-
         const key =
             getMonthKey(date);
-
 
         grouped[key] =
             (grouped[key] || 0) + 1;
 
     });
 
-
     const labels =
         Object.keys(grouped)
             .sort();
-
 
     const values =
         labels.map(
             label =>
                 grouped[label]
         );
-
 
     createChart(
         "monthlyApplicationsChart",
@@ -1710,16 +1741,13 @@ function renderMonthlyApplications() {
 
 }
 
-
 /* =========================================================
    MONTHLY AMOUNT
 ========================================================= */
 
 function renderMonthlyAmount() {
 
-    const grouped =
-        {};
-
+    const grouped = {};
 
     filteredData.forEach(item => {
 
@@ -1727,7 +1755,6 @@ function renderMonthlyAmount() {
             new Date(
                 item.created_at
             );
-
 
         if (
             Number.isNaN(
@@ -1737,29 +1764,28 @@ function renderMonthlyAmount() {
             return;
         }
 
-
         const key =
             getMonthKey(date);
 
-
         grouped[key] =
             (grouped[key] || 0) +
-            (Number(item.loan_amount) || 0);
+            (
+                Number(
+                    item.loan_amount
+                ) || 0
+            );
 
     });
-
 
     const labels =
         Object.keys(grouped)
             .sort();
-
 
     const values =
         labels.map(
             label =>
                 grouped[label]
         );
-
 
     createChart(
         "monthlyAmountChart",
@@ -1804,7 +1830,6 @@ function renderMonthlyAmount() {
 
 }
 
-
 /* =========================================================
    CHART CREATION
 ========================================================= */
@@ -1819,29 +1844,62 @@ function createChart(
             canvasId
         );
 
-
     if (!canvas) {
         return;
     }
 
+    if (
+        typeof Chart === "undefined"
+    ) {
+
+        console.error(
+            "Chart.js is not loaded."
+        );
+
+        return;
+
+    }
 
     if (
         charts[canvasId]
     ) {
 
-        charts[canvasId].destroy();
+        try {
+
+            charts[
+                canvasId
+            ].destroy();
+
+        } catch (error) {
+
+            console.warn(
+                "Could not destroy old chart:",
+                error
+            );
+
+        }
 
     }
 
+    try {
 
-    charts[canvasId] =
-        new Chart(
-            canvas,
-            config
+        charts[canvasId] =
+            new Chart(
+                canvas,
+                config
+            );
+
+    } catch (error) {
+
+        console.error(
+            "Chart creation error:",
+            canvasId,
+            error
         );
 
-}
+    }
 
+}
 
 /* =========================================================
    CHART OPTIONS
@@ -1883,33 +1941,37 @@ function chartOptions(
 
                 callbacks: {
 
-                    label: function(context) {
+                    label:
+                        function(context) {
 
-                        const value =
-                            Number(
-                                context.raw
-                            ) || 0;
+                            const value =
+                                Number(
+                                    context.raw
+                                ) || 0;
 
+                            if (
+                                type ===
+                                "currency"
+                            ) {
 
-                        if (
-                            type === "currency"
-                        ) {
+                                return (
+                                    " " +
+                                    formatTZS(
+                                        value
+                                    )
+                                );
+
+                            }
 
                             return (
                                 " " +
-                                formatTZS(value)
+                                formatNumber(
+                                    value
+                                ) +
+                                " maombi"
                             );
 
                         }
-
-
-                        return (
-                            " " +
-                            formatNumber(value) +
-                            " maombi"
-                        );
-
-                    }
 
                 }
 
@@ -1927,7 +1989,9 @@ function chartOptions(
                         "#64748b",
 
                     font: {
+
                         size: 10
+
                     }
 
                 },
@@ -1951,25 +2015,28 @@ function chartOptions(
                         "#64748b",
 
                     font: {
+
                         size: 10
+
                     },
 
-                    callback: function(value) {
+                    callback:
+                        function(value) {
 
-                        if (
-                            type === "currency"
-                        ) {
+                            if (
+                                type ===
+                                "currency"
+                            ) {
 
-                            return formatCompactTZS(
-                                value
-                            );
+                                return formatCompactTZS(
+                                    value
+                                );
+
+                            }
+
+                            return value;
 
                         }
-
-
-                        return value;
-
-                    }
 
                 },
 
@@ -1988,7 +2055,6 @@ function chartOptions(
 
 }
 
-
 /* =========================================================
    DATE HELPERS
 ========================================================= */
@@ -1998,103 +2064,40 @@ function getDateKey(date) {
     const year =
         date.getFullYear();
 
-
     const month =
         String(
             date.getMonth() + 1
         ).padStart(2, "0");
-
 
     const day =
         String(
             date.getDate()
         ).padStart(2, "0");
 
+    return (
+        `${year}-${month}-${day}`
+    );
 
-    return `${year}-${month}-${day}`;
 }
-
 
 function getMonthKey(date) {
 
     const year =
         date.getFullYear();
 
-
     const month =
         String(
             date.getMonth() + 1
         ).padStart(2, "0");
 
-
-    return `${year}-${month}`;
-}
-
-
-/* =========================================================
-   COMPACT CURRENCY
-========================================================= */
-
-function formatCompactTZS(value) {
-
-    const number =
-        Number(value) || 0;
-
-
-    if (
-        number >= 1000000000
-    ) {
-
-        return (
-            "TZS " +
-            (number / 1000000000)
-                .toFixed(1) +
-            "B"
-        );
-
-    }
-
-
-    if (
-        number >= 1000000
-    ) {
-
-        return (
-            "TZS " +
-            (number / 1000000)
-                .toFixed(1) +
-            "M"
-        );
-
-    }
-
-
-    if (
-        number >= 1000
-    ) {
-
-        return (
-            "TZS " +
-            (number / 1000)
-                .toFixed(0) +
-            "K"
-        );
-
-    }
-
-
     return (
-        "TZS " +
-        number.toLocaleString(
-            "en-TZ"
-        )
+        `${year}-${month}`
     );
 
 }
 
-
 /* =========================================================
-   GENERAL DOM HELPERS
+   DOM HELPERS
 ========================================================= */
 
 function setText(
@@ -2105,7 +2108,6 @@ function setText(
     const element =
         document.getElementById(id);
 
-
     if (element) {
 
         element.textContent =
@@ -2115,13 +2117,11 @@ function setText(
 
 }
 
-
 function capitalize(value) {
 
     if (!value) {
         return "";
     }
-
 
     return (
         value.charAt(0).toUpperCase() +
@@ -2130,14 +2130,14 @@ function capitalize(value) {
 
 }
 
-
 function updateLastUpdated() {
 
     const now =
         new Date();
 
-
-    if (lastUpdatedElement) {
+    if (
+        lastUpdatedElement
+    ) {
 
         lastUpdatedElement.textContent =
             "Updated " +
@@ -2153,6 +2153,64 @@ function updateLastUpdated() {
 
 }
 
+/* =========================================================
+   ADMIN EMAIL
+   IMPORTANT:
+   This does NOT block analytics.
+========================================================= */
+
+async function loadAdminEmail() {
+
+    const client =
+        getSupabaseClient();
+
+    if (!client) {
+        return;
+    }
+
+    try {
+
+        /*
+         * Short timeout so this can never block
+         * the analytics page.
+         */
+
+        const result =
+            await withTimeout(
+                client.auth.getUser(),
+                5000
+            );
+
+        const user =
+            result?.data?.user;
+
+        if (
+            user &&
+            user.email
+        ) {
+
+            setText(
+                "adminEmail",
+                user.email
+            );
+
+        }
+
+    } catch (error) {
+
+        /*
+         * Authentication information is optional
+         * for displaying the analytics data.
+         */
+
+        console.warn(
+            "Admin email could not be loaded:",
+            error
+        );
+
+    }
+
+}
 
 /* =========================================================
    MOBILE SIDEBAR
@@ -2175,7 +2233,6 @@ function setupMobileSidebar() {
             "sidebarOverlay"
         );
 
-
     if (
         !menuButton ||
         !sidebar ||
@@ -2183,7 +2240,6 @@ function setupMobileSidebar() {
     ) {
         return;
     }
-
 
     function closeSidebar() {
 
@@ -2196,7 +2252,6 @@ function setupMobileSidebar() {
         );
 
     }
-
 
     menuButton.addEventListener(
         "click",
@@ -2213,12 +2268,10 @@ function setupMobileSidebar() {
         }
     );
 
-
     overlay.addEventListener(
         "click",
         closeSidebar
     );
-
 
     sidebar
         .querySelectorAll(
@@ -2235,7 +2288,6 @@ function setupMobileSidebar() {
 
 }
 
-
 /* =========================================================
    LOGOUT
 ========================================================= */
@@ -2244,7 +2296,6 @@ async function logout() {
 
     const client =
         getSupabaseClient();
-
 
     if (!client) {
 
@@ -2255,77 +2306,26 @@ async function logout() {
 
     }
 
-
     try {
 
-        await client.auth.signOut();
+        await withTimeout(
+            client.auth.signOut(),
+            5000
+        );
 
     } catch (error) {
 
-        console.error(
+        console.warn(
             "Logout error:",
             error
         );
 
     }
 
-
     window.location.href =
         "login.html";
 
 }
-
-
-/* =========================================================
-   AUTH / ADMIN EMAIL
-========================================================= */
-
-async function loadAdminEmail() {
-
-    const client =
-        getSupabaseClient();
-
-
-    if (!client) {
-        return;
-    }
-
-
-    try {
-
-        const {
-            data
-        } =
-            await client.auth.getUser();
-
-
-        const user =
-            data?.user;
-
-
-        if (
-            user &&
-            user.email
-        ) {
-
-            setText(
-                "adminEmail",
-                user.email
-            );
-
-        }
-
-    } catch (error) {
-
-        console.warn(
-            "Could not load admin email:",
-            error
-        );
-
-    }
-
-}
-
 
 /* =========================================================
    EVENTS
@@ -2333,7 +2333,9 @@ async function loadAdminEmail() {
 
 function setupEvents() {
 
-    if (applyFiltersButton) {
+    if (
+        applyFiltersButton
+    ) {
 
         applyFiltersButton.addEventListener(
             "click",
@@ -2342,8 +2344,9 @@ function setupEvents() {
 
     }
 
-
-    if (resetFiltersButton) {
+    if (
+        resetFiltersButton
+    ) {
 
         resetFiltersButton.addEventListener(
             "click",
@@ -2352,8 +2355,9 @@ function setupEvents() {
 
     }
 
-
-    if (refreshButton) {
+    if (
+        refreshButton
+    ) {
 
         refreshButton.addEventListener(
             "click",
@@ -2361,7 +2365,6 @@ function setupEvents() {
 
                 refreshButton.disabled =
                     true;
-
 
                 try {
 
@@ -2379,14 +2382,14 @@ function setupEvents() {
 
     }
 
-
     const logoutButton =
         document.getElementById(
             "logoutButton"
         );
 
-
-    if (logoutButton) {
+    if (
+        logoutButton
+    ) {
 
         logoutButton.addEventListener(
             "click",
@@ -2395,40 +2398,57 @@ function setupEvents() {
 
     }
 
+    if (
+        dateFilter
+    ) {
 
-    /*
-     * Allow Enter/change for quick filtering.
-     */
+        dateFilter.addEventListener(
+            "change",
+            applyFilters
+        );
 
-    dateFilter.addEventListener(
-        "change",
-        applyFilters
-    );
+    }
 
+    if (
+        regionFilter
+    ) {
 
-    regionFilter.addEventListener(
-        "change",
-        applyFilters
-    );
+        regionFilter.addEventListener(
+            "change",
+            applyFilters
+        );
+
+    }
 
 }
 
-
 /* =========================================================
-   START
+   START APPLICATION
 ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
-    async function() {
+    function() {
 
         setupMobileSidebar();
 
         setupEvents();
 
-        await loadAdminEmail();
+        /*
+         * IMPORTANT:
+         *
+         * Analytics data loads independently.
+         * Admin email cannot block it.
+         */
 
-        await loadAnalyticsData();
+        loadAnalyticsData();
+
+        /*
+         * Optional authentication information.
+         * Runs separately.
+         */
+
+        loadAdminEmail();
 
     }
 );
