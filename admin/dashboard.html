@@ -242,151 +242,88 @@
         ================================================== -->
         <section
             class="kpi-grid"
-            aria-label="Muhtasari wa maombi"
+            aria-label="Viashiria muhimu vya dashboard"
         >
 
             <!-- MAOMBI YA LEO -->
             <article class="kpi-card">
-
                 <div class="kpi-icon">
-
                     <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <rect
-                            x="3"
-                            y="4"
-                            width="18"
-                            height="17"
-                            rx="2"
-                        ></rect>
-
-                        <line
-                            x1="16"
-                            y1="2"
-                            x2="16"
-                            y2="6"
-                        ></line>
-
-                        <line
-                            x1="8"
-                            y1="2"
-                            x2="8"
-                            y2="6"
-                        ></line>
-
-                        <line
-                            x1="3"
-                            y1="10"
-                            x2="21"
-                            y2="10"
-                        ></line>
-
+                        <rect x="3" y="4" width="18" height="17" rx="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
                     </svg>
-
                 </div>
-
-
                 <div class="kpi-content">
-
-                    <span>
-                        Maombi ya Leo
-                    </span>
-
-                    <strong id="todayApplications">
-                        0
-                    </strong>
-
-                    <small>
-                        Maombi yaliyopokelewa leo
-                    </small>
-
+                    <span>Maombi ya Leo</span>
+                    <strong id="todayApplications" aria-live="polite">0</strong>
+                    <small>Maombi yaliyopokelewa leo</small>
                 </div>
-
             </article>
-
 
             <!-- MAOMBI YOTE -->
             <article class="kpi-card">
-
                 <div class="kpi-icon">
-
                     <svg viewBox="0 0 24 24" aria-hidden="true">
-
-                        <path
-                            d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
-                        ></path>
-
-                        <circle
-                            cx="9"
-                            cy="7"
-                            r="4"
-                        ></circle>
-
-                        <path
-                            d="M22 21v-2a4 4 0 0 0-3-3.87"
-                        ></path>
-
-                        <path
-                            d="M16 3.13a4 4 0 0 1 0 7.75"
-                        ></path>
-
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                     </svg>
-
                 </div>
-
-
                 <div class="kpi-content">
-
-                    <span>
-                        Maombi Yote
-                    </span>
-
-                    <strong id="totalApplications">
-                        0
-                    </strong>
-
-                    <small>
-                        Maombi yote yaliyowasilishwa
-                    </small>
-
+                    <span>Maombi Yote</span>
+                    <strong id="totalApplications" aria-live="polite">0</strong>
+                    <small>Maombi yote yaliyowasilishwa</small>
                 </div>
-
             </article>
 
-
-            <!-- KIASI KILICHOOMBWA -->
+            <!-- KIASI CHA LEO -->
             <article class="kpi-card">
-
                 <div class="kpi-icon">
-
                     <svg viewBox="0 0 24 24" aria-hidden="true">
-
                         <path d="M12 2v20"></path>
-
-                        <path
-                            d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-                        ></path>
-
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                     </svg>
-
                 </div>
-
-
                 <div class="kpi-content">
-
-                    <span>
-                        Kiasi Kilichoombwa
-                    </span>
-
-                    <strong id="totalLoanAmount">
-                        TZS 0
-                    </strong>
-
-                    <small>
-                        Jumla ya kiasi kilichoombwa
-                    </small>
-
+                    <span>Kiasi cha Mikopo Leo</span>
+                    <strong id="todayLoanAmount" aria-live="polite">TZS 0</strong>
+                    <small>Jumla ya kiasi kilichoombwa leo</small>
                 </div>
+            </article>
 
+            <!-- KIASI CHOTE -->
+            <article class="kpi-card">
+                <div class="kpi-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 7h16"></path>
+                        <path d="M4 11h16"></path>
+                        <path d="M4 15h10"></path>
+                        <path d="M4 19h7"></path>
+                    </svg>
+                </div>
+                <div class="kpi-content">
+                    <span>Jumla ya Mikopo</span>
+                    <strong id="totalLoanAmount" aria-live="polite">TZS 0</strong>
+                    <small>Jumla ya kiasi kilichoombwa</small>
+                </div>
+            </article>
+
+            <!-- MKOA UNAONGOZA -->
+            <article class="kpi-card kpi-card-highlight">
+                <div class="kpi-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                        <circle cx="12" cy="10" r="2.5"></circle>
+                    </svg>
+                </div>
+                <div class="kpi-content">
+                    <span>Mkoa Unaongoza</span>
+                    <strong id="mostApplicationRegion" aria-live="polite">—</strong>
+                    <small id="mostApplicationRegionCount">Hakuna data</small>
+                </div>
             </article>
 
         </section>
@@ -480,9 +417,7 @@
 
                         </svg>
 
-                        <span>
-                            Export CSV
-                        </span>
+                        <span>Export CSV</span>
 
                     </button>
 
@@ -662,36 +597,37 @@
             >
 
                 <table class="applications-table">
+                    <caption class="sr-only">Orodha ya maombi ya mikopo yaliyowasilishwa</caption>
 
                     <thead>
 
                         <tr>
 
-                            <th>
+                            <th scope="col">
                                 Jina
                             </th>
 
-                            <th>
+                            <th scope="col">
                                 Simu
                             </th>
 
-                            <th>
+                            <th scope="col">
                                 Mkoa
                             </th>
 
-                            <th>
+                            <th scope="col">
                                 Kiasi cha Mkopo
                             </th>
 
-                            <th>
+                            <th scope="col">
                                 Muda
                             </th>
 
-                            <th>
+                            <th scope="col">
                                 Tarehe
                             </th>
 
-                            <th class="actions-heading">
+                            <th scope="col" class="actions-heading">
                                 Vitendo
                             </th>
 
