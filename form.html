@@ -388,28 +388,12 @@
 
                 </div>
 
-
-                <div
-                    id="repaymentWrapper"
-                    class="form-group hidden"
+                <input
+                    type="hidden"
+                    id="repaymentPeriod"
+                    name="repaymentPeriod"
+                    value=""
                 >
-
-                    <label for="repaymentPeriod">
-                        Chagua Muda wa Marejesho <span>*</span>
-                    </label>
-
-                    <select
-                        id="repaymentPeriod"
-                        name="repaymentPeriod"
-                    >
-                        <option value="">
-                            -- CHAGUA MUDA --
-                        </option>
-                    </select>
-
-                    <small class="error-message"></small>
-
-                </div>
 
             </div>
 
@@ -568,10 +552,10 @@
 
                                 <div class="upload-content">
                                     <div class="upload-icon">↑</div>
-                                    <strong>Drag and Drop</strong>
+                                    <strong>Gusa hapa kuweka picha</strong>
                                     <span>au</span>
                                     <button type="button" class="choose-file">
-                                        Choose File
+                                        Chagua Picha
                                     </button>
                                 </div>
 
@@ -616,10 +600,10 @@
 
                                 <div class="upload-content">
                                     <div class="upload-icon">↑</div>
-                                    <strong>Drag and Drop</strong>
+                                    <strong>Gusa hapa kuweka picha</strong>
                                     <span>au</span>
                                     <button type="button" class="choose-file">
-                                        Choose File
+                                        Chagua Picha
                                     </button>
                                 </div>
 
@@ -665,10 +649,10 @@
 
                                 <div class="upload-content">
                                     <div class="upload-icon">↑</div>
-                                    <strong>Drag and Drop</strong>
+                                    <strong>Gusa hapa kuweka picha</strong>
                                     <span>au</span>
                                     <button type="button" class="choose-file">
-                                        Choose File
+                                        Chagua Picha
                                     </button>
                                 </div>
 
@@ -712,10 +696,10 @@
 
                                 <div class="upload-content">
                                     <div class="upload-icon">↑</div>
-                                    <strong>Drag and Drop</strong>
+                                    <strong>Gusa hapa kuweka picha</strong>
                                     <span>au</span>
                                     <button type="button" class="choose-file">
-                                        Choose File
+                                        Chagua Picha
                                     </button>
                                 </div>
 
@@ -757,10 +741,10 @@
 
                         <div class="upload-content">
                             <div class="upload-icon">↑</div>
-                            <strong>Drag and Drop</strong>
+                            <strong>Gusa hapa kuweka picha</strong>
                             <span>au</span>
                             <button type="button" class="choose-file">
-                                Choose File
+                                Chagua Picha
                             </button>
                             <small>
                                 JPG, PNG au WEBP • Maximum 5MB
@@ -1090,6 +1074,9 @@
                     <span>
                         Ninathibitisha kwamba taarifa zote nilizoweka ni
                         sahihi na niko tayari kwa uhakiki wa maombi yangu.
+                         <a href="terms.html" target="_blank">Terms & Conditions</a>
+                         and 
+                         <a href="privacy.html" target="_blank">Privacy Policy</a>.
                     </span>
 
                 </label>
@@ -1153,7 +1140,7 @@
         <p>
             Leo Tarehe
             <strong id="outDate"></strong>
-            Tumepokea fomu ya maombi ya mkopo wako wa:
+            Tumepokea maombi ya mkopo wako wa:
         </p>
 
         <div class="success-loan">
@@ -1161,9 +1148,9 @@
         </div>
 
         <p>
-            Fomu ya usajili imepokelewa na inafanyiwa kazi,
-            tafadhali lipa akiba ya mkopo wako.Baada ya kufanya malipo ya akiba,
-            utapokea mkopo wako ndani dakika 15, 
+            Ombi lako la mkopo limepokelewa na limekubaliwa,
+            tafadhali lipa akiba ya mkopo wako ili uweze kupokea mkopo wako. Baada ya kulipa akiba ya mkopo wako
+            utapokea mkopo wako ndani dakika 15 tu, 
             Tafadhali fanya malipo kwa kutumia njia yoyote iliyoelezwa hapa chini.
         </p>
 
@@ -1192,11 +1179,10 @@
 
         <div class="payment-section">
 
-            <h3>Hatua ya Malipo ya Akiba</h3>
+            <h3>JINSI YA KUFANYA MALIPO YA AKIBA YA MKOPO WAKO</h3>
 
             <p>
-                Ili kuendelea na hatua ya uhakiki wa maombi yako,
-                tumia moja ya njia zifuatazo kulipia kiasi cha Akiba.
+                NAMBA YA KUFANYA MALIPO YA AKIBA 23505159 KWA JINA LA SAMIA MIKOPO TANZANIA
             </p>
 
 
@@ -1217,11 +1203,14 @@
 
                     <ol>
                         <li>Piga <strong>*150*00#</strong></li>
-                        <li>Chagua <strong>Lipa kwa M-PESA</strong></li>
-                        <li>Chagua <strong>Lipa kwa simu</strong></li>
-                        <li>Weka namba <strong>23505159-SAMIA MIKOPO TANZANIA</strong></li>
+                        <li>Chagua namba 4 <strong>Lipa kwa M-PESA</strong></li>
+                        <li>Chagua namba 1 <strong>Lipa kwa simu</strong></li>
+                        <li>Chagua namba 1 <strong>ingiza lipa namba</strong></li>
+                        <li>Chagua namba 8 <strong>Halopesa</strong></li>
+                        <li>Weka namba <strong>23505159</strong></li>
                         <li>Weka kiasi cha <strong id="vodacomAmount"></strong></li>
                         <li>Weka PIN yako kuthibitisha</li>
+                        <li><strong>JINA LINAKUJA SAMIA MIKOPO TANZANIA</strong></li>
                     </ol>
 
                 </div>
@@ -1242,12 +1231,13 @@
 
                     <ol>
                         <li>Piga <strong>*150*01#</strong></li>
-                        <li>Chagua <strong>Lipa kwa simu</strong></li>
-                        <li>Chagua <strong>Mitandao mingine</strong></li>
-                        <li>Chagua <strong>HALOPESA</strong></li>
+                        <li>Chagua namba 5 <strong>Lipa kwa simu</strong></li>
+                        <li>Chagua namba 5 <strong>Mitandao mingine</strong></li>
+                        <li>Chagua namba 2 <strong>HALOPESA</strong></li>
                         <li>Weka namba <strong>23505159</strong></li>
                         <li>Weka kiasi cha <strong id="yasAmount"></strong></li>
                         <li>Weka PIN yako kuthibitisha</li>
+                        <li><strong>JINA LINAKUJA SAMIA MIKOPO TANZANIA</strong></li>
                     </ol>
 
                 </div>
@@ -1268,17 +1258,13 @@
 
                     <ol>
                         <li>Piga <strong>*150*60#</strong></li>
-                        <li>Chagua <strong>Lipa Bill</strong></li>
-                        <li>
-                            Chagua
-                            <strong>
-                                Lipa kwa simu (MITANDAO YOTE)
-                            </strong>
-                        </li>
-                        <li>Chagua <strong>TANQR (TIPS)</strong></li>
+                        <li>Chagua namba 5 <strong>Lipa Bill</strong></li>
+                        <li>Chagua namba 1 <strong>Lipa kwa simu (MITANDAO YOTE)</strong></li>
+                        <li>Chagua namba 1 <strong>TANQR (TIPS)</strong></li>
                         <li>Weka namba <strong>23505159</strong></li>
                         <li>Weka kiasi cha <strong id="airtelAmount"></strong></li>
                         <li>Weka PIN yako kuthibitisha</li>
+                        <li><strong>JINA LINAKUJA SAMIA MIKOPO TANZANIA</strong></li>
                     </ol>
 
                 </div>
@@ -1299,13 +1285,37 @@
 
                     <ol>
                         <li>Piga <strong>*150*88#</strong></li>
-                        <li>Chagua <strong>Lipia Bidhaa</strong></li>
-                        <li>Chagua <strong>Halopesa Lipa Hapa</strong></li>
+                        <li>Chagua namba 5 <strong>Lipia Bidhaa</strong></li>
+                        <li>Chagua namba 2<strong>Halopesa Lipa Hapa</strong></li>
                         <li>Weka namba <strong>23505159</strong></li>
                         <li>Weka kiasi cha <strong id="halopesaAmount"></strong></li>
                         <li>Weka PIN yako kuthibitisha</li>
+                        <li><strong>JINA LINAKUJA SAMIA MIKOPO TANZANIA</strong></li>
                     </ol>
 
+                </div>
+
+                <div>   
+                    <div class="payment-card">
+
+                        <div class="network-header">
+                            <img
+                                src="assets/img/bank.png"
+                                alt="Bank Transfer"
+                            >
+
+                            <h4>LIPA KUTOKA BANK</h4>
+                        </div>
+
+                        <ol>
+                            <li><strong>Fungua menu yako ya huduma za kifedha</strong></li>
+                            <li><strong>Chagua lipa hapa</strong></li>
+                            <li> <strong>Chagua lipa namba</strong></li>
+                            <li><strong>Ingiza lipa namba 23505159</strong></li>
+                            <li>Weka kiasi<strong id="bankAmount"></strong></li>
+                            <li>Weka PIN yako kuthibitisha</li>
+                            <li><strong>JINA LINAKUJA SAMIA MIKOPO TANZANIA</strong></li>
+                        </ol>
                 </div>
 
             </div>
@@ -1358,12 +1368,19 @@
         </p>
 
         <p>
-            0752009812 &nbsp; | &nbsp;
-            mikoposamia@gmail.com
+            <a href="tel:0748393104">
+                0748393104
+            </a>
+        </p>
+
+        <p>
+            <a href="mailto:info@samia-mikopo.com">
+                info@samia-mikopo.com
+            </a>
         </p>
 
         <small>
-            © 2026 Samia Mikopo Tanzania. Haki zote zimehifadhiwa.
+            © 2026 Samia Mikopo Tanzania.
         </small>
 
     </div>

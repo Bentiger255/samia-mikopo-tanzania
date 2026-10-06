@@ -18,7 +18,7 @@ if (!window.supabaseClient) {
 const CONFIG = {
     paymentNumber: "23505159",
     paymentName: "SAMIA MIKOPO TANZANIA",
-    whatsappNumber: "255752009812",
+    whatsappNumber: "255748393104",
 
     storageBucket: "loan-documents",
     maxFileSize: 5 * 1024 * 1024,
@@ -34,66 +34,204 @@ const CONFIG = {
 
 const loanData = {
 
-    300000:  { akiba: "35,000",  mkopo: "300,000" },
-    400000:  { akiba: "45,000",  mkopo: "400,000" },
-    500000:  { akiba: "55,000",  mkopo: "500,000" },
-    600000:  { akiba: "65,000",  mkopo: "600,000" },
-    700000:  { akiba: "75,000", mkopo: "700,000" },
-    800000:  { akiba: "85,000", mkopo: "800,000" },
-    900000:  { akiba: "95,000", mkopo: "900,000" },
-    1000000: { akiba: "100,000", mkopo: "1,000,000" },
+    300000: {
+        akiba: "35,000",
+        mkopo: "300,000"
+    },
 
-    2000000: { akiba: "200,000", mkopo: "2,000,000" },
-    3000000: { akiba: "300,000", mkopo: "3,000,000" },
-    4000000: { akiba: "400,000", mkopo: "4,000,000" },
-    5000000: { akiba: "500,000", mkopo: "5,000,000" },
-    6000000: { akiba: "600,000", mkopo: "6,000,000" },
-    7000000: { akiba: "700,000", mkopo: "7,000,000" },
-    8000000: { akiba: "800,000", mkopo: "8,000,000" },
-    9000000: { akiba: "900,000", mkopo: "9,000,000" },
+    400000: {
+        akiba: "45,000",
+        mkopo: "400,000"
+    },
 
-    10000000: { akiba: "1,000,000", mkopo: "10,000,000" },
-    20000000: { akiba: "2,000,000", mkopo: "20,000,000" },
-    30000000: { akiba: "3,000,000", mkopo: "30,000,000" },
-    40000000: { akiba: "4,000,000", mkopo: "40,000,000" },
-    50000000: { akiba: "5,000,000", mkopo: "50,000,000" }
+    500000: {
+        akiba: "55,000",
+        mkopo: "500,000"
+    },
+
+    600000: {
+        akiba: "65,000",
+        mkopo: "600,000"
+    },
+
+    700000: {
+        akiba: "75,000",
+        mkopo: "700,000"
+    },
+
+    800000: {
+        akiba: "85,000",
+        mkopo: "800,000"
+    },
+
+    900000: {
+        akiba: "95,000",
+        mkopo: "900,000"
+    },
+
+    1000000: {
+        akiba: "100,000",
+        mkopo: "1,000,000"
+    },
+
+    2000000: {
+        akiba: "200,000",
+        mkopo: "2,000,000"
+    },
+
+    3000000: {
+        akiba: "300,000",
+        mkopo: "3,000,000"
+    },
+
+    4000000: {
+        akiba: "400,000",
+        mkopo: "4,000,000"
+    },
+
+    5000000: {
+        akiba: "500,000",
+        mkopo: "5,000,000"
+    },
+
+    6000000: {
+        akiba: "600,000",
+        mkopo: "6,000,000"
+    },
+
+    7000000: {
+        akiba: "700,000",
+        mkopo: "7,000,000"
+    },
+
+    8000000: {
+        akiba: "800,000",
+        mkopo: "8,000,000"
+    },
+
+    9000000: {
+        akiba: "900,000",
+        mkopo: "9,000,000"
+    },
+
+    10000000: {
+        akiba: "1,000,000",
+        mkopo: "10,000,000"
+    },
+
+    20000000: {
+        akiba: "2,000,000",
+        mkopo: "20,000,000"
+    },
+
+    30000000: {
+        akiba: "3,000,000",
+        mkopo: "30,000,000"
+    },
+
+    40000000: {
+        akiba: "4,000,000",
+        mkopo: "40,000,000"
+    },
+
+    50000000: {
+        akiba: "5,000,000",
+        mkopo: "50,000,000"
+    }
 
 };
 
 
 /* =========================================================
-   REPAYMENT RANGES
-   COMPLETELY SEPARATE FROM AKIBA
+   REPAYMENT PERIODS
+   AUTOMATICALLY DETERMINED BY LOAN AMOUNT
 ========================================================= */
 
 const repaymentRanges = {
 
-    300000:  { min: "", max: 6 },
-    400000:  { min: "", max: 8 },
-    500000:  { min: "", max: 10 },
-    600000:  { min: "", max: 12 },
+    300000: {
+        max: 6
+    },
 
-    700000:  { min: "", max: 14 },
-    800000:  { min: "", max: 16 },
-    900000:  { min: "", max: 18 },
-    1000000: { min: "", max: 20 },
+    400000: {
+        max: 8
+    },
 
-    2000000: { min: "", max: 25 },
-    3000000: { min: "", max: 32 },
+    500000: {
+        max: 10
+    },
 
-    4000000: { min: "", max: 32 },
-    5000000: { min: "", max: 40 },
-    6000000: { min: "", max: 40 },
-    7000000: { min: "", max: 40 },
-    8000000: { min: "", max: 40 },
-    9000000: { min: "", max: 40 },
+    600000: {
+        max: 12
+    },
 
-    10000000: { min: "", max: 40 },
+    700000: {
+        max: 14
+    },
 
-    20000000: { min: "", max: 50 },
-    30000000: { min: "", max: 64 },
-    40000000: { min: "", max: 64 },
-    50000000: { min: "", max: 64 }
+    800000: {
+        max: 16
+    },
+
+    900000: {
+        max: 18
+    },
+
+    1000000: {
+        max: 20
+    },
+
+    2000000: {
+        max: 25
+    },
+
+    3000000: {
+        max: 32
+    },
+
+    4000000: {
+        max: 32
+    },
+
+    5000000: {
+        max: 40
+    },
+
+    6000000: {
+        max: 40
+    },
+
+    7000000: {
+        max: 40
+    },
+
+    8000000: {
+        max: 40
+    },
+
+    9000000: {
+        max: 40
+    },
+
+    10000000: {
+        max: 40
+    },
+
+    20000000: {
+        max: 50
+    },
+
+    30000000: {
+        max: 64
+    },
+
+    40000000: {
+        max: 64
+    },
+
+    50000000: {
+        max: 64
+    }
 
 };
 
@@ -102,23 +240,42 @@ const repaymentRanges = {
    DOM ELEMENTS
 ========================================================= */
 
-const form = document.getElementById("loanForm");
+const form =
+    document.getElementById("loanForm");
 
-const formSection = document.getElementById("formSection");
-const loader = document.getElementById("loader");
-const successSection = document.getElementById("successSection");
+const formSection =
+    document.getElementById("formSection");
 
-const loanAmount = document.getElementById("loanAmount");
-const loanSummary = document.getElementById("loanSummary");
-const repaymentWrapper = document.getElementById("repaymentWrapper");
-const repaymentPeriod = document.getElementById("repaymentPeriod");
+const loader =
+    document.getElementById("loader");
 
-const selectedLoan = document.getElementById("selectedLoan");
-const selectedSavings = document.getElementById("selectedSavings");
+const successSection =
+    document.getElementById("successSection");
+
+const loanAmount =
+    document.getElementById("loanAmount");
+
+const loanSummary =
+    document.getElementById("loanSummary");
+
+/*
+    repaymentPeriod is now a hidden input.
+    The user does NOT select it.
+*/
+const repaymentPeriod =
+    document.getElementById("repaymentPeriod");
+
+const selectedLoan =
+    document.getElementById("selectedLoan");
+
+const selectedSavings =
+    document.getElementById("selectedSavings");
+
 const selectedRepaymentRange =
     document.getElementById("selectedRepaymentRange");
 
-const submitButton = document.getElementById("submitButton");
+const submitButton =
+    document.getElementById("submitButton");
 
 
 /* =========================================================
@@ -138,11 +295,14 @@ if (!form) {
 
 function getRadioValue(name) {
 
-    const selected = document.querySelector(
-        `input[name="${name}"]:checked`
-    );
+    const selected =
+        document.querySelector(
+            `input[name="${name}"]:checked`
+        );
 
-    return selected ? selected.value : "";
+    return selected
+        ? selected.value
+        : "";
 }
 
 
@@ -152,13 +312,15 @@ function setError(element, message) {
 
     element.classList.add("has-error");
 
-    const parent = element.closest(
-        ".form-group, .conditional-field, .upload-zone, .form-field"
-    );
+    const parent =
+        element.closest(
+            ".form-group, .conditional-field, .upload-zone, .form-field"
+        );
 
     if (!parent) return;
 
-    const error = parent.querySelector(".error-message");
+    const error =
+        parent.querySelector(".error-message");
 
     if (error) {
         error.textContent = message;
@@ -172,13 +334,15 @@ function clearError(element) {
 
     element.classList.remove("has-error");
 
-    const parent = element.closest(
-        ".form-group, .conditional-field, .upload-zone, .form-field"
-    );
+    const parent =
+        element.closest(
+            ".form-group, .conditional-field, .upload-zone, .form-field"
+        );
 
     if (!parent) return;
 
-    const error = parent.querySelector(".error-message");
+    const error =
+        parent.querySelector(".error-message");
 
     if (error) {
         error.textContent = "";
@@ -191,20 +355,35 @@ function clearAllErrors() {
     document
         .querySelectorAll(".has-error")
         .forEach(element => {
-            element.classList.remove("has-error");
+
+            element.classList.remove(
+                "has-error"
+            );
+
         });
+
 
     document
-        .querySelectorAll(".error-message, .general-error")
+        .querySelectorAll(
+            ".error-message, .general-error"
+        )
         .forEach(element => {
+
             element.textContent = "";
+
         });
 
+
     const consentError =
-        document.getElementById("consentError");
+        document.getElementById(
+            "consentError"
+        );
+
 
     if (consentError) {
+
         consentError.textContent = "";
+
     }
 }
 
@@ -212,16 +391,26 @@ function clearAllErrors() {
 function showGeneralError(message) {
 
     const generalError =
-        document.querySelector(".general-error");
+        document.querySelector(
+            ".general-error"
+        );
+
 
     if (generalError) {
-        generalError.textContent = message;
+
+        generalError.textContent =
+            message;
+
+
         generalError.scrollIntoView({
             behavior: "smooth",
             block: "center"
         });
+
+
         return;
     }
+
 
     alert(message);
 }
@@ -229,9 +418,13 @@ function showGeneralError(message) {
 
 function escapeHTML(text) {
 
-    const div = document.createElement("div");
+    const div =
+        document.createElement("div");
 
-    div.textContent = text;
+
+    div.textContent =
+        text;
+
 
     return div.innerHTML;
 }
@@ -247,7 +440,9 @@ function generateApplicationId() {
         window.crypto &&
         typeof window.crypto.randomUUID === "function"
     ) {
+
         return window.crypto.randomUUID();
+
     }
 
 
@@ -256,24 +451,34 @@ function generateApplicationId() {
         typeof window.crypto.getRandomValues === "function"
     ) {
 
-        const bytes = new Uint8Array(16);
+        const bytes =
+            new Uint8Array(16);
 
-        window.crypto.getRandomValues(bytes);
+
+        window.crypto.getRandomValues(
+            bytes
+        );
+
 
         bytes[6] =
             (bytes[6] & 0x0f) |
             0x40;
 
+
         bytes[8] =
             (bytes[8] & 0x3f) |
             0x80;
 
+
         const hex =
             Array.from(bytes)
                 .map(byte =>
-                    byte.toString(16).padStart(2, "0")
+                    byte
+                        .toString(16)
+                        .padStart(2, "0")
                 )
                 .join("");
+
 
         return (
             hex.substring(0, 8) +
@@ -302,35 +507,54 @@ function generateApplicationId() {
 
 function updateIncomeSource() {
 
-    const income = getRadioValue("incomeSource");
+    const income =
+        getRadioValue(
+            "incomeSource"
+        );
+
 
     const wrapper =
-        document.getElementById("otherIncomeWrapper");
+        document.getElementById(
+            "otherIncomeWrapper"
+        );
+
 
     const input =
-        document.getElementById("otherIncome");
+        document.getElementById(
+            "otherIncome"
+        );
 
 
-    if (!wrapper || !input) return;
+    if (!wrapper || !input) {
+        return;
+    }
 
 
     if (income === "NYINGINE") {
 
-        wrapper.classList.remove("hidden");
+        wrapper.classList.remove(
+            "hidden"
+        );
 
     } else {
 
-        wrapper.classList.add("hidden");
+        wrapper.classList.add(
+            "hidden"
+        );
+
 
         input.value = "";
 
+
         clearError(input);
+
     }
 }
 
 
 /* =========================================================
    LOAN SUMMARY
+   REPAYMENT IS AUTOMATIC
 ========================================================= */
 
 function updateLoanSummary() {
@@ -338,7 +562,6 @@ function updateLoanSummary() {
     if (
         !loanAmount ||
         !loanSummary ||
-        !repaymentWrapper ||
         !repaymentPeriod
     ) {
         return;
@@ -346,35 +569,53 @@ function updateLoanSummary() {
 
 
     const amount =
-        Number(loanAmount.value);
+        Number(
+            loanAmount.value
+        );
 
+
+    /* =====================================================
+       NO LOAN SELECTED
+    ===================================================== */
 
     if (
         !amount ||
-        !loanData[amount]
+        !loanData[amount] ||
+        !repaymentRanges[amount]
     ) {
 
-        loanSummary.classList.add("hidden");
+        loanSummary.classList.add(
+            "hidden"
+        );
 
-        repaymentWrapper.classList.add("hidden");
 
         if (selectedLoan) {
-            selectedLoan.textContent = "-";
+
+            selectedLoan.textContent =
+                "-";
+
         }
+
 
         if (selectedSavings) {
-            selectedSavings.textContent = "-";
+
+            selectedSavings.textContent =
+                "-";
+
         }
+
 
         if (selectedRepaymentRange) {
-            selectedRepaymentRange.textContent = "-";
+
+            selectedRepaymentRange.textContent =
+                "-";
+
         }
 
-        repaymentPeriod.innerHTML = `
-            <option value="">
-                -- CHAGUA MUDA --
-            </option>
-        `;
+
+        repaymentPeriod.value =
+            "";
+
 
         return;
     }
@@ -383,12 +624,13 @@ function updateLoanSummary() {
     const loan =
         loanData[amount];
 
-    const range =
+
+    const repaymentData =
         repaymentRanges[amount];
 
 
     /* =====================================================
-       AKIBA ONLY COMES FROM loanData
+       DISPLAY LOAN AMOUNT
     ===================================================== */
 
     if (selectedLoan) {
@@ -399,6 +641,10 @@ function updateLoanSummary() {
     }
 
 
+    /* =====================================================
+       DISPLAY AKIBA
+    ===================================================== */
+
     if (selectedSavings) {
 
         selectedSavings.textContent =
@@ -408,84 +654,64 @@ function updateLoanSummary() {
 
 
     /* =====================================================
-       REPAYMENT IS COMPLETELY SEPARATE
+       AUTOMATIC REPAYMENT
     ===================================================== */
 
-    if (range) {
+    const repaymentMonths =
+        Number(
+            repaymentData.max
+        );
+
+
+    if (
+        !repaymentMonths ||
+        repaymentMonths <= 0
+    ) {
+
+        repaymentPeriod.value =
+            "";
+
 
         if (selectedRepaymentRange) {
 
             selectedRepaymentRange.textContent =
-                `Miezi ${range.min}  ${range.max}`;
+                "-";
 
         }
 
-        updateRepaymentOptions(range);
 
-    }
-
-
-    loanSummary.classList.remove("hidden");
-
-    repaymentWrapper.classList.remove("hidden");
-}
-
-
-/* =========================================================
-   REPAYMENT OPTIONS
-========================================================= */
-
-function updateRepaymentOptions(range) {
-
-    if (!repaymentPeriod) return;
-
-
-    const currentValue =
-        repaymentPeriod.value;
-
-
-    repaymentPeriod.innerHTML = `
-        <option value="">
-            -- CHAGUA MUDA WA MAREJESHO --
-        </option>
-    `;
-
-
-    for (
-        let month = range.min;
-        month <= range.max;
-        month++
-    ) {
-
-        const option =
-            document.createElement("option");
-
-        option.value = month;
-
-        option.textContent =
-            `${month} ${month === 1 ? "Mwezi" : "Miezi"}`;
-
-        repaymentPeriod.appendChild(option);
+        return;
     }
 
 
     /*
-        Keep the old selection if it is
-        still valid for the new loan.
+        Store repayment period
+        inside hidden input.
     */
 
-    const numericCurrent =
-        Number(currentValue);
+    repaymentPeriod.value =
+        repaymentMonths;
 
-    if (
-        currentValue &&
-        numericCurrent >= range.min &&
-        numericCurrent <= range.max
-    ) {
 
-        repaymentPeriod.value =
-            currentValue;
+    /* =====================================================
+       DISPLAY REPAYMENT PERIOD
+    ===================================================== */
+
+    if (selectedRepaymentRange) {
+
+        selectedRepaymentRange.textContent =
+            `Miezi ${repaymentMonths}`;
+
     }
+
+
+    /* =====================================================
+       SHOW SUMMARY
+    ===================================================== */
+
+    loanSummary.classList.remove(
+        "hidden"
+    );
 }
 
 
@@ -496,36 +722,57 @@ function updateRepaymentOptions(range) {
 const identificationPanels = {
 
     "Nida":
-        document.getElementById("idNidaWrapper"),
+        document.getElementById(
+            "idNidaWrapper"
+        ),
 
     "Mpiga-kura":
-        document.getElementById("idVoterWrapper"),
+        document.getElementById(
+            "idVoterWrapper"
+        ),
 
     "Mzanzibar":
-        document.getElementById("idZanzibarWrapper"),
+        document.getElementById(
+            "idZanzibarWrapper"
+        ),
 
     "Leseni":
-        document.getElementById("idLicenseWrapper"),
+        document.getElementById(
+            "idLicenseWrapper"
+        ),
 
     "Paspoti":
-        document.getElementById("idPassportWrapper"),
+        document.getElementById(
+            "idPassportWrapper"
+        ),
 
     "Namba-ya-nida":
-        document.getElementById("nidaNumberWrapper")
+        document.getElementById(
+            "nidaNumberWrapper"
+        )
+
 };
 
 
 function updateIdentification() {
 
     const selected =
-        getRadioValue("identificationType");
+        getRadioValue(
+            "identificationType"
+        );
 
 
-    Object.values(identificationPanels)
+    Object.values(
+        identificationPanels
+    )
         .forEach(panel => {
 
             if (panel) {
-                panel.classList.add("hidden");
+
+                panel.classList.add(
+                    "hidden"
+                );
+
             }
 
         });
@@ -537,7 +784,10 @@ function updateIdentification() {
     ) {
 
         identificationPanels[selected]
-            .classList.remove("hidden");
+            .classList.remove(
+                "hidden"
+            );
+
     }
 
 
@@ -549,39 +799,61 @@ function updateIdentification() {
 
     if (selected !== "Nida") {
 
-        clearFileInput("nidaFront");
-        clearFileInput("nidaBack");
+        clearFileInput(
+            "nidaFront"
+        );
+
+        clearFileInput(
+            "nidaBack"
+        );
 
     }
 
 
     if (selected !== "Mpiga-kura") {
 
-        clearFileInput("voterFront");
-        clearFileInput("voterBack");
+        clearFileInput(
+            "voterFront"
+        );
+
+        clearFileInput(
+            "voterBack"
+        );
 
     }
 
 
     if (selected !== "Mzanzibar") {
 
-        clearFileInput("zanzibarFront");
-        clearFileInput("zanzibarBack");
+        clearFileInput(
+            "zanzibarFront"
+        );
+
+        clearFileInput(
+            "zanzibarBack"
+        );
 
     }
 
 
     if (selected !== "Leseni") {
 
-        clearFileInput("licenseFront");
-        clearFileInput("licenseBack");
+        clearFileInput(
+            "licenseFront"
+        );
+
+        clearFileInput(
+            "licenseBack"
+        );
 
     }
 
 
     if (selected !== "Paspoti") {
 
-        clearFileInput("passportDocument");
+        clearFileInput(
+            "passportDocument"
+        );
 
     }
 
@@ -589,13 +861,20 @@ function updateIdentification() {
     if (selected !== "Namba-ya-nida") {
 
         const nidaNumber =
-            document.getElementById("nidaNumber");
+            document.getElementById(
+                "nidaNumber"
+            );
+
 
         if (nidaNumber) {
 
-            nidaNumber.value = "";
+            nidaNumber.value =
+                "";
 
-            clearError(nidaNumber);
+
+            clearError(
+                nidaNumber
+            );
 
         }
 
@@ -614,31 +893,47 @@ const MAX_FILE_SIZE =
 function clearFileInput(id) {
 
     const input =
-        document.getElementById(id);
+        document.getElementById(
+            id
+        );
 
 
-    if (!input) return;
+    if (!input) {
+        return;
+    }
 
 
-    input.value = "";
+    input.value =
+        "";
 
 
     const zone =
-        input.closest(".upload-zone");
+        input.closest(
+            ".upload-zone"
+        );
 
 
-    if (!zone) return;
+    if (!zone) {
+        return;
+    }
 
 
     const preview =
-        zone.querySelector(".file-preview");
+        zone.querySelector(
+            ".file-preview"
+        );
 
 
     if (preview) {
 
-        preview.classList.remove("active");
+        preview.classList.remove(
+            "active"
+        );
 
-        preview.innerHTML = "";
+
+        preview.innerHTML =
+            "";
+
     }
 }
 
@@ -649,21 +944,29 @@ function clearFileInput(id) {
 
 function isValidImage(file) {
 
-    if (!file) return false;
+    if (!file) {
+        return false;
+    }
 
 
     return [
         "image/jpeg",
         "image/png",
         "image/webp"
-    ].includes(file.type);
+    ].includes(
+        file.type
+    );
 }
 
 
 function getFileExtension(file) {
 
     if (!file) {
-        throw new Error("Faili haipo.");
+
+        throw new Error(
+            "Faili haipo."
+        );
+
     }
 
 
@@ -691,6 +994,7 @@ function getFileExtension(file) {
         throw new Error(
             "Aina ya faili hairuhusiwi."
         );
+
     }
 
 
@@ -698,20 +1002,31 @@ function getFileExtension(file) {
 }
 
 
-function handleFile(file, input) {
+function handleFile(
+    file,
+    input
+) {
 
-    if (!file || !input) return;
+    if (!file || !input) {
+        return;
+    }
 
 
     const zone =
-        input.closest(".upload-zone");
+        input.closest(
+            ".upload-zone"
+        );
 
 
-    if (!zone) return;
+    if (!zone) {
+        return;
+    }
 
 
     const preview =
-        zone.querySelector(".file-preview");
+        zone.querySelector(
+            ".file-preview"
+        );
 
 
     if (!isValidImage(file)) {
@@ -720,19 +1035,28 @@ function handleFile(file, input) {
             "Tafadhali chagua picha ya JPG, PNG au WEBP."
         );
 
-        input.value = "";
+
+        input.value =
+            "";
+
 
         return;
     }
 
 
-    if (file.size > MAX_FILE_SIZE) {
+    if (
+        file.size >
+        MAX_FILE_SIZE
+    ) {
 
         alert(
             "Picha imezidi ukubwa wa 5MB."
         );
 
-        input.value = "";
+
+        input.value =
+            "";
+
 
         return;
     }
@@ -745,15 +1069,23 @@ function handleFile(file, input) {
 
     try {
 
-        if (typeof DataTransfer !== "undefined") {
+        if (
+            typeof DataTransfer !==
+            "undefined"
+        ) {
 
             const dataTransfer =
                 new DataTransfer();
 
-            dataTransfer.items.add(file);
+
+            dataTransfer.items.add(
+                file
+            );
+
 
             input.files =
                 dataTransfer.files;
+
         }
 
     } catch (error) {
@@ -766,7 +1098,9 @@ function handleFile(file, input) {
     }
 
 
-    if (!preview) return;
+    if (!preview) {
+        return;
+    }
 
 
     const reader =
@@ -787,21 +1121,31 @@ function handleFile(file, input) {
                 </span>
             `;
 
-            preview.classList.add("active");
+
+            preview.classList.add(
+                "active"
+            );
+
         };
 
 
     reader.onerror =
         function() {
 
-            preview.innerHTML = "";
+            preview.innerHTML =
+                "";
 
-            preview.classList.remove("active");
+
+            preview.classList.remove(
+                "active"
+            );
 
         };
 
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(
+        file
+    );
 }
 
 
@@ -810,7 +1154,9 @@ function handleFile(file, input) {
 ========================================================= */
 
 document
-    .querySelectorAll(".upload-zone")
+    .querySelectorAll(
+        ".upload-zone"
+    )
     .forEach(zone => {
 
         const inputId =
@@ -818,10 +1164,14 @@ document
 
 
         const input =
-            document.getElementById(inputId);
+            document.getElementById(
+                inputId
+            );
 
 
-        if (!input) return;
+        if (!input) {
+            return;
+        }
 
 
         input.addEventListener(
@@ -837,6 +1187,7 @@ document
                         this.files[0],
                         this
                     );
+
                 }
 
             }
@@ -846,48 +1197,54 @@ document
         [
             "dragenter",
             "dragover"
-        ].forEach(eventName => {
+        ].forEach(
+            eventName => {
 
-            zone.addEventListener(
-                eventName,
-                function(event) {
+                zone.addEventListener(
+                    eventName,
+                    function(event) {
 
-                    event.preventDefault();
+                        event.preventDefault();
 
-                    event.stopPropagation();
+                        event.stopPropagation();
 
-                    zone.classList.add(
-                        "dragging"
-                    );
 
-                }
-            );
+                        zone.classList.add(
+                            "dragging"
+                        );
 
-        });
+                    }
+                );
+
+            }
+        );
 
 
         [
             "dragleave",
             "dragend",
             "drop"
-        ].forEach(eventName => {
+        ].forEach(
+            eventName => {
 
-            zone.addEventListener(
-                eventName,
-                function(event) {
+                zone.addEventListener(
+                    eventName,
+                    function(event) {
 
-                    event.preventDefault();
+                        event.preventDefault();
 
-                    event.stopPropagation();
+                        event.stopPropagation();
 
-                    zone.classList.remove(
-                        "dragging"
-                    );
 
-                }
-            );
+                        zone.classList.remove(
+                            "dragging"
+                        );
 
-        });
+                    }
+                );
+
+            }
+        );
 
 
         zone.addEventListener(
@@ -895,7 +1252,9 @@ document
             function(event) {
 
                 const files =
-                    event.dataTransfer.files;
+                    event
+                        .dataTransfer
+                        .files;
 
 
                 if (
@@ -907,6 +1266,7 @@ document
                         files[0],
                         input
                     );
+
                 }
 
             }
@@ -922,7 +1282,9 @@ document
 function updateReceivingMethod() {
 
     const receiving =
-        getRadioValue("receivingMethod");
+        getRadioValue(
+            "receivingMethod"
+        );
 
 
     const mobileWrapper =
@@ -937,17 +1299,28 @@ function updateReceivingMethod() {
         );
 
 
-    if (!mobileWrapper || !bankWrapper) {
+    if (
+        !mobileWrapper ||
+        !bankWrapper
+    ) {
+
         return;
     }
 
 
-    mobileWrapper.classList.add("hidden");
+    mobileWrapper.classList.add(
+        "hidden"
+    );
 
-    bankWrapper.classList.add("hidden");
+
+    bankWrapper.classList.add(
+        "hidden"
+    );
 
 
-    if (receiving === "one") {
+    if (
+        receiving === "one"
+    ) {
 
         mobileWrapper.classList.remove(
             "hidden"
@@ -956,7 +1329,9 @@ function updateReceivingMethod() {
     }
 
 
-    if (receiving === "two") {
+    if (
+        receiving === "two"
+    ) {
 
         bankWrapper.classList.remove(
             "hidden"
@@ -995,6 +1370,7 @@ function validateBorrowerPhoto() {
             "WEKA PICHA YA PASSPORT SIZE YA MWOMBAJI"
         );
 
+
         return false;
     }
 
@@ -1003,23 +1379,30 @@ function validateBorrowerPhoto() {
         photo.files[0];
 
 
-    if (!isValidImage(file)) {
+    if (
+        !isValidImage(file)
+    ) {
 
         setError(
             photo,
             "WEKA PICHA YA JPG, PNG AU WEBP"
         );
 
+
         return false;
     }
 
 
-    if (file.size > MAX_FILE_SIZE) {
+    if (
+        file.size >
+        MAX_FILE_SIZE
+    ) {
 
         setError(
             photo,
             "PICHA ISIZIDI 5MB"
         );
+
 
         return false;
     }
@@ -1035,7 +1418,8 @@ function validateBorrowerPhoto() {
 
 function validateIdentification() {
 
-    let valid = true;
+    let valid =
+        true;
 
 
     const identification =
@@ -1050,11 +1434,15 @@ function validateIdentification() {
             "CHAGUA AINA YA KITAMBULISHO"
         );
 
+
         return false;
     }
 
 
-    if (identification === "Nida") {
+    if (
+        identification ===
+        "Nida"
+    ) {
 
         if (
             !validateFile(
@@ -1062,13 +1450,19 @@ function validateIdentification() {
                 "WEKA PICHA YA MBELE YA NIDA"
             )
         ) {
-            valid = false;
+
+            valid =
+                false;
+
         }
 
     }
 
 
-    if (identification === "Mpiga-kura") {
+    if (
+        identification ===
+        "Mpiga-kura"
+    ) {
 
         if (
             !validateFile(
@@ -1076,13 +1470,19 @@ function validateIdentification() {
                 "WEKA PICHA YA MBELE YA KITAMBULISHO CHA MPIGA KURA"
             )
         ) {
-            valid = false;
+
+            valid =
+                false;
+
         }
 
     }
 
 
-    if (identification === "Mzanzibar") {
+    if (
+        identification ===
+        "Mzanzibar"
+    ) {
 
         if (
             !validateFile(
@@ -1090,13 +1490,19 @@ function validateIdentification() {
                 "WEKA PICHA YA MBELE YA KITAMBULISHO CHA MZANZIBAR"
             )
         ) {
-            valid = false;
+
+            valid =
+                false;
+
         }
 
     }
 
 
-    if (identification === "Leseni") {
+    if (
+        identification ===
+        "Leseni"
+    ) {
 
         if (
             !validateFile(
@@ -1104,13 +1510,19 @@ function validateIdentification() {
                 "WEKA PICHA YA MBELE YA LESENI"
             )
         ) {
-            valid = false;
+
+            valid =
+                false;
+
         }
 
     }
 
 
-    if (identification === "Paspoti") {
+    if (
+        identification ===
+        "Paspoti"
+    ) {
 
         if (
             !validateFile(
@@ -1118,13 +1530,19 @@ function validateIdentification() {
                 "WEKA PICHA YA PASPOTI YA KUSAFIRIA"
             )
         ) {
-            valid = false;
+
+            valid =
+                false;
+
         }
 
     }
 
 
-    if (identification === "Namba-ya-nida") {
+    if (
+        identification ===
+        "Namba-ya-nida"
+    ) {
 
         const nida =
             document.getElementById(
@@ -1142,7 +1560,10 @@ function validateIdentification() {
                 "JAZA NAMBA YAKO YA NIDA"
             );
 
-            valid = false;
+
+            valid =
+                false;
+
         }
 
     }
@@ -1156,10 +1577,15 @@ function validateIdentification() {
    FILE VALIDATION
 ========================================================= */
 
-function validateFile(id, message) {
+function validateFile(
+    id,
+    message
+) {
 
     const input =
-        document.getElementById(id);
+        document.getElementById(
+            id
+        );
 
 
     if (!input) {
@@ -1179,6 +1605,7 @@ function validateFile(id, message) {
             message
         );
 
+
         return false;
     }
 
@@ -1187,23 +1614,30 @@ function validateFile(id, message) {
         input.files[0];
 
 
-    if (!isValidImage(file)) {
+    if (
+        !isValidImage(file)
+    ) {
 
         setError(
             input,
             "WEKA PICHA YA JPG, PNG AU WEBP"
         );
 
+
         return false;
     }
 
 
-    if (file.size > MAX_FILE_SIZE) {
+    if (
+        file.size >
+        MAX_FILE_SIZE
+    ) {
 
         setError(
             input,
             "PICHA ISIZIDI 5MB"
         );
+
 
         return false;
     }
@@ -1221,7 +1655,8 @@ function validateForm() {
 
     clearAllErrors();
 
-    let valid = true;
+    let valid =
+        true;
 
 
     /* =====================================================
@@ -1244,7 +1679,9 @@ function validateForm() {
             "JAZA JINA LAKO KAMILI"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
@@ -1259,7 +1696,9 @@ function validateForm() {
 
 
     const ageNumber =
-        age ? Number(age.value) : 0;
+        age
+            ? Number(age.value)
+            : 0;
 
 
     if (
@@ -1274,7 +1713,9 @@ function validateForm() {
             "UMRI UNAOTAKIWA NI MIAKA 18 HADI 100"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
@@ -1298,7 +1739,9 @@ function validateForm() {
             "JAZA NAMBA YA SIMU"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
@@ -1322,7 +1765,9 @@ function validateForm() {
             "JAZA KATA"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
@@ -1346,7 +1791,9 @@ function validateForm() {
             "JAZA WILAYA"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
@@ -1370,7 +1817,9 @@ function validateForm() {
             "JAZA MKOA"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
@@ -1378,13 +1827,19 @@ function validateForm() {
        GENDER
     ===================================================== */
 
-    if (!getRadioValue("gender")) {
+    if (
+        !getRadioValue(
+            "gender"
+        )
+    ) {
 
         alert(
             "CHAGUA JINSIA"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
@@ -1396,7 +1851,8 @@ function validateForm() {
         !validateBorrowerPhoto()
     ) {
 
-        valid = false;
+        valid =
+            false;
     }
 
 
@@ -1416,11 +1872,16 @@ function validateForm() {
             "CHAGUA CHANZO CHA MAPATO"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
-    if (income === "NYINGINE") {
+    if (
+        income ===
+        "NYINGINE"
+    ) {
 
         const otherIncome =
             document.getElementById(
@@ -1438,8 +1899,11 @@ function validateForm() {
                 "TAJA CHANZO CHA MAPATO"
             );
 
-            valid = false;
+
+            valid =
+                false;
         }
+
     }
 
 
@@ -1449,9 +1913,9 @@ function validateForm() {
 
     const selectedAmount =
         Number(
-            loanAmount ?
-                loanAmount.value :
-                0
+            loanAmount
+                ? loanAmount.value
+                : 0
         );
 
 
@@ -1465,25 +1929,38 @@ function validateForm() {
             "CHAGUA KIASI CHA MKOPO"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
     /* =====================================================
        REPAYMENT
+       AUTOMATICALLY DETERMINED
     ===================================================== */
+
+    const expectedRepayment =
+        selectedAmount &&
+        repaymentRanges[selectedAmount]
+            ? Number(
+                repaymentRanges[
+                    selectedAmount
+                ].max
+            )
+            : 0;
+
 
     if (
         !repaymentPeriod ||
-        !repaymentPeriod.value
+        !expectedRepayment ||
+        Number(
+            repaymentPeriod.value
+        ) !== expectedRepayment
     ) {
 
-        setError(
-            repaymentPeriod,
-            "CHAGUA MUDA WA MAREJESHO"
-        );
-
-        valid = false;
+        valid =
+            false;
     }
 
 
@@ -1495,7 +1972,8 @@ function validateForm() {
         !validateIdentification()
     ) {
 
-        valid = false;
+        valid =
+            false;
     }
 
 
@@ -1515,7 +1993,9 @@ function validateForm() {
             "CHAGUA NJIA UNAYOTUMIA KUPOKEA MKOPO"
         );
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
@@ -1523,7 +2003,10 @@ function validateForm() {
        MOBILE RECEIVING
     ===================================================== */
 
-    if (receiving === "one") {
+    if (
+        receiving ===
+        "one"
+    ) {
 
         const network =
             getRadioValue(
@@ -1537,7 +2020,9 @@ function validateForm() {
                 "CHAGUA NI MTANDAO GANI UNATUMIA"
             );
 
-            valid = false;
+
+            valid =
+                false;
         }
 
 
@@ -1560,8 +2045,11 @@ function validateForm() {
                 "JAZA NAMBA INAYOPOKEA MKOPO ILI KUENDELEA"
             );
 
-            valid = false;
+
+            valid =
+                false;
         }
+
     }
 
 
@@ -1569,7 +2057,10 @@ function validateForm() {
        BANK RECEIVING
     ===================================================== */
 
-    if (receiving === "two") {
+    if (
+        receiving ===
+        "two"
+    ) {
 
         const bank =
             getRadioValue(
@@ -1583,7 +2074,9 @@ function validateForm() {
                 "CHAGUA NI BENKI GANI UNATUMIA"
             );
 
-            valid = false;
+
+            valid =
+                false;
         }
 
 
@@ -1606,8 +2099,11 @@ function validateForm() {
                 "ANDIKA AKAUNTI NAMBA UTAKAYOTUMIA KUPOKEA MKOPO"
             );
 
-            valid = false;
+
+            valid =
+                false;
         }
+
     }
 
 
@@ -1636,9 +2132,12 @@ function validateForm() {
 
             consentError.textContent =
                 "THIBITISHA KWAMBA TAARIFA ULIZOWEKA NI SAHIHI";
+
         }
 
-        valid = false;
+
+        valid =
+            false;
     }
 
 
@@ -1650,7 +2149,9 @@ function validateForm() {
    BUILD APPLICATION DATA
 ========================================================= */
 
-function buildApplicationData(applicationId) {
+function buildApplicationData(
+    applicationId
+) {
 
     const amount =
         Number(
@@ -1744,16 +2245,23 @@ function buildApplicationData(applicationId) {
 
     return {
 
-        id: applicationId,
+        id:
+            applicationId,
+
 
         full_name:
             fullName.value.trim(),
 
+
         age:
-            Number(age.value),
+            Number(
+                age.value
+            ),
+
 
         phone:
             phone.value.trim(),
+
 
         whatsapp:
             whatsapp &&
@@ -1761,69 +2269,100 @@ function buildApplicationData(applicationId) {
                 ? whatsapp.value.trim()
                 : null,
 
+
         ward:
             ward.value.trim(),
+
 
         district:
             district.value.trim(),
 
+
         region:
             region.value.trim(),
 
+
         gender:
-            getRadioValue("gender"),
+            getRadioValue(
+                "gender"
+            ),
+
 
         income_source:
             income,
+
 
         other_income:
             income === "NYINGINE"
                 ? otherIncome.value.trim()
                 : null,
 
+
         loan_amount:
             amount,
 
+
         savings_amount:
             parseMoneyValue(
-                loanData[amount].akiba
+                loanData[
+                    amount
+                ].akiba
             ),
+
+
+        /*
+            Repayment is automatically
+            calculated and stored here.
+        */
 
         repayment_period:
             Number(
                 repaymentPeriod.value
             ),
 
+
         identification_type:
             identification,
 
+
         nida_number:
-            identification === "Namba-ya-nida"
+            identification ===
+            "Namba-ya-nida"
                 ? nidaNumber.value.trim()
                 : null,
+
 
         receiving_method:
             receiving,
 
+
         mobile_network:
             receiving === "one"
-                ? getRadioValue("mobileNetwork")
+                ? getRadioValue(
+                    "mobileNetwork"
+                )
                 : null,
+
 
         mobile_number:
             receiving === "one"
                 ? mobileNumber.value.trim()
                 : null,
 
+
         bank:
             receiving === "two"
-                ? getRadioValue("bank")
+                ? getRadioValue(
+                    "bank"
+                )
                 : null,
+
 
         bank_account:
             receiving === "two"
                 ? bankAccount.value.trim()
                 : null,
+
 
         consent:
             true
@@ -1838,8 +2377,13 @@ function buildApplicationData(applicationId) {
 
 function parseMoneyValue(value) {
 
-    if (typeof value === "number") {
+    if (
+        typeof value ===
+        "number"
+    ) {
+
         return value;
+
     }
 
 
@@ -1867,7 +2411,9 @@ async function uploadFile(
 
 
     const extension =
-        getFileExtension(file);
+        getFileExtension(
+            file
+        );
 
 
     const path =
@@ -1877,19 +2423,27 @@ async function uploadFile(
     const {
         data,
         error
-    } = await supabaseClient
-        .storage
-        .from(CONFIG.storageBucket)
-        .upload(
-            path,
-            file,
-            {
-                cacheControl: "3600",
-                upsert: false,
-                contentType:
-                    file.type || "image/jpeg"
-            }
-        );
+    } =
+        await supabaseClient
+            .storage
+            .from(
+                CONFIG.storageBucket
+            )
+            .upload(
+                path,
+                file,
+                {
+                    cacheControl:
+                        "3600",
+
+                    upsert:
+                        false,
+
+                    contentType:
+                        file.type ||
+                        "image/jpeg"
+                }
+            );
 
 
     if (error) {
@@ -1899,9 +2453,11 @@ async function uploadFile(
             error
         );
 
+
         throw new Error(
             `Imeshindikana kupakia ${storageKey}. ${error.message}`
         );
+
     }
 
 
@@ -1974,6 +2530,7 @@ async function uploadApplicationFiles(
                 borrowerPhoto.files[0],
                 "borrower-photo"
             );
+
     }
 
 
@@ -2005,6 +2562,7 @@ async function uploadApplicationFiles(
                 nidaFront.files[0],
                 "nida-front"
             );
+
     }
 
 
@@ -2020,6 +2578,7 @@ async function uploadApplicationFiles(
                 nidaBack.files[0],
                 "nida-back"
             );
+
     }
 
 
@@ -2051,6 +2610,7 @@ async function uploadApplicationFiles(
                 voterFront.files[0],
                 "voter-front"
             );
+
     }
 
 
@@ -2066,6 +2626,7 @@ async function uploadApplicationFiles(
                 voterBack.files[0],
                 "voter-back"
             );
+
     }
 
 
@@ -2097,6 +2658,7 @@ async function uploadApplicationFiles(
                 zanzibarFront.files[0],
                 "zanzibar-front"
             );
+
     }
 
 
@@ -2112,6 +2674,7 @@ async function uploadApplicationFiles(
                 zanzibarBack.files[0],
                 "zanzibar-back"
             );
+
     }
 
 
@@ -2143,6 +2706,7 @@ async function uploadApplicationFiles(
                 licenseFront.files[0],
                 "license-front"
             );
+
     }
 
 
@@ -2158,6 +2722,7 @@ async function uploadApplicationFiles(
                 licenseBack.files[0],
                 "license-back"
             );
+
     }
 
 
@@ -2183,6 +2748,7 @@ async function uploadApplicationFiles(
                 passportDocument.files[0],
                 "passport-document"
             );
+
     }
 
 
@@ -2203,6 +2769,7 @@ async function submitApplication() {
         throw new Error(
             "Mfumo wa Supabase haujaanzishwa. Hakikisha supabase.js imepakiwa vizuri."
         );
+
     }
 
 
@@ -2261,9 +2828,14 @@ async function submitApplication() {
 
     const {
         error
-    } = await supabaseClient
-        .from(CONFIG.tableName)
-        .insert(application);
+    } =
+        await supabaseClient
+            .from(
+                CONFIG.tableName
+            )
+            .insert(
+                application
+            );
 
 
     if (error) {
@@ -2273,9 +2845,11 @@ async function submitApplication() {
             error
         );
 
+
         throw new Error(
             `Maombi hayakuhifadhiwa kwenye mfumo. ${error.message}`
         );
+
     }
 
 
@@ -2309,18 +2883,24 @@ function showConfirmation() {
         throw new Error(
             "Taarifa za mkopo hazijapatikana."
         );
+
     }
 
 
-    const repaymentOption =
-        repaymentPeriod.options[
-            repaymentPeriod.selectedIndex
-        ];
+    /*
+        Repayment is now an automatic
+        hidden value, not a dropdown.
+    */
+
+    const repaymentMonths =
+        Number(
+            repaymentPeriod.value
+        );
 
 
     const repayment =
-        repaymentOption
-            ? repaymentOption.text
+        repaymentMonths
+            ? `Miezi ${repaymentMonths}`
             : "-";
 
 
@@ -2336,6 +2916,7 @@ function showConfirmation() {
             document.getElementById(
                 "fullName"
             ).value.trim();
+
     }
 
 
@@ -2355,6 +2936,7 @@ function showConfirmation() {
             now.toLocaleDateString(
                 "sw-TZ"
             );
+
     }
 
 
@@ -2368,6 +2950,7 @@ function showConfirmation() {
 
         outLoan.textContent =
             `TZS ${loan.mkopo}`;
+
     }
 
 
@@ -2381,6 +2964,7 @@ function showConfirmation() {
 
         summaryLoan.textContent =
             `TZS ${loan.mkopo}`;
+
     }
 
 
@@ -2394,6 +2978,7 @@ function showConfirmation() {
 
         summarySavings.textContent =
             `TZS ${loan.akiba}`;
+
     }
 
 
@@ -2407,6 +2992,7 @@ function showConfirmation() {
 
         summaryRepayment.textContent =
             repayment;
+
     }
 
 
@@ -2430,6 +3016,7 @@ function showConfirmation() {
 
         vodacomAmount.textContent =
             paymentAmount;
+
     }
 
 
@@ -2443,6 +3030,7 @@ function showConfirmation() {
 
         yasAmount.textContent =
             paymentAmount;
+
     }
 
 
@@ -2456,6 +3044,7 @@ function showConfirmation() {
 
         airtelAmount.textContent =
             paymentAmount;
+
     }
 
 
@@ -2469,6 +3058,7 @@ function showConfirmation() {
 
         halopesaAmount.textContent =
             paymentAmount;
+
     }
 
 
@@ -2477,6 +3067,7 @@ function showConfirmation() {
         formSection.classList.add(
             "hidden"
         );
+
     }
 
 
@@ -2485,6 +3076,7 @@ function showConfirmation() {
         loader.classList.add(
             "hidden"
         );
+
     }
 
 
@@ -2493,6 +3085,7 @@ function showConfirmation() {
         successSection.classList.remove(
             "hidden"
         );
+
     }
 
 
@@ -2537,19 +3130,25 @@ function sendWhatsApp() {
             "Taarifa za mkopo hazijapatikana."
         );
 
+
         return;
     }
 
 
-    const repaymentOption =
-        repaymentPeriod.options[
-            repaymentPeriod.selectedIndex
-        ];
+    /*
+        Repayment is automatically
+        determined by the selected loan.
+    */
+
+    const repaymentMonths =
+        Number(
+            repaymentPeriod.value
+        );
 
 
     const repayment =
-        repaymentOption
-            ? repaymentOption.text
+        repaymentMonths
+            ? `Miezi ${repaymentMonths}`
             : "-";
 
 
@@ -2617,14 +3216,19 @@ function resetForm() {
         loanSummary.classList.add(
             "hidden"
         );
+
     }
 
 
-    if (repaymentWrapper) {
+    /*
+        Reset automatic repayment value.
+    */
 
-        repaymentWrapper.classList.add(
-            "hidden"
-        );
+    if (repaymentPeriod) {
+
+        repaymentPeriod.value =
+            "";
+
     }
 
 
@@ -2638,7 +3242,9 @@ function resetForm() {
                 "active"
             );
 
-            preview.innerHTML = "";
+
+            preview.innerHTML =
+                "";
 
         });
 
@@ -2656,21 +3262,12 @@ function resetForm() {
         });
 
 
-    if (repaymentPeriod) {
-
-        repaymentPeriod.innerHTML = `
-            <option value="">
-                -- CHAGUA MUDA --
-            </option>
-        `;
-    }
-
-
     if (successSection) {
 
         successSection.classList.add(
             "hidden"
         );
+
     }
 
 
@@ -2679,6 +3276,7 @@ function resetForm() {
         loader.classList.add(
             "hidden"
         );
+
     }
 
 
@@ -2687,6 +3285,7 @@ function resetForm() {
         formSection.classList.remove(
             "hidden"
         );
+
     }
 
 
@@ -2695,8 +3294,10 @@ function resetForm() {
         submitButton.disabled =
             false;
 
+
         submitButton.textContent =
             "TUMA MAOMBI";
+
     }
 
 
@@ -2720,7 +3321,9 @@ function resetForm() {
    SUBMIT ERROR HANDLING
 ========================================================= */
 
-function handleSubmissionError(error) {
+function handleSubmissionError(
+    error
+) {
 
     console.error(
         "APPLICATION SUBMISSION FAILED:",
@@ -2733,6 +3336,7 @@ function handleSubmissionError(error) {
         loader.classList.add(
             "hidden"
         );
+
     }
 
 
@@ -2741,6 +3345,7 @@ function handleSubmissionError(error) {
         formSection.classList.remove(
             "hidden"
         );
+
     }
 
 
@@ -2749,8 +3354,10 @@ function handleSubmissionError(error) {
         submitButton.disabled =
             false;
 
+
         submitButton.textContent =
             "TUMA MAOMBI";
+
     }
 
 
@@ -2765,6 +3372,7 @@ function handleSubmissionError(error) {
 
         message =
             `Samahani, maombi yako hayakuweza kutumwa.\n\n${error.message}`;
+
     }
 
 
@@ -2778,7 +3386,9 @@ function handleSubmissionError(error) {
    SUBMIT FORM
 ========================================================= */
 
-async function handleSubmit(event) {
+async function handleSubmit(
+    event
+) {
 
     event.preventDefault();
 
@@ -2845,6 +3455,7 @@ async function handleSubmit(event) {
             "Huna internet kwa sasa. Tafadhali washa internet kisha ujaribu tena."
         );
 
+
         return;
     }
 
@@ -2855,6 +3466,7 @@ async function handleSubmit(event) {
 
     submitButton.disabled =
         true;
+
 
     submitButton.textContent =
         "INATUMA MAOMBI...";
@@ -2869,6 +3481,7 @@ async function handleSubmit(event) {
         formSection.classList.add(
             "hidden"
         );
+
     }
 
 
@@ -2877,6 +3490,7 @@ async function handleSubmit(event) {
         loader.classList.remove(
             "hidden"
         );
+
     }
 
 
@@ -2939,7 +3553,9 @@ async function handleSubmit(event) {
 ========================================================= */
 
 
-/* LOAN */
+/* =========================================================
+   LOAN
+========================================================= */
 
 if (loanAmount) {
 
@@ -2951,7 +3567,9 @@ if (loanAmount) {
 }
 
 
-/* INCOME SOURCE */
+/* =========================================================
+   INCOME SOURCE
+========================================================= */
 
 document
     .querySelectorAll(
@@ -2967,7 +3585,9 @@ document
     });
 
 
-/* IDENTIFICATION */
+/* =========================================================
+   IDENTIFICATION
+========================================================= */
 
 document
     .querySelectorAll(
@@ -2983,7 +3603,9 @@ document
     });
 
 
-/* RECEIVING METHOD */
+/* =========================================================
+   RECEIVING METHOD
+========================================================= */
 
 document
     .querySelectorAll(
@@ -2999,7 +3621,9 @@ document
     });
 
 
-/* CLEAR FIELD ERROR WHILE TYPING */
+/* =========================================================
+   CLEAR FIELD ERROR WHILE TYPING
+========================================================= */
 
 document
     .querySelectorAll(
@@ -3011,7 +3635,9 @@ document
             "input",
             function() {
 
-                clearError(this);
+                clearError(
+                    this
+                );
 
             }
         );
@@ -3021,7 +3647,9 @@ document
             "change",
             function() {
 
-                clearError(this);
+                clearError(
+                    this
+                );
 
             }
         );
@@ -3029,7 +3657,9 @@ document
     });
 
 
-/* FORM SUBMIT */
+/* =========================================================
+   FORM SUBMIT
+========================================================= */
 
 if (form) {
 
@@ -3041,7 +3671,9 @@ if (form) {
 }
 
 
-/* WHATSAPP */
+/* =========================================================
+   WHATSAPP
+========================================================= */
 
 const whatsappButton =
     document.getElementById(
@@ -3059,7 +3691,9 @@ if (whatsappButton) {
 }
 
 
-/* BACK */
+/* =========================================================
+   BACK
+========================================================= */
 
 const backButton =
     document.getElementById(
@@ -3125,6 +3759,7 @@ updateLoanSummary();
 console.log(
     "SAMIA MIKOPO TANZANIA application system initialized."
 );
+
 
 console.log(
     "Supabase:",

@@ -2,70 +2,96 @@
 <html lang="sw">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#102b1b">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="SAMIA MIKOPO TANZANIA - Admin Dashboard">
+
+    <meta name="theme-color" content="#0f172a">
 
     <title>Dashboard | SAMIA MIKOPO TANZANIA</title>
+
+    <link rel="icon"
+          type="image/webp"
+          href="../assets/img/logo.webp">
 
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 
 <body>
 
-<div class="admin-layout">
+<div class="dashboard-layout">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+    <aside class="sidebar" id="sidebar">
 
+        <!-- BRAND -->
         <div class="sidebar-brand">
 
-            <a href="dashboard.html" class="brand-link">
+            <img
+                src="../assets/img/logo.webp"
+                alt="SAMIA MIKOPO TANZANIA Logo"
+                class="brand-logo"
+            >
 
-                <img
-                    src="../assets/img/logo.webp"
-                    alt="SAMIA MIKOPO TANZANIA"
-                    class="brand-logo"
-                >
-
-                <div class="brand-text">
-                    <strong>SAMIA MIKOPO</strong>
-                    <span>ADMIN PORTAL</span>
-                </div>
-
-            </a>
+            <div class="brand-text">
+                <strong>SAMIA MIKOPO</strong>
+                <span>TANZANIA</span>
+            </div>
 
         </div>
 
 
+        <!-- NAVIGATION -->
         <nav class="sidebar-nav">
 
+            <!-- DASHBOARD -->
             <a
                 href="dashboard.html"
                 class="nav-item active"
-                aria-current="page"
             >
 
-                <svg
-                    class="nav-icon"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
                     <rect x="3" y="3" width="7" height="7" rx="1"></rect>
                     <rect x="14" y="3" width="7" height="7" rx="1"></rect>
                     <rect x="3" y="14" width="7" height="7" rx="1"></rect>
                     <rect x="14" y="14" width="7" height="7" rx="1"></rect>
                 </svg>
 
-                <span>Maombi</span>
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <!-- ANALYTICS -->
+            <a
+                href="analytics.html"
+                class="nav-item"
+            >
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="4" y1="19" x2="4" y2="10"></line>
+                    <line x1="10" y1="19" x2="10" y2="5"></line>
+                    <line x1="16" y1="19" x2="16" y2="12"></line>
+                    <line x1="22" y1="19" x2="22" y2="8"></line>
+                </svg>
+
+                <span>Analytics</span>
 
             </a>
 
         </nav>
 
 
-        <div class="sidebar-footer">
+        <!-- SIDEBAR BOTTOM -->
+        <div class="sidebar-bottom">
 
-            <div class="admin-mini">
+            <!-- ADMIN -->
+            <div class="admin-profile">
 
                 <div class="admin-avatar">
                     A
@@ -73,12 +99,10 @@
 
                 <div class="admin-info">
 
-                    <strong id="adminEmail">
-                        Admin
-                    </strong>
+                    <strong>Administrator</strong>
 
-                    <span>
-                        Administrator
+                    <span id="adminEmail">
+                        Admin
                     </span>
 
                 </div>
@@ -86,19 +110,17 @@
             </div>
 
 
+            <!-- LOGOUT -->
             <button
+                type="button"
                 id="logoutButton"
                 class="logout-button"
-                type="button"
             >
 
-                <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-                    <path d="M10 17l5-5-5-5"></path>
-                    <path d="M15 12H3"></path>
-                    <path d="M21 19V5a2 2 0 0 0-2-2h-6"></path>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
                 </svg>
 
                 <span>Toka</span>
@@ -110,8 +132,9 @@
     </aside>
 
 
-
-    <!-- MAIN CONTENT -->
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
     <main class="main-content">
 
         <!-- TOPBAR -->
@@ -119,19 +142,24 @@
 
             <div class="topbar-left">
 
-                <div class="mobile-brand">
-
-                    <img
-                        src="../assets/img/logo.webp"
-                        alt="SAMIA MIKOPO TANZANIA"
-                    >
-
-                </div>
+                <!-- MOBILE MENU -->
+                <button
+                    type="button"
+                    id="mobileMenuButton"
+                    class="mobile-menu-button"
+                    aria-label="Fungua menu"
+                    aria-controls="sidebar"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
 
                 <div>
 
-                    <span class="eyebrow">
+                    <span class="topbar-eyebrow">
                         ADMIN DASHBOARD
                     </span>
 
@@ -144,428 +172,784 @@
             </div>
 
 
-            <button
-                id="notificationButton"
-                class="notification-button"
-                type="button"
-                aria-label="Notifications"
-            >
+            <!-- NOTIFICATIONS -->
+            <div class="topbar-right">
 
-                <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
+                <button
+                    type="button"
+                    id="notificationButton"
+                    class="notification-button"
+                    aria-label="Notifications"
+                    aria-expanded="false"
                 >
-                    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
-                    <path d="M10 21h4"></path>
-                </svg>
 
-                <span
-                    id="notificationDot"
-                    class="notification-dot hidden"
-                ></span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
 
-            </button>
+                    <span
+                        id="notificationBadge"
+                        class="notification-badge hidden"
+                    ></span>
+
+                </button>
 
 
-            <div
-                id="notificationPanel"
-                class="notification-panel hidden"
-            >
+                <!-- NOTIFICATION PANEL -->
+                <div
+                    id="notificationPanel"
+                    class="notification-panel hidden"
+                >
 
-                <div class="notification-panel-head">
+                    <div class="notification-header">
 
-                    <strong>
-                        Arifa
-                    </strong>
+                        <strong>
+                            Notifications
+                        </strong>
 
-                    <button
-                        id="markNotificationsRead"
-                        type="button"
-                    >
-                        Soma zote
-                    </button>
+                        <button
+                            type="button"
+                            id="markNotificationsRead"
+                        >
+                            Weka kama zimesomwa
+                        </button>
+
+                    </div>
+
+                    <div id="notificationList">
+
+                        <p class="notification-empty">
+                            Hakuna notifications mpya.
+                        </p>
+
+                    </div>
 
                 </div>
-
-                <p>
-                    Hakuna arifa mpya kwa sasa.
-                </p>
 
             </div>
 
         </header>
 
 
-
-        <section class="content">
-
-            <!-- ERROR -->
-            <div
-                id="dashboardError"
-                class="alert alert-error hidden"
-                role="alert"
-            ></div>
+        <!-- ERROR MESSAGE -->
+        <div
+            id="dashboardError"
+            class="dashboard-error hidden"
+            role="alert"
+        ></div>
 
 
+        <!-- =================================================
+             KPI CARDS
+        ================================================== -->
+        <section
+            class="kpi-grid"
+            aria-label="Muhtasari wa maombi"
+        >
 
-            <!-- KPI CARDS -->
-            <section
-                class="kpi-grid"
-                aria-label="Takwimu za maombi"
-            >
+            <!-- MAOMBI YA LEO -->
+            <article class="kpi-card">
 
-                <article class="kpi-card">
+                <div class="kpi-icon">
 
-                    <div class="kpi-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect
+                            x="3"
+                            y="4"
+                            width="18"
+                            height="17"
+                            rx="2"
+                        ></rect>
 
-                        <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
+                        <line
+                            x1="16"
+                            y1="2"
+                            x2="16"
+                            y2="6"
+                        ></line>
 
-                    </div>
+                        <line
+                            x1="8"
+                            y1="2"
+                            x2="8"
+                            y2="6"
+                        ></line>
 
-                    <div class="kpi-copy">
+                        <line
+                            x1="3"
+                            y1="10"
+                            x2="21"
+                            y2="10"
+                        ></line>
 
-                        <span>
-                            Maombi Yote
-                        </span>
-
-                        <strong id="totalApplications">
-                            0
-                        </strong>
-
-                    </div>
-
-                </article>
-
-
-
-                <article class="kpi-card">
-
-                    <div class="kpi-icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <rect
-                                x="3"
-                                y="4"
-                                width="18"
-                                height="18"
-                                rx="2"
-                            ></rect>
-
-                            <path d="M16 2v4"></path>
-                            <path d="M8 2v4"></path>
-                            <path d="M3 10h18"></path>
-
-                            <path d="M8 14h2"></path>
-                            <path d="M14 14h2"></path>
-                            <path d="M8 18h2"></path>
-                        </svg>
-
-                    </div>
-
-                    <div class="kpi-copy">
-
-                        <span>
-                            Maombi ya Leo
-                        </span>
-
-                        <strong id="todayApplications">
-                            0
-                        </strong>
-
-                    </div>
-
-                </article>
-
-
-
-                <article class="kpi-card">
-
-                    <div class="kpi-icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <circle
-                                cx="12"
-                                cy="12"
-                                r="9"
-                            ></circle>
-
-                            <path d="M15 8.5c-.7-.7-1.7-1-3-1-1.7 0-3 .9-3 2.2 0 3.2 6 1.7 6 4.8 0 1.3-1.2 2.2-3.1 2.2-1.3 0-2.4-.4-3.2-1.1"></path>
-
-                            <path d="M12 6v12"></path>
-                        </svg>
-
-                    </div>
-
-                    <div class="kpi-copy">
-
-                        <span>
-                            Jumla ya Mikopo
-                        </span>
-
-                        <strong id="totalLoanAmount">
-                            TZS 0
-                        </strong>
-
-                    </div>
-
-                </article>
-
-            </section>
-
-            <!-- APPLICATIONS -->
-            <section class="applications-section">
-
-                <div class="section-header">
-
-                    <div>
-
-                        <span class="eyebrow">
-                            APPLICATIONS
-                        </span>
-
-                        <h2>
-                            Maombi ya Mikopo
-                        </h2>
-
-                        <p>
-                            Angalia na simamia maombi yaliyowasilishwa.
-                        </p>
-
-                    </div>
-
-
-                    <div class="search-box">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <circle cx="11" cy="11" r="7"></circle>
-                            <path d="m20 20-4-4"></path>
-                        </svg>
-
-                        <input
-                            id="searchInput"
-                            type="search"
-                            placeholder="Tafuta jina, simu au mkoa..."
-                            autocomplete="off"
-                        >
-
-                    </div>
+                    </svg>
 
                 </div>
 
 
-
-                <!-- LOADING -->
-                <div
-                    id="loadingState"
-                    class="loading-state"
-                >
-
-                    <span class="spinner"></span>
+                <div class="kpi-content">
 
                     <span>
-                        Inapakia maombi...
+                        Maombi ya Leo
                     </span>
+
+                    <strong id="todayApplications">
+                        0
+                    </strong>
+
+                    <small>
+                        Maombi yaliyopokelewa leo
+                    </small>
+
+                </div>
+
+            </article>
+
+
+            <!-- MAOMBI YOTE -->
+            <article class="kpi-card">
+
+                <div class="kpi-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path
+                            d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                        ></path>
+
+                        <circle
+                            cx="9"
+                            cy="7"
+                            r="4"
+                        ></circle>
+
+                        <path
+                            d="M22 21v-2a4 4 0 0 0-3-3.87"
+                        ></path>
+
+                        <path
+                            d="M16 3.13a4 4 0 0 1 0 7.75"
+                        ></path>
+
+                    </svg>
 
                 </div>
 
 
+                <div class="kpi-content">
 
-                <!-- EMPTY -->
-                <div
-                    id="emptyState"
-                    class="empty-state hidden"
-                >
+                    <span>
+                        Maombi Yote
+                    </span>
 
-                    <div class="empty-icon">
+                    <strong id="totalApplications">
+                        0
+                    </strong>
 
-                        <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
-                            <path d="M8 8h8"></path>
-                            <path d="M8 12h8"></path>
-                            <path d="M8 16h5"></path>
-                        </svg>
+                    <small>
+                        Maombi yote yaliyowasilishwa
+                    </small>
 
-                    </div>
+                </div>
 
-                    <h3>
-                        Hakuna maombi
-                    </h3>
+            </article>
+
+
+            <!-- KIASI KILICHOOMBWA -->
+            <article class="kpi-card">
+
+                <div class="kpi-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path d="M12 2v20"></path>
+
+                        <path
+                            d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                        ></path>
+
+                    </svg>
+
+                </div>
+
+
+                <div class="kpi-content">
+
+                    <span>
+                        Kiasi Kilichoombwa
+                    </span>
+
+                    <strong id="totalLoanAmount">
+                        TZS 0
+                    </strong>
+
+                    <small>
+                        Jumla ya kiasi kilichoombwa
+                    </small>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =================================================
+             APPLICATIONS
+        ================================================== -->
+        <section class="applications-section">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        APPLICATIONS
+                    </span>
+
+                    <h2>
+                        Maombi ya Mikopo
+                    </h2>
 
                     <p>
-                        Maombi yaliyowasilishwa yataonekana hapa.
+                        Orodha ya maombi yote yaliyowasilishwa.
                     </p>
 
                 </div>
 
 
+                <!-- HEADER ACTIONS -->
+                <div class="header-actions">
 
-                <!-- TABLE -->
-                <div
-                    id="tableContainer"
-                    class="table-container hidden"
-                >
+                    <!-- REFRESH -->
+                    <button
+                        type="button"
+                        id="refreshButton"
+                        class="secondary-button"
+                    >
 
-                    <div class="table-scroll">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
 
-                        <table class="applications-table">
+                            <polyline
+                                points="23 4 23 10 17 10"
+                            ></polyline>
 
-                            <thead>
+                            <polyline
+                                points="1 20 1 14 7 14"
+                            ></polyline>
 
-                                <tr>
+                            <path
+                                d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"
+                            ></path>
 
-                                    <th>
-                                        Jina
-                                    </th>
+                            <path
+                                d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"
+                            ></path>
 
-                                    <th>
-                                        Simu
-                                    </th>
+                        </svg>
 
-                                    <th>
-                                        Mkoa
-                                    </th>
+                        <span>
+                            Refresh
+                        </span>
 
-                                    <th>
-                                        Kiasi
-                                    </th>
-
-                                    <th>
-                                        Tarehe
-                                    </th>
-
-                                    <th>
-                                        Vitendo
-                                    </th>
-
-                                </tr>
-
-                            </thead>
+                    </button>
 
 
-                            <tbody id="applicationsTableBody">
-                            </tbody>
+                    <!-- EXPORT -->
+                    <button
+                        type="button"
+                        id="exportButton"
+                        class="primary-button"
+                    >
 
-                        </table>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
 
-                    </div>
+                            <path
+                                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                            ></path>
+
+                            <polyline
+                                points="7 10 12 15 17 10"
+                            ></polyline>
+
+                            <line
+                                x1="12"
+                                y1="15"
+                                x2="12"
+                                y2="3"
+                            ></line>
+
+                        </svg>
+
+                        <span>
+                            Export CSV
+                        </span>
+
+                    </button>
 
                 </div>
 
-            </section>
+            </div>
+
+
+            <!-- =================================================
+                 FILTERS
+            ================================================== -->
+            <div class="table-toolbar">
+
+                <!-- SEARCH -->
+                <div class="search-box">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <circle
+                            cx="11"
+                            cy="11"
+                            r="7"
+                        ></circle>
+
+                        <line
+                            x1="20"
+                            y1="20"
+                            x2="16.65"
+                            y2="16.65"
+                        ></line>
+
+                    </svg>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Tafuta jina, simu au mkoa..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- FILTERS -->
+                <div class="filter-group">
+
+                    <!-- REGION -->
+                    <select id="regionFilter">
+
+                        <option value="">
+                            Mikoa yote
+                        </option>
+
+                    </select>
+
+
+                    <!-- LOAN AMOUNT -->
+                    <select id="loanFilter">
+
+                        <option value="">
+                            Kiasi chote
+                        </option>
+
+                        <option value="under500">
+                            Chini ya TZS 500,000
+                        </option>
+
+                        <option value="500to1">
+                            TZS 500,000 - 1M
+                        </option>
+
+                        <option value="1to5">
+                            TZS 1M - 5M
+                        </option>
+
+                        <option value="5plus">
+                            Zaidi ya TZS 5M
+                        </option>
+
+                    </select>
+
+
+                    <!-- SORT -->
+                    <select id="sortSelect">
+
+                        <option value="newest">
+                            Mpya zaidi
+                        </option>
+
+                        <option value="oldest">
+                            Za zamani
+                        </option>
+
+                        <option value="highest">
+                            Mkopo mkubwa
+                        </option>
+
+                        <option value="lowest">
+                            Mkopo mdogo
+                        </option>
+
+                    </select>
+
+
+                    <!-- CLEAR -->
+                    <button
+                        type="button"
+                        id="clearFiltersButton"
+                        class="clear-filter-button"
+                    >
+                        Clear
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LOADING
+            ================================================== -->
+            <div
+                id="loadingState"
+                class="loading-state"
+            >
+
+                <div class="spinner"></div>
+
+                <span>
+                    Inapakia maombi...
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+            <div
+                id="emptyState"
+                class="empty-state hidden"
+            >
+
+                <div class="empty-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path
+                            d="M6 2h9l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"
+                        ></path>
+
+                        <polyline
+                            points="14 2 14 8 20 8"
+                        ></polyline>
+
+                    </svg>
+
+                </div>
+
+                <h3>
+                    Hakuna maombi
+                </h3>
+
+                <p>
+                    Hakuna maombi yanayolingana na utafutaji wako.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 APPLICATION TABLE
+            ================================================== -->
+            <div
+                id="tableContainer"
+                class="table-container hidden"
+            >
+
+                <table class="applications-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Jina
+                            </th>
+
+                            <th>
+                                Simu
+                            </th>
+
+                            <th>
+                                Mkoa
+                            </th>
+
+                            <th>
+                                Kiasi cha Mkopo
+                            </th>
+
+                            <th>
+                                Muda
+                            </th>
+
+                            <th>
+                                Tarehe
+                            </th>
+
+                            <th class="actions-heading">
+                                Vitendo
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="applicationsTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- =================================================
+                 PAGINATION
+            ================================================== -->
+            <div
+                id="paginationControls"
+                class="pagination hidden"
+            >
+
+                <div class="pagination-left">
+
+                    <span id="paginationSummary">
+                        0 maombi
+                    </span>
+
+
+                    <select id="pageSizeSelect">
+
+                        <option value="10">
+                            10 / page
+                        </option>
+
+                        <option value="20">
+                            20 / page
+                        </option>
+
+                        <option value="50">
+                            50 / page
+                        </option>
+
+                        <option value="100">
+                            100 / page
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="pagination-buttons">
+
+                    <button
+                        type="button"
+                        id="previousPageButton"
+                    >
+                        Previous
+                    </button>
+
+                    <span id="pageInfo">
+                        1 / 1
+                    </span>
+
+                    <button
+                        type="button"
+                        id="nextPageButton"
+                    >
+                        Next
+                    </button>
+
+                </div>
+
+            </div>
 
         </section>
 
     </main>
 
+</div>
 
 
-    <!-- MOBILE NAV -->
-    <nav
-        class="mobile-nav"
-        aria-label="Mobile navigation"
+<!-- =========================================================
+     MOBILE ACTION MODAL
+========================================================== -->
+<div
+    id="actionModal"
+    class="modal hidden"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal-backdrop"
+        data-close-action-modal
+    ></div>
+
+
+    <div
+        class="action-modal"
+        role="dialog"
+        aria-modal="true"
     >
 
-        <a
-            href="dashboard.html"
-            class="mobile-nav-item active"
-        >
-
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-            >
-                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
-                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
-                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
-                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
-            </svg>
-
-            <span>
-                Maombi
-            </span>
-
-        </a>
-
-
         <button
-            id="mobileLogoutButton"
-            class="mobile-nav-item"
             type="button"
+            id="closeActionModal"
+            class="modal-close"
+            aria-label="Funga"
         >
-
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-            >
-                <path d="M10 17l5-5-5-5"></path>
-                <path d="M15 12H3"></path>
-                <path d="M21 19V5a2 2 0 0 0-2-2h-6"></path>
-            </svg>
-
-            <span>
-                Toka
-            </span>
-
+            ×
         </button>
 
-    </nav>
+
+        <span class="modal-eyebrow">
+            MAOMBI
+        </span>
+
+
+        <h3 id="actionModalTitle">
+            Applicant
+        </h3>
+
+
+        <p id="actionModalSubtitle">
+            Chagua kitendo.
+        </p>
+
+
+        <div
+            id="actionModalActions"
+            class="mobile-action-list"
+        ></div>
+
+    </div>
 
 </div>
 
 
+<!-- =========================================================
+     DELETE MODAL
+========================================================== -->
+<div
+    id="deleteModal"
+    class="modal hidden"
+    aria-hidden="true"
+>
 
-<!-- SUPABASE -->
+    <div
+        class="modal-backdrop"
+        data-close-delete-modal
+    ></div>
+
+
+    <div
+        class="delete-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="deleteModalTitle"
+    >
+
+        <div class="delete-icon">
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                <polyline
+                    points="3 6 5 6 21 6"
+                ></polyline>
+
+                <path
+                    d="M19 6l-1 14H6L5 6"
+                ></path>
+
+                <path
+                    d="M10 11v5"
+                ></path>
+
+                <path
+                    d="M14 11v5"
+                ></path>
+
+                <path
+                    d="M9 6V4h6v2"
+                ></path>
+
+            </svg>
+
+        </div>
+
+
+        <h3 id="deleteModalTitle">
+            Futa Maombi?
+        </h3>
+
+
+        <p>
+
+            Una uhakika unataka kufuta maombi ya
+
+            <strong id="deleteTargetName">
+                Applicant
+            </strong>?
+
+            Kitendo hiki hakiwezi kutenduliwa.
+
+        </p>
+
+
+        <div class="delete-modal-actions">
+
+            <button
+                type="button"
+                id="cancelDeleteButton"
+                class="secondary-button"
+            >
+                Ghairi
+            </button>
+
+
+            <button
+                type="button"
+                id="confirmDeleteButton"
+                class="danger-button"
+            >
+                Futa Maombi
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================== -->
+<div
+    id="toastContainer"
+    class="toast-container"
+    aria-live="polite"
+></div>
+
+
+<!-- =========================================================
+     SCRIPTS
+========================================================== -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="../assets/js/supabase.js"></script>
 
 <script src="js/dashboard.js"></script>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const mobileLogout =
-        document.getElementById("mobileLogoutButton");
-
-    const desktopLogout =
-        document.getElementById("logoutButton");
-
-    if (mobileLogout && desktopLogout) {
-
-        mobileLogout.addEventListener(
-            "click",
-            function () {
-
-                desktopLogout.click();
-
-            }
-        );
-
-    }
-
-});
-</script>
 
 </body>
 </html>

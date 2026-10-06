@@ -78,7 +78,7 @@ The system allows applicants to submit loan applications online while authorized
 
 ## Project Structure
 
-```text
+'''text
 samia-mikopo-tanzania/
 │
 ├── index.html
