@@ -104,7 +104,8 @@ a {
 
 .sidebar {
     width: var(--sidebar-width);
-    height: 100vh;
+    height: 100dvh;
+    min-height: 560px;
 
     position: fixed;
     left: 0;
@@ -1738,9 +1739,9 @@ a {
 
 }
 
+
 /* =========================================================
-   SIDEBAR VISIBILITY FIX
-   Navigation can scroll while administrator/logout stay pinned.
+   FINAL SIDEBAR LAYOUT
 ========================================================= */
 
 .sidebar-nav {
@@ -1748,10 +1749,22 @@ a {
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-width: thin;
+    padding: 18px 12px;
 }
 
 .sidebar-bottom {
     flex: 0 0 auto;
     margin-top: auto;
+    padding: 14px;
+}
+
+.sidebar-brand {
+    flex: 0 0 auto;
+}
+
+@media (max-height: 620px) and (min-width: 761px) {
+    .sidebar-brand { height: 68px; padding-top: 12px; padding-bottom: 12px; }
+    .sidebar-nav { padding-top: 10px; padding-bottom: 10px; }
+    .sidebar-bottom { padding: 10px 14px; }
+    .admin-profile { padding-bottom: 9px; }
 }
