@@ -174,7 +174,7 @@ a {
 
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 9px;
 
     border-radius: 9px;
 
@@ -242,7 +242,7 @@ a {
 }
 
 .admin-info strong {
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .admin-info span {
@@ -543,9 +543,9 @@ a {
     display: grid;
 
     grid-template-columns:
-        repeat(5, minmax(0, 1fr));
+        repeat(3, minmax(0, 1fr));
 
-    gap: 14px;
+    gap: 10px;
 
     margin-bottom: 22px;
 }
@@ -553,7 +553,7 @@ a {
 .kpi-card {
     min-width: 0;
 
-    padding: 17px;
+    padding: 13px 14px;
 
     background: #ffffff;
 
@@ -998,7 +998,7 @@ a {
 }
 
 .applications-table th {
-    padding: 11px 14px;
+    padding: 8px 10px;
 
     text-align: left;
 
@@ -1019,7 +1019,7 @@ a {
 }
 
 .applications-table td {
-    padding: 10px 14px;
+    padding: 8px 10px;
 
     border-bottom: 1px solid #f1f5f9;
 
@@ -1585,25 +1585,32 @@ a {
 
     .kpi-grid {
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(3, minmax(0, 1fr));
 
-        gap: 9px;
+        gap: 6px;
     }
 
     .kpi-card {
-        padding: 13px;
-
-        gap: 9px;
+        padding: 9px 7px;
+        gap: 5px;
+        align-items: center;
+        border-radius: 8px;
     }
 
     .kpi-icon {
-        width: 34px;
-        height: 34px;
-        flex-basis: 34px;
+        width: 27px;
+        height: 27px;
+        flex-basis: 27px;
+    }
+
+    .kpi-content span {
+        font-size: 8px;
+        line-height: 1.15;
     }
 
     .kpi-content strong {
-        font-size: 17px;
+        font-size: 13px;
+        line-height: 1.1;
     }
 
     .section-header {
@@ -1694,11 +1701,30 @@ a {
     }
 
     .kpi-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px;
     }
 
     .kpi-card {
-        min-height: 82px;
+        min-height: 58px;
+        padding: 8px 5px;
+    }
+
+    .kpi-icon {
+        display: none;
+    }
+
+    .kpi-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    .kpi-content span {
+        font-size: 7px;
+    }
+
+    .kpi-content strong {
+        font-size: 12px;
     }
 
     .filter-group {
