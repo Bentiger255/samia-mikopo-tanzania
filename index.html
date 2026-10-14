@@ -2167,6 +2167,67 @@
         }
     }
 
+
+    /* =========================================================
+       CUSTOMER TESTIMONIAL SCREENSHOTS
+    ========================================================= */
+
+    .testimonials-section {
+        background: var(--background);
+    }
+
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .testimonial-image-link {
+        display: block;
+        min-width: 0;
+        overflow: hidden;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        line-height: 0;
+    }
+
+    .testimonial-image-link:focus-visible {
+        outline: 3px solid var(--primary);
+        outline-offset: 4px;
+    }
+
+    .testimonial-image {
+        width: 100%;
+        height: auto;
+        max-height: 620px;
+        object-fit: contain;
+        background: #eef3f0;
+    }
+
+    .testimonials-note {
+        max-width: 850px;
+        margin: 18px auto 0;
+        color: #333;
+        font-size: 13px;
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 640px) {
+        .testimonials-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .testimonial-image {
+            max-height: none;
+        }
+    }
+
+
 </style>
 </head>
 
@@ -2223,6 +2284,10 @@
 
                 <a href="#mikopo">
                     Mikopo
+                </a>
+
+                <a href="#ushuhuda">
+                    Ushuhuda
                 </a>
 
                 <a href="#masharti">
@@ -2286,6 +2351,10 @@
 
         <a href="#mikopo">
             Mikopo
+        </a>
+
+        <a href="#ushuhuda">
+            Ushuhuda wa Wateja
         </a>
 
         <a href="#masharti">
@@ -2833,6 +2902,51 @@
 
 
         </div>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- =============================================================
+     USHUHUDA WA WATEJA
+============================================================= -->
+
+<section class="section testimonials-section" id="ushuhuda">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <div class="section-kicker">USHUHUDA</div>
+            <h2>Ushuhuda wa Wateja</h2>
+            <p>Angalia ujumbe wa wateja uliowasilishwa kupitia picha za maoni.</p>
+        </div>
+
+        <div class="testimonials-grid">
+
+            <a class="testimonial-image-link" href="images/test1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa kwanza">
+                <img class="testimonial-image" src="images/test1.jpg" alt="Picha ya ushuhuda wa mteja wa kwanza" loading="lazy" decoding="async">
+            </a>
+
+            <a class="testimonial-image-link" href="images/test2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa pili">
+                <img class="testimonial-image" src="images/test2.jpg" alt="Picha ya ushuhuda wa mteja wa pili" loading="lazy" decoding="async">
+            </a>
+
+            <a class="testimonial-image-link" href="images/test3.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa tatu">
+                <img class="testimonial-image" src="images/test3.jpg" alt="Picha ya ushuhuda wa mteja wa tatu" loading="lazy" decoding="async">
+            </a>
+
+            <a class="testimonial-image-link" href="images/test4.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa nne">
+                <img class="testimonial-image" src="images/test4.jpg" alt="Picha ya ushuhuda wa mteja wa nne" loading="lazy" decoding="async">
+            </a>
+
+        </div>
+
+        <p class="testimonials-note">
+            Hakikisha una ruhusa ya kuchapisha picha hizi na ficha taarifa binafsi ambazo wateja hawajakubali kuzionyesha hadharani.
+        </p>
 
     </div>
 
