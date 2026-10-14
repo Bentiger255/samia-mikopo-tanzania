@@ -2169,7 +2169,7 @@
 
 
     /* =========================================================
-       CUSTOMER TESTIMONIAL SCREENSHOTS
+       CUSTOMER TESTIMONIAL SLIDESHOW
     ========================================================= */
 
     .testimonials-section {
@@ -2177,34 +2177,88 @@
     }
 
     .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 20px;
-        max-width: 1000px;
+        position: relative;
+        max-width: 760px;
         margin: 0 auto;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--white);
+    }
+
+    .testimonials-track {
+        display: flex;
+        width: 100%;
+        transform: translateX(0);
+        transition: transform 450ms ease;
+        will-change: transform;
     }
 
     .testimonial-image-link {
-        display: block;
+        display: flex;
+        flex: 0 0 100%;
+        width: 100%;
         min-width: 0;
+        align-items: center;
+        justify-content: center;
         overflow: hidden;
-        background: var(--white);
-        border: 1px solid var(--border);
-        border-radius: 12px;
         line-height: 0;
+        background: #eef3f0;
     }
 
     .testimonial-image-link:focus-visible {
         outline: 3px solid var(--primary);
-        outline-offset: 4px;
+        outline-offset: -4px;
     }
 
     .testimonial-image {
+        display: block;
         width: 100%;
-        height: auto;
-        max-height: 620px;
+        height: 390px;
         object-fit: contain;
         background: #eef3f0;
+    }
+
+    .testimonials-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        margin: 14px auto 0;
+    }
+
+    .testimonial-arrow {
+        display: inline-flex;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--primary);
+        border-radius: 4px;
+        color: var(--primary-dark);
+        background: var(--white);
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 160ms ease, color 160ms ease;
+    }
+
+    .testimonial-arrow:hover {
+        color: var(--white);
+        background: var(--primary);
+    }
+
+    .testimonial-arrow:focus-visible {
+        outline: 3px solid var(--primary);
+        outline-offset: 3px;
+    }
+
+    .testimonial-counter {
+        min-width: 48px;
+        color: var(--primary-dark);
+        font-size: 13px;
+        font-weight: 600;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
     }
 
     .testimonials-note {
@@ -2217,13 +2271,27 @@
     }
 
     @media (max-width: 640px) {
-        .testimonials-grid {
-            grid-template-columns: 1fr;
-            gap: 16px;
+        .testimonial-image {
+            height: 300px;
         }
 
-        .testimonial-image {
-            max-height: none;
+        .testimonials-grid {
+            border-radius: 5px;
+        }
+
+        .testimonial-arrow {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .testimonials-track {
+            transition: none;
+        }
+
+        .testimonial-arrow {
+            transition: none;
         }
     }
 
@@ -2924,24 +2992,36 @@
             <p>Angalia ujumbe wa wateja uliowasilishwa kupitia picha za maoni.</p>
         </div>
 
-        <div class="testimonials-grid">
+        <div class="testimonials-grid" id="testimonialsCarousel" aria-label="Picha za ushuhuda wa wateja">
+            <div class="testimonials-track" id="testimonialsTrack">
 
-            <a class="testimonial-image-link" href="images/test1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa kwanza">
-                <img class="testimonial-image" src="images/test1.jpg" alt="Picha ya ushuhuda wa mteja wa kwanza" loading="lazy" decoding="async">
-            </a>
+                <a class="testimonial-image-link" href="images/test1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa kwanza">
+                    <img class="testimonial-image" src="images/test1.jpg" alt="Picha ya ushuhuda wa mteja wa kwanza" loading="lazy" decoding="async">
+                </a>
 
-            <a class="testimonial-image-link" href="images/test2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa pili">
-                <img class="testimonial-image" src="images/test2.jpg" alt="Picha ya ushuhuda wa mteja wa pili" loading="lazy" decoding="async">
-            </a>
+                <a class="testimonial-image-link" href="images/test2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa pili">
+                    <img class="testimonial-image" src="images/test2.jpg" alt="Picha ya ushuhuda wa mteja wa pili" loading="lazy" decoding="async">
+                </a>
 
-            <a class="testimonial-image-link" href="images/test3.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa tatu">
-                <img class="testimonial-image" src="images/test3.jpg" alt="Picha ya ushuhuda wa mteja wa tatu" loading="lazy" decoding="async">
-            </a>
+                <a class="testimonial-image-link" href="images/test3.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa tatu">
+                    <img class="testimonial-image" src="images/test3.jpg" alt="Picha ya ushuhuda wa mteja wa tatu" loading="lazy" decoding="async">
+                </a>
 
-            <a class="testimonial-image-link" href="images/test4.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa nne">
-                <img class="testimonial-image" src="images/test4.jpg" alt="Picha ya ushuhuda wa mteja wa nne" loading="lazy" decoding="async">
-            </a>
+                <a class="testimonial-image-link" href="images/test4.jpg" target="_blank" rel="noopener noreferrer" aria-label="Fungua picha ya ushuhuda wa mteja wa nne">
+                    <img class="testimonial-image" src="images/test4.jpg" alt="Picha ya ushuhuda wa mteja wa nne" loading="lazy" decoding="async">
+                </a>
 
+            </div>
+        </div>
+
+        <div class="testimonials-controls" aria-label="Vidhibiti vya ushuhuda">
+            <button type="button" class="testimonial-arrow" id="testimonialPrevious" aria-label="Picha iliyotangulia">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </button>
+            <span class="testimonial-counter" id="testimonialCounter" aria-live="polite">1 / 4</span>
+            <button type="button" class="testimonial-arrow" id="testimonialNext" aria-label="Picha inayofuata">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
         </div>
 
         <p class="testimonials-note">
@@ -3670,6 +3750,76 @@
 
 </script>
 
+
+
+<script>
+/* Customer testimonial slideshow */
+(function () {
+    const carousel = document.getElementById("testimonialsCarousel");
+    const track = document.getElementById("testimonialsTrack");
+    const previousButton = document.getElementById("testimonialPrevious");
+    const nextButton = document.getElementById("testimonialNext");
+    const counter = document.getElementById("testimonialCounter");
+
+    if (!carousel || !track || !previousButton || !nextButton || !counter) {
+        return;
+    }
+
+    const slides = Array.from(track.querySelectorAll(".testimonial-image-link"));
+    if (slides.length < 2) return;
+
+    let currentIndex = 0;
+    let autoplayId = null;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function showSlide(index) {
+        currentIndex = (index + slides.length) % slides.length;
+        track.style.transform = "translateX(-" + (currentIndex * 100) + "%)";
+        counter.textContent = (currentIndex + 1) + " / " + slides.length;
+    }
+
+    function stopAutoplay() {
+        if (autoplayId !== null) {
+            window.clearInterval(autoplayId);
+            autoplayId = null;
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+        if (!reducedMotion) {
+            autoplayId = window.setInterval(function () {
+                showSlide(currentIndex + 1);
+            }, 4500);
+        }
+    }
+
+    previousButton.addEventListener("click", function () {
+        showSlide(currentIndex - 1);
+        startAutoplay();
+    });
+
+    nextButton.addEventListener("click", function () {
+        showSlide(currentIndex + 1);
+        startAutoplay();
+    });
+
+    carousel.addEventListener("mouseenter", stopAutoplay);
+    carousel.addEventListener("mouseleave", startAutoplay);
+    carousel.addEventListener("focusin", stopAutoplay);
+    carousel.addEventListener("focusout", function (event) {
+        if (!carousel.contains(event.relatedTarget)) startAutoplay();
+    });
+
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) stopAutoplay();
+        else startAutoplay();
+    });
+
+    showSlide(0);
+    startAutoplay();
+})();
+</script>
 
 </body>
 </html>
