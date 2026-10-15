@@ -422,6 +422,18 @@
                 <!-- FILTERS -->
                 <div class="filter-group">
 
+                    <!-- APPLICATION DATE RANGE -->
+                    <label class="date-filter">
+                        <span>Kuanzia tarehe</span>
+                        <input type="date" id="startDateFilter" aria-label="Tarehe ya kuanzia">
+                    </label>
+
+                    <label class="date-filter">
+                        <span>Mpaka tarehe</span>
+                        <input type="date" id="endDateFilter" aria-label="Tarehe ya mwisho">
+                    </label>
+
+
                     <!-- REGION -->
                     <select id="regionFilter">
 
@@ -616,25 +628,7 @@
                     </span>
 
 
-                    <select id="pageSizeSelect">
-
-                        <option value="10">
-                            10 / page
-                        </option>
-
-                        <option value="20">
-                            20 / page
-                        </option>
-
-                        <option value="50">
-                            50 / page
-                        </option>
-
-                        <option value="100">
-                            100 / page
-                        </option>
-
-                    </select>
+                    <span class="page-size-note">Maombi 25 kwa kila ukurasa</span>
 
                 </div>
 
