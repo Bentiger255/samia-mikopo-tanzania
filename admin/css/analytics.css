@@ -1143,3 +1143,20 @@ a {
     .sidebar-bottom { padding: 10px 14px; }
     .admin-profile { padding-bottom: 9px; }
 }
+
+
+/* Plain-language guide */
+.analytics-guide {
+    margin: 0 0 20px;
+    padding: 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+.analytics-guide-heading h2 { margin: 0; font-size: 16px; }
+.analytics-guide-heading p { margin: 6px 0 14px; color: var(--muted); font-size: 12px; }
+.analytics-guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.analytics-guide-grid > div { padding-left: 12px; border-left: 2px solid var(--primary); }
+.analytics-guide-grid strong { display: block; font-size: 12px; line-height: 1.5; }
+.analytics-guide-grid p { margin: 6px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+@media (max-width: 760px) { .analytics-guide-grid { grid-template-columns: 1fr; gap: 13px; } }
