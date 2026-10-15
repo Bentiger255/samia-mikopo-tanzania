@@ -627,11 +627,15 @@ a {
     color: var(--primary);
 
     font-size: 20px;
-    line-height: 1.1;
+    line-height: 1.2;
 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+#totalLoanAmount {
+    font-size: clamp(14px, 1.4vw, 20px);
+    letter-spacing: -0.2px;
 }
 
 .kpi-content small {
@@ -841,7 +845,8 @@ a {
     flex-wrap: wrap;
 }
 
-.filter-group select {
+.filter-group select,
+.filter-group input[type="date"] {
     height: 38px;
 
     min-width: 130px;
@@ -861,8 +866,36 @@ a {
     font-size: 11px;
 }
 
-.filter-group select:focus {
+.filter-group select:focus,
+.filter-group input[type="date"]:focus {
     border-color: var(--accent);
+}
+
+.date-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.filter-group .date-filter input[type="date"] {
+    min-width: 145px;
+    height: 38px;
+    padding: 0 8px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #ffffff;
+    color: var(--text);
+    font: inherit;
+    font-size: 11px;
+}
+
+.page-size-note {
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap;
 }
 
 .clear-filter-button {
@@ -1636,7 +1669,8 @@ a {
             1fr 1fr;
     }
 
-    .filter-group select {
+    .filter-group select,
+    .filter-group input[type="date"] {
         width: 100%;
         min-width: 0;
     }
