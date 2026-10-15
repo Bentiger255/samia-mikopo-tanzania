@@ -39,6 +39,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     const regionFilter =
         document.getElementById("regionFilter");
 
+    const startDateFilter =
+        document.getElementById("startDateFilter");
+
+    const endDateFilter =
+        document.getElementById("endDateFilter");
+
     const loanFilter =
         document.getElementById("loanFilter");
 
@@ -53,9 +59,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const exportButton =
         document.getElementById("exportButton");
-
-    const pageSizeSelect =
-        document.getElementById("pageSizeSelect");
 
     const paginationControls =
         document.getElementById("paginationControls");
@@ -134,8 +137,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     let currentPage = 1;
 
-    let pageSize =
-        Number(pageSizeSelect?.value || 10);
+    const pageSize = 25;
 
     let pendingDeleteId = null;
 
@@ -433,39 +435,62 @@ document.addEventListener("DOMContentLoaded", async function () {
             );
         }
 
-        const {
-            data,
-            error
-        } = await supabaseClient
-            .from("loan_applications")
-            .select(`
-                id,
-                created_at,
-                full_name,
-                phone,
-                region,
-                district,
-                ward,
-                loan_amount,
-                savings_amount,
-                repayment_period,
-                borrower_photo_path,
-                nida_front_path,
-                nida_back_path,
-                voter_front_path,
-                voter_back_path,
-                zanzibar_front_path,
-                zanzibar_back_path,
-                license_front_path,
-                license_back_path,
-                passport_document_path
-            `)
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
-            );
+        const selectColumns = `
+            id,
+            created_at,
+            full_name,
+            phone,
+            region,
+            district,
+            ward,
+            loan_amount,
+            savings_amount,
+            repayment_period,
+            borrower_photo_path,
+            nida_front_path,
+            nida_back_path,
+            voter_front_path,
+            voter_back_path,
+            zanzibar_front_path,
+            zanzibar_back_path,
+            license_front_path,
+            license_back_path,
+            passport_document_path
+        `;
+
+        /*
+         * Supabase normally returns at most 1,000 rows per request.
+         * Fetch in batches so dashboard KPIs include every application.
+         */
+        const allApplications = [];
+        const batchSize = 1000;
+        let offset = 0;
+        let queryError = null;
+
+        while (true) {
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("loan_applications")
+                .select(selectColumns)
+                .order("created_at", { ascending: false })
+                .range(offset, offset + batchSize - 1);
+
+            if (error) {
+                queryError = error;
+                break;
+            }
+
+            const batch = data || [];
+            allApplications.push(...batch);
+
+            if (batch.length < batchSize) {
+                break;
+            }
+
+            offset += batchSize;
+        }
 
         isLoading = false;
 
@@ -473,22 +498,21 @@ document.addEventListener("DOMContentLoaded", async function () {
             "hidden"
         );
 
-        if (error) {
+        if (queryError) {
 
             console.error(
                 "Application query error:",
-                error
+                queryError
             );
 
             showError(
-                "Imeshindikana kupakia maombi."
+                "Imeshindikana kupakia maombi yote. Jaribu Refresh."
             );
 
             return;
         }
 
-        applications =
-            data || [];
+        applications = allApplications;
 
         updateStats(
             applications
@@ -729,6 +753,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         const selectedRegion =
             regionFilter.value;
 
+        const startDate =
+            startDateFilter.value;
+
+        const endDate =
+            endDateFilter.value;
+
         const selectedLoan =
             loanFilter.value;
 
@@ -780,6 +810,17 @@ document.addEventListener("DOMContentLoaded", async function () {
                         application.region ===
                             selectedRegion;
 
+                    const applicationDate =
+                        getLocalDateKey(application.created_at);
+
+                    const matchesStartDate =
+                        !startDate ||
+                        applicationDate >= startDate;
+
+                    const matchesEndDate =
+                        !endDate ||
+                        applicationDate <= endDate;
+
 
                     const amount =
                         Number(
@@ -830,6 +871,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                     return (
                         matchesSearch &&
                         matchesRegion &&
+                        matchesStartDate &&
+                        matchesEndDate &&
                         matchesLoan
                     );
 
@@ -1298,23 +1341,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
 
 
-    pageSizeSelect.addEventListener(
-        "change",
-        function () {
-
-            pageSize =
-                Number(
-                    pageSizeSelect.value
-                );
-
-            currentPage = 1;
-
-            renderApplications();
-
-        }
-    );
-
-
     /* =====================================================
        SEARCH + FILTERS
     ===================================================== */
@@ -1326,6 +1352,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
     regionFilter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+    startDateFilter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+    endDateFilter.addEventListener(
         "change",
         applyFilters
     );
@@ -1349,9 +1385,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             searchInput.value = "";
 
+            startDateFilter.value = "";
+
+            endDateFilter.value = "";
+
             regionFilter.value = "";
 
-            loanFilter.value = "";
+            loanFilter.value = ""
 
             sortSelect.value = "newest";
 
