@@ -1001,84 +1001,29 @@ function updateInsights() {
 
 function updateSummary() {
 
-    const today =
-        new Date();
+    // Muhtasari huu unafuata vichujio vinavyoonekana juu ya ukurasa.
+    const rows = filteredData;
+    const amounts = rows
+        .map(item => Number(item.loan_amount) || 0)
+        .filter(amount => amount > 0);
+    const totalAmount = amounts.reduce((sum, amount) => sum + amount, 0);
 
-    const weekStart =
-        new Date(today);
+    const regionCounts = {};
+    rows.forEach(item => {
+        const region = String(item.region || "Mkoa haujawekwa").trim();
+        regionCounts[region] = (regionCounts[region] || 0) + 1;
+    });
+    const topRegion = Object.entries(regionCounts)
+        .sort((a, b) => b[1] - a[1])[0];
 
-    weekStart.setDate(
-        weekStart.getDate() - 6
-    );
+    const highValueCount = rows.filter(item =>
+        (Number(item.loan_amount) || 0) >= 5000000
+    ).length;
 
-    weekStart.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-
-    const monthStart =
-        new Date(today);
-
-    monthStart.setDate(1);
-
-    monthStart.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-
-    const weekApplications =
-        analyticsData.filter(item => {
-
-            const date =
-                new Date(
-                    item.created_at
-                );
-
-            return (
-                !Number.isNaN(
-                    date.getTime()
-                ) &&
-                date >= weekStart &&
-                date <= today
-            );
-
-        }).length;
-
-    const monthApplications =
-        analyticsData.filter(item => {
-
-            const date =
-                new Date(
-                    item.created_at
-                );
-
-            return (
-                !Number.isNaN(
-                    date.getTime()
-                ) &&
-                date >= monthStart &&
-                date <= today
-            );
-
-        }).length;
-
-    setText(
-        "applicationsThisWeek",
-        formatNumber(
-            weekApplications
-        )
-    );
-
-    setText(
-        "applicationsThisMonth",
-        formatNumber(
-            monthApplications
-        )
-    );
+    setText("summaryApplications", formatNumber(rows.length));
+    setText("summaryAmount", formatTZS(totalAmount));
+    setText("summaryRegion", topRegion ? topRegion[0] : "Hakuna data");
+    setText("summaryHighValue", formatNumber(highValueCount));
 
 }
 
