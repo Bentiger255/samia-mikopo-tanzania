@@ -569,6 +569,18 @@ document.addEventListener("DOMContentLoaded", async function () {
             );
 
 
+        const totalSavingsAmount =
+            data.reduce(
+                (sum, application) => {
+                    return sum +
+                        Number(
+                            application.savings_amount || 0
+                        );
+                },
+                0
+            );
+
+
         const todayLoanAmount =
             todayApplications.reduce(
                 (sum, application) => {
@@ -650,6 +662,14 @@ document.addEventListener("DOMContentLoaded", async function () {
             "totalLoanAmount",
             `TZS ${formatMoney(
                 totalLoanAmount
+            )}`
+        );
+
+
+        setText(
+            "totalSavingsAmount",
+            `TZS ${formatMoney(
+                totalSavingsAmount
             )}`
         );
 
